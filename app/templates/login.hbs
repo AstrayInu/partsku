@@ -1,0 +1,22 @@
+<h2>Login here yo</h2>
+<label for="email">Email : </label>
+<Input @class="" @type="text" @name="email" @value={{this.email}} />
+<br>
+
+<label for="password">Password : </label>
+<Input @class="" @id="password" @type="password" @name="password" @value={{this.password}} />
+<Input @type="checkbox" @name="showpass" @checked={{this.showPassword}} @change={{action 'showPass'}} />
+<label for="showpass">show password</label>
+<br>
+
+
+{{#if this.errorMessage}}
+  <Alert @type="danger" @response={{this.errorMessage}} />
+{{/if}}
+{{#if this.successMessage}}
+  <Alert @type="success" @response={{this.successMessage}} />
+{{/if}}
+<div class="">
+  <button disabled={{this.isDisabled}} onclick={{action "login"}}>Login</button>
+</div>
+

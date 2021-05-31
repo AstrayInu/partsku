@@ -1,0 +1,35 @@
+{{!-- 
+  Add content you wish automatically added to the documents head
+  here. The 'model' available in this template can be populated by
+  setting values on the 'head-data' service. 
+--}}
+
+<title>{{this.model.title}} | Partsku.id</title>
+<meta name="title" content="{{this.model.title}} | Partsku.id">
+<meta name="description" content={{this.model.description}} />
+<meta name="keywords" content={{this.model.keyword}} />
+<meta property="title" content={{this.model.metatitle}} />
+<meta property="og:title" content={{this.model.title}} />
+<meta property="og:description" content={{this.model.description}} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={{this.model.url}} />
+<meta property="og:image" content={{this.model.image}} />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="315" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:alt" content={{this.model.title}} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@partskuid" />
+<meta name="twitter:url" content={{this.model.url}} />
+<meta name="twitter:title" content={{this.model.title}} />
+<meta name="twitter:creator" content="@partsku" />
+<meta property="og:url" content={{this.model.url}} />
+<meta property="og:title" content={{this.model.title}} />
+<meta property="og:description" content={{this.model.description}} />
+<meta property="og:image" content={{this.model.image}} />
+<meta name="twitter:description" content={{this.model.description}} />
+<link rel="canonical" href="{{this.model.canonicalUrl}}" />
+{{#if this.model.ampHtml}}
+  <link rel="amphtml" href="{{this.model.ampHtml}}" />
+{{/if}}
+{{{this.model.customtag}}}

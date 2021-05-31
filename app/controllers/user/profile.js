@@ -9,6 +9,26 @@ export default class UserProfileController extends Controller {
   @service admin
 
   @action
+  inputName() {
+    set(this, 'name', val)
+  }
+
+  @action
+  inputEmail() {
+    set(this, 'email', val)
+  }
+
+  @action
+  inputPhone() {
+    set(this, 'phoneNumber', val)
+  }
+
+  @action
+  inputAddress(val) {
+    set(this, 'address', val)
+  }
+
+  @action
   upload(event) {
     const file = event.target.files[0];
     let formData = new FormData();

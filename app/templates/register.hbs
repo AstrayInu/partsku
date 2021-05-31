@@ -1,0 +1,22 @@
+<h2>Register here yo</h2>
+<label for="email">Email : </label>
+<Input @class="" @type="text" @name="email" @value={{this.email}} />
+<br>
+
+<label for="password">Password : </label>
+<Input @class="" @type="password" @name="password" @value={{this.password}} />
+<br>
+
+<label for="tnc">I have read and agree to the <a href="">Terms & Condition</a></label>
+<Input @type="checkbox" @name="tnc" @checked={{this.tncChecked}} @change={{action 'checkTNC'}} />
+
+{{#if this.errorMessage}}
+  <Alert @type="danger" @response={{this.errorMessage}} />
+{{/if}}
+{{#if this.successMessage}}
+  <Alert @type="success" @response={{this.successMessage}} />
+{{/if}}
+<div class="">
+  <button disabled={{this.isDisabled}} onclick={{action "register"}}>Register</button>
+</div>
+
