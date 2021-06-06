@@ -1,0 +1,120 @@
+.main-bg {
+  padding-left: 0 !important;
+  background-image: url('https://res.cloudinary.com/partsku/image/upload/c_scale/partsku/login-bg_rnbqjk.png');
+  background-position: -222px;
+  height: 50.45vw;
+  background-color: grey;
+}
+
+.login-back-btn {
+  cursor: pointer;
+  padding: 20px;
+  width: 50px;
+}
+
+.main-bg-img {
+  width: 100%;
+  padding-left: 0 !important;
+}
+
+.side-container-login {
+  padding-top: 32%;
+}
+
+.side-container-register {
+  padding-top: 22%;
+}
+
+.login-logo {
+  padding-bottom: 5%;
+}
+
+.login-nav {
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+.login-nav-btn {
+  width: 126px;
+  font-size: 24px;
+  font-weight: bold;
+  color:#73A1C2;
+  margin: 0 38px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.active-login-nav-btn {
+  cursor: default;
+  color:#384170;
+  border-bottom-style: solid;
+  border-bottom-width: medium;
+  border-bottom-color: #384170;
+}
+
+.href-register {
+  color:#73A1C2;
+}
+
+.href-register:hover {
+  color:#384170;
+  text-decoration: none;
+}
+
+.email-group-container, .submit-btn-box {
+  padding-top: 1.5%;
+}
+
+.pass-group-container {
+  padding-top: 1.5%;
+}
+
+.input-name {
+  height: 60px;
+  width: 400px;
+  padding-left: 15px;
+  border-color: #384170;
+  border-radius: 4px;
+  margin-bottom: 1.5%;
+}
+
+.input-email, .input-pass, .submit-btn {
+  height: 60px;
+  width: 400px;
+}
+
+.input-email, .input-pass {
+  padding-left: 15px;
+  border-color: #384170;
+  border-radius: 4px;
+}
+
+.pass-icon {
+  padding: 0;
+  z-index: 10;
+  border: none;
+  position: relative;
+  background: 0 0;
+}
+
+.checkbox-register {
+  margin-top: 1.5%;
+}
+
+.tnc-text {
+  font-size: 16px;
+  margin-top: 0.8%;
+  padding-left: 5px;
+}
+
+.submit-btn {
+  font-size: 20;
+  color: white;
+  background-color: #384170;
+  border-radius: 4px;
+}
+
+.forgot-pass {
+  padding-top: 1%;
+}
+
