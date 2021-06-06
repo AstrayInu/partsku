@@ -23,12 +23,21 @@ export default class LoginController extends Controller {
   }
 
   @action
+  back() {
+    location.href = '/'
+  }
+
+  @action
   showPass() {
     if (this.showPassword) {
       set(this, 'showPassword', false)
+      document.getElementById('hide-pass').style.display = ''
+      document.getElementById('show-pass').style.display = 'none'
       document.getElementById('password').type = 'password'
     } else {
       set(this, 'showPassword', true)
+      document.getElementById('hide-pass').style.display = 'none'
+      document.getElementById('show-pass').style.display = ''
       document.getElementById('password').type = 'text'
     }
   }
@@ -39,27 +48,6 @@ export default class LoginController extends Controller {
       email: this.email,
       password: this.password
     }
- console.log("==>",data)
-    // fetch(`http://localhost:3000/users/login`, {
-    //       method: 'POST',
-    //       body: JSON.stringify(data),
-    //       credential: 'include'
-    //       // headers: {
-    //       //   'X-TOKEN': xtoken
-    //       // }
-    //     }).then( response => {
-    //       set(this, 'successMessage', response.msg)
-    //       console.log("BERHASIL LOGIN", response)
-    //       this.storage.lset('user_email', response.email)
-    //       this.storage.lset('user_id', response.id)
-    //       this.storage.lset('user_name', response.name)
-    //       if(response.sid) this.storage.lset('seller_id', response.sid)
-    
-    //       this.transitionTo = 'user.profile'
-    //     }).catch( e => {
-    //       console.log("ERROR", e)
-    //       // alert(e)
-    //     })
 
     this.session.loginUser(data).then( res => {
       set(this, 'successMessage', res.msg)
@@ -67,9 +55,11 @@ export default class LoginController extends Controller {
       this.storage.lset('user_email', res.email)
       this.storage.lset('user_id', res.id)
       this.storage.lset('user_name', res.name)
+      this.storage.lset('s_token', res.token)
       if(res.sid) this.storage.lset('seller_id', res.sid)
-
-      this.transitionTo = 'user.profile'
+      if(res.type) this.storage.lset("user_type", res.type)
+      
+      this.transitionToRoute('user.profile')
     }).catch( e => {
       let err = e.msg ? e.msg : e
       set(this, 'errorMessage', err)

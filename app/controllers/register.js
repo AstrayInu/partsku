@@ -25,6 +25,11 @@ export default class RegisterController extends Controller {
   }
 
   @action
+  back() {
+    location.href = '/'
+  }
+
+  @action
   checkTNC() {
     if (this.tcChecked) set(this, 'tcChecked', false)
     else set(this, 'tcChecked', true)

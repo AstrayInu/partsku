@@ -103,4 +103,9 @@ export default class UserProfileController extends Controller {
     }
   }
 
+  @action
+  save() {
+    this.transitionToRoute("/")
+  }
+
 }

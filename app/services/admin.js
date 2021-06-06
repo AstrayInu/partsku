@@ -38,6 +38,20 @@ export default class AdminService extends Service {
       });
     });
   }
+  
+  getUserData(id) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `http://localhost:3000/users/${id}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
 
   base64toBlob(data) {
     var byteString = atob(data.split(',')[1]);

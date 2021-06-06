@@ -10,7 +10,7 @@ export default class SessionService extends Service {
       $.ajax({
         method: 'POST',
         contentType: 'application/json',
-        url: `localhost:3000/users/login`,
+        url: `http://localhost:3000/users/login`,
         data: JSON.stringify(data)
       }).then((response) => {
         resolve(response)
