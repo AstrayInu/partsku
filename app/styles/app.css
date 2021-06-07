@@ -1,3 +1,38 @@
+/* header */
+.top-header {
+  margin-top: 0.5%;
+}
+
+.header-logo {
+  padding: 1% 20% !important;
+}
+
+.header-user-console {
+  padding-left: 11%;
+}
+
+.header-seperator {
+  background-color: #707070;
+  opacity: 10%;
+  height: 2px;
+}
+
+.bottom-header-console {
+  height: 45px;
+}
+.consoles {
+  text-align: center;
+  padding: 10px;
+}
+
+/* landing page */
+.landing-bg {
+  background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623064936/partsku/landing-bg_wgnw2q.png');
+  height: 1071px;
+}
+
+
+/* login / register page */
 .main-bg {
   padding-left: 0 !important;
   background-image: url('https://res.cloudinary.com/partsku/image/upload/c_scale/partsku/login-bg_rnbqjk.png');
