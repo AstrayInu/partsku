@@ -15,13 +15,19 @@ export default class RegisterController extends Controller {
   @notEmpty('password')
   isValidPassword
 
+  @match('firstName', /\w|\s/)
+  isValidFName
+
+  @match('lastName', /\w|\s/)
+  isValidLName
+
   // @match('email', /^08[0-9]{8,11}$|[^\s@]+@[^\s@]+\.[^\s@]+$/)
   @match('email', /[^\s@]+@[^\s@]+\.[^\s@]+$/)
   isValidEmail
 
-  @computed('isValidEmail', 'isValidPassword', 'tcChecked') // add capthca later, perhaps
+  @computed('isValidFName', 'isValidLName', 'isValidEmail', 'isValidPassword', 'tcChecked') // add capthca later, perhaps
   get isDisabled() {
-    return !this.isValidEmail || !this.isValidPassword || !this.tcChecked
+    return !this.isValidFName || !this.isValidLName || !this.isValidEmail || !this.isValidPassword || !this.tcChecked
   }
 
   @action
@@ -55,7 +61,7 @@ export default class RegisterController extends Controller {
       set(this, 'errorMessage', 'Password minimal 8 karakter & 1 huruf besar & 1 huruf kecil & 1 angka')
     }
   }
-  
+
   createuser(data) {
     this.admin.createUser(data).then( response => {
       set(this, 'successMessage', response.msg)
