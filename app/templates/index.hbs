@@ -1,4 +1,100 @@
 <div class="container-fluid">
   <div class="row landing-bg">
+    <div class="col">
+      <div class="main-island">
+        <p class="buy-cp">BUY TRUSTWORTHY CAR PARTS</p>
+        <p class="full-control">Full control of what you use and pay for</p>
+        <div class="search-landing">
+          <Input @class="landing-search-box" @placeholder="Search car part by SKU or name here" />
+          <button class="landing-search-btn">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8 recommended-island">
+      <p class="landing-head-title">RECOMMENDED FOR YOU</p>
+      <p class="landing-subtitle">EXPLORE AWESOME PRODUCTS</p>
+      <div class="col brand-list">
+        <span class="col">
+          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Honda-landing-logo_ndjwko.png">
+        </span>
+        <span class="col">
+          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222848/partsku/Mitsubishi-landing-logo.png_vhz97w.png">
+        </span>
+        <span class="col">
+          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Toyota-landing-logo.png_eksggx.png">
+        </span>
+        <span class="col">
+          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Mazda-landing-logo.png_tgexfj.png">
+        </span>
+      </div>
+      <div class="">
+        <button class="btn explore-landing-btn">Explore Other Brands</button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center new-item-div">
+    <div class="col-8 new-item-island">
+      <p class="landing-head-title">NEW ITEMS</p>
+      <p class="landing-subtitle">RECENTLY ADDED SPARE PARTS JUST FOR YOU</p>
+      <div class="row new-item-list">
+        <div class="col new-item-left">
+          <div class="row justify-content-end top-new-item">
+            <Products::ItemCard @source="new-item-left" />
+            <Products::ItemCard @source="new-item-left" />
+          </div>
+          <div class="row justify-content-end">
+            <Products::ItemCard @source="new-item-left" />
+            <Products::ItemCard @source="new-item-left" />
+          </div>
+        </div>
+        <div class="col new-item-right">
+          <Products::ItemCard @source='new-item-right' />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-10 abt-us-island">
+      <p class="landing-head-title">ABOUT US</p>
+      <p class="landing-subtitle">OUR VISION AND MISSION</p>
+      <div class="row abt-us-container">
+        <div class="col about-us-left">
+          <div class="row three-boxes">
+            <div class="col-4 about-us-imgs wwd-img">
+              <img src="https://res.cloudinary.com/partsku/image/upload/v1623321494/partsku/What_we_do_logo_gkgp6z.png">
+            </div>
+            <div class="col about-us-txt">
+              <p class="abt-us-maintitle">What we do?</p>
+              <p class="abt-us-subtitle">We provide you a safe and easy way to buy spare part(s) for your beloved vehicle</p>
+            </div>
+          </div>
+          <div class="row three-boxes">
+            <div class="col-4 about-us-imgs om-img">
+              <img src="https://res.cloudinary.com/partsku/image/upload/v1623321494/partsku/vision_logo_dtc96m.png">
+            </div>
+            <div class="col about-us-txt">
+              <p class="abt-us-maintitle">Our Vision</p>
+              <p class="abt-us-subtitle">Make spare part market great again!</p>
+            </div>
+          </div>
+          <div class="row three-boxes">
+            <div class="col-4 about-us-imgs">
+              <img src="https://res.cloudinary.com/partsku/image/upload/v1623321493/partsku/mission_logo_zslsjy.png">
+            </div>
+            <div class="col about-us-txt">
+              <p class="abt-us-maintitle">Our Mission</p>
+              <p class="abt-us-subtitle">To graduate</p>
+            </div>
+          </div>
+        </div>
+        <div class="col about-us-right">
+          <img src="https://res.cloudinary.com/partsku/image/upload/v1623320841/partsku/About_Us_pic_lpczjk.png">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -13,6 +13,8 @@ Router.map(function() {
   this.route("user", function() {
     this.route("profile");
     this.route("changepass");
+    this.route("wishlist")
+    this.route("cart")
   })
 
   this.route("seller", function() {

@@ -1,14 +1,26 @@
 /* header */
-.top-header {
-  margin-top: 0.5%;
+.top-header-console {
+
 }
 
 .header-logo {
-  padding: 1% 20% !important;
+  padding: 20px !important;
 }
 
 .header-user-console {
   padding-left: 11%;
+}
+
+.top-consoles {
+  color: #000;
+}
+
+.top-consoles:hover {
+  color: #384170;
+}
+
+.top-consoles-wishlist:hover {
+  color: magenta;
 }
 
 .header-seperator {
@@ -18,19 +30,176 @@
 }
 
 .bottom-header-console {
-  height: 45px;
+  height: 50px;
 }
-.consoles {
+.bot-consoles {
   text-align: center;
-  padding: 10px;
+  padding: 12px;
+  transition: 0.3s;
+}
+
+.bot-consoles:hover {
+  color: white;
+  background-color: #384170;
+  opacity: 90%;
 }
 
 /* landing page */
 .landing-bg {
   background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623064936/partsku/landing-bg_wgnw2q.png');
-  height: 1071px;
+  background-position-y: -171px;
+  background-color: #F7F8FF;
+  background-repeat: no-repeat;
+  height: 1410px;
 }
 
+.main-island {
+  color: white;
+  padding-left: 6.5vw;
+  padding-top: 13vw;
+}
+
+.buy-cp {
+  font-size: 41px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.full-control {
+  font-size: 23px;
+  opacity: 80%;
+}
+
+.search-landing {
+  padding-top: 10px;
+}
+
+.landing-search-box{
+  background-color: #384170;
+  color: white;
+  width: 395px;
+  height: 46.23px;
+  border-width: 0;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.landing-search-box::placeholder {
+  color: white;
+}
+
+.landing-search-btn {
+  background-color: #8C9EFC;
+  color: white;
+  width: 143px;
+  height: 46.23px;
+  margin-left: 10px;
+  border-width: 0;
+  border-radius: 6px;
+}
+
+.recommended-island {
+  text-align: center;
+  top: -11vw;
+}
+
+.landing-head-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.landing-subtitle {
+  font-size: 16px;
+  opacity: 80%;
+  padding-bottom: 10px;
+}
+
+.brand-list-img {
+  width: 22%;
+}
+
+.explore-landing-btn {
+  width: 261px;
+  height: 67px;
+  border-color: #707070;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.explore-landing-btn:hover {
+  color: white;
+  background-color: #384170;
+  opacity: 90%;
+}
+
+.new-item-div {
+  background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623237326/partsku/Rectangle_625_hygzyc.png');
+  background-repeat: no-repeat;
+  background-position-x: -20vw;
+}
+
+.new-item-island {
+  text-align: center;
+  height: 1127px;
+  padding-top: 6vw;
+}
+
+.item-card {
+  background-color: #F7F8FF;
+}
+
+.top-new-item {
+  margin-bottom: 54px;
+}
+
+.left-item-card {
+  width: 255px;
+  height: 313px;
+  border-radius: 11px;
+  margin-right: 7px;
+  box-shadow: -6px 6px 20px #2d2d2d2b;
+}
+
+.right-item-card {
+  width: 540px;
+  height: 680px;
+  border-radius: 11px;
+  box-shadow: -6px 6px 20px #2d2d2d2b;
+}
+
+.new-product-img-right {
+  width: 471px;
+  height: 461px;
+}
+
+.abt-us-island {
+  text-align: center;
+  height: 870px;
+}
+
+.abt-us-maintitle {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.abt-us-subtitle {
+  font-size: 23px;
+  opacity: 80%;
+}
+
+.abt-us-container {
+  padding-top: 5vw;
+}
+
+.three-boxes {
+  padding-bottom: 40px;
+}
+
+.about-us-txt {
+  text-align: left;
+}
 
 /* login / register page */
 .main-bg {
