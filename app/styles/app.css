@@ -44,6 +44,28 @@
   opacity: 90%;
 }
 
+/* footer */
+.footer {
+  background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623327025/partsku/footer_bg_yp7x3r.png');
+  background-repeat: no-repeat;
+  height: 600px;
+}
+
+.footer-title {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.footer-container {
+  color: white;
+  padding-top: 12vw;
+  padding-bottom: 1vw;
+}
+
+.we-accept {
+
+}
+
 /* landing page */
 .landing-bg {
   background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623064936/partsku/landing-bg_wgnw2q.png');
