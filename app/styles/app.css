@@ -344,3 +344,102 @@
   padding-top: 1%;
 }
 
+/* register seller */
+.sreg-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #384170;
+  padding-bottom: 1.5rem;
+}
+
+.sreg-container {
+  padding-top: 14vh;
+}
+
+.sreg-main-container {
+  width: 100%;
+}
+
+.sreg-input-titles {
+  font-size: 20px;
+  font-weight: bold;
+  color: #384170;
+  display: block;
+  padding-left: 15px;
+}
+
+.sreg-subtitles {
+  font-size: 14px;
+  font-style: italic;
+  color: #384170;
+  padding: 15px 0 1vw 15px;
+}
+
+.left-sreg-container {
+  height: 100%;
+}
+
+.sreg-input-box, .sreg-address-box {
+  display: block;
+  width: 400px;
+  border-color: #384170;
+  border-radius: 6px;
+  border-width: thin;
+  border-style: solid;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.sreg-address-box {
+  height: 184px;
+}
+
+.seller-tnc-container {
+  padding-top: 1.5vw;
+  color: #73A1C2;
+}
+
+.sreg-btn-div {
+  padding-top: 35px;
+}
+
+.sreg-btn:hover {
+  color: white;
+  background-color: #596292;
+}
+
+/* user / seller profile */
+.profile-container {
+  background-color: #F7F8FF;
+  height: 85.6vh;
+  overflow: auto;
+}
+
+.profcard-container {
+  width: 336px;
+  border-radius: 6px;
+  border-width: thin;
+  border-style: solid;
+  background-color: white;
+  text-align: center;
+}
+
+.top-profcard-container {
+  height: 390px;
+}
+
+.profcard-pp {
+  padding-bottom: 15px;
+  border-radius: 50%;
+}
+
+.profcard-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profcard-email {
+  font-size: 14px;
+  opacity: 80%;
+}

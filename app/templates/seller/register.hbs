@@ -1,1 +1,70 @@
-{{outlet}}
+<style>
+  .header, .footer {
+    display: none;
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="login-back-btn" onclick={{action "back"}}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#384170" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+      </svg>
+    </div>
+  </div>
+  <div class="row justify-content-center sreg-container">
+    <div class="col-6">
+      <span class="login-logo row justify-content-center">
+        <a href="/">
+          <img src="https://res.cloudinary.com/partsku/image/upload/v1622973318/partsku/Logo_nyz2hs.png" alt="">
+        </a>
+      </span>
+      <div class="row justify-content-center">
+        <div class="sreg-main-container">
+          <div class="row justify-content-center">
+            <p class="sreg-title">Become a seller</p>
+            {{#if this.errorMessage}}
+              <Alert @type="danger" @response={{this.errorMessage}} />
+            {{/if}}
+            {{#if this.successMessage}}
+              <Alert @type="success" @response={{this.successMessage}} />
+            {{/if}}
+          </div>
+          <div class="row">
+            <div class="col left-sreg-container">
+              <div class="row justify-content-center">
+                <div>
+                  <label class="sreg-input-titles" for="shop-name">SHOP NAME <span style="color: red;">*</span></label>
+                  <Input @class="sreg-input-box" @type="text" @name="shop-name" @value={{this.shopName}} @keyUp={{action 'inputShopName' value="target.value"}} placeholder="Shop Name" @maxlength=50 />
+                  <p class="sreg-subtitles">*May only contian alphanumeric, '&' and '-'</p>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div>
+                  <label class="sreg-input-titles" for="wa-num">ACTIVE WHATSAPP NO. <span style="color: red;">*</span></label>
+                  <Input @class="sreg-input-box" @type="text" @name="wa-num" @keyUp={{action 'inputWANum' value="target.value"}} @value={{this.waNum}} placeholder="81234567890" @maxlength=11/>
+                  <div class="seller-tnc-container">
+                    <Input class="checkbox-register" @type="checkbox" @name="tnc" @checked={{this.tncChecked}} @change={{action 'checkTNC'}} />
+                    <label for="seller-tnc">I have read and agree to the <a href="#">Terms & Condition</a></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col right-sreg-container">
+              <div class="row justify-content-center">
+                <div>
+                  <label class="sreg-input-titles" for="shop-address">ADDRESS <span style="color: red;">*</span></label>
+                  <textarea class="sreg-address-box" id="shop-address" name="shop-address" rows="3" value={{this.shopAddress}} onkeyup={{action 'inputAddress' value='target.value'}} placeholder="Jl. Kebagusan III no. 69, Banten, Tangerang, 69420"></textarea>
+                </div>
+              </div>
+              <div class="row justify-content-center sreg-btn-div">
+                <button class="btn submit-btn sreg-btn" onclick={{action 'register'}} disabled={{this.isDisabled}}>BECOME A SELLER</button>
+                {{!-- <button class="btn submit-btn sreg-btn" onclick={{action 'register'}}>BECOME A SELLER</button> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

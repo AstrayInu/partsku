@@ -23,12 +23,14 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
+  if (environment === 'development') { // make sure u have api turned on
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_ENDPOINT = `http://localhost:3000`
+    ENV.APP.HOST_URL = `http://localhost:4000`
   }
 
   if (environment === 'test') {

@@ -7,6 +7,7 @@ import fetch from 'fetch'
 export default class UserProfileController extends Controller {
   @service storage
   @service admin
+  @service config
 
   @action
   inputName() {
@@ -45,7 +46,7 @@ export default class UserProfileController extends Controller {
       
       reader.onload = (e) => {
         let img64 = e.target.result
-          , url = `http://localhost:3000/users/profilePicture`
+          , url = `${this.config.appenv.API_ENDPOINT}/users/profilePicture`
         // console.log("reader", img64)
         formData.append('imgData', img64)
     
@@ -87,7 +88,7 @@ export default class UserProfileController extends Controller {
         //     //   'X-TOKEN': this.storage.lget('_dop_token')
         //     // }
         //   })
-        fetch(`http://localhost:3000/users/profilePicture`, {
+        fetch(`${this.config.appenv.API_ENDPOINT}/users/profilePicture`, {
           method: 'POST',
           body: formData,
           // headers: {

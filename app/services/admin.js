@@ -8,13 +8,14 @@ import $ from 'jquery';
 
 export default class AdminService extends Service {
   @service storage
+  @service config
 
   checkUser(email) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({
         method: 'GET',
         contentType: 'application/json',
-        url: `http://localhost:3000/users/check`,
+        url: `${this.config.appenv.API_ENDPOINT}/users/check`,
         data: JSON.stringify(email)
       }).then((response) => {
         resolve(response)
@@ -29,7 +30,7 @@ export default class AdminService extends Service {
       $.ajax({
         method: 'POST',
         contentType: 'application/json',
-        url: `http://localhost:3000/users`,
+        url: `${this.config.appenv.API_ENDPOINT}/users`,
         data: JSON.stringify(data)
       }).then((response) => {
         resolve(response)
@@ -44,7 +45,22 @@ export default class AdminService extends Service {
       $.ajax({
         method: 'GET',
         contentType: 'application/json',
-        url: `http://localhost:3000/users/${id}`
+        url: `${this.config.appenv.API_ENDPOINT}/users/${id}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  createSeller(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/sellers`,
+        data: JSON.stringify(data)
       }).then((response) => {
         resolve(response)
       }, (reason) => {

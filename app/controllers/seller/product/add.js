@@ -7,6 +7,7 @@ import fetch from 'fetch'
 export default class SellerProductAddController extends Controller {
   @service storage
   @service admin
+  @service config
 
   get pellOptions() {
     return this.admin.pellOption
@@ -155,7 +156,7 @@ export default class SellerProductAddController extends Controller {
 
       reader.onload = (e) => {
         let img64 = e.target.result
-          , url = `http://localhost:3000/products/images/tmp`
+          , url = `${this.config.appenv.API_ENDPOINT}/products/images/tmp`
         // console.log("reader", img64)
         formData.append('imgData', img64)
 
@@ -167,7 +168,7 @@ export default class SellerProductAddController extends Controller {
 
         console.log(formData)
 
-        fetch(`http://localhost:3000/products/images/tmp`, {
+        fetch(`${this.config.appenv.API_ENDPOINT}/products/images/tmp`, {
           method: 'POST',
           body: formData,
           // headers: {
@@ -218,7 +219,7 @@ export default class SellerProductAddController extends Controller {
   @action
   confirm() {
     // send data to BE...somehow
-    fetch(`http://localhost:3000/products`, {
+    fetch(`${this.config.appenv.API_ENDPOINT}/products`, {
       method: 'POST',
       body: data
     }).then( response => {
