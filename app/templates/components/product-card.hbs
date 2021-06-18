@@ -1,0 +1,24 @@
+<style>
+  a {
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+</style>
+<a href="/product-detail/{{@product.pid}}" class="">
+  <div class="col product-card-container">
+    <div class="row pcard-img-container justify-content-center">
+      <img class="product-card-img" src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="203" height="211">
+    </div>
+    <div class="row product-card-info">
+      <div class="col">
+        <p class="product-card-name">{{@product.name}}</p>
+      </div>
+      <div class="col text-center">
+        <div class="product-card-price">{{this.productPrice}}</div>
+      </div>
+    </div>
+  </div>
+</a>

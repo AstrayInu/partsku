@@ -27,5 +27,7 @@ Router.map(function() {
     });
   });
 
+  this.route("catalog")
+  this.route("product-detail", { path: "product-detail/:product_id"})
 
 });

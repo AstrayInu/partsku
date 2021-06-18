@@ -1,0 +1,111 @@
+<div class="catalog-bg">
+  <div class="container product-detail-container">
+    <div class="row shop-info-box">
+      <div class="col left-shop-info align-self-center">
+        <div class="row">
+          <div class="col-3">
+            <img class="shop-info-pp" src="https://res.cloudinary.com/partsku/image/upload/v1623424435/partsku/pp-dummy-square_jwfp61.jpg" width="100">
+          </div>
+          <div class="col-9 align-self-center">
+            <p class="shop-info-name">ShapShipShup Store 69</p>
+            <button class="btn visit-shop-btn">Visit Shop</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-7 right-shop-info align-self-center">
+        <div class="row text-center">
+          <div class="col-3">
+            <p class="shop-info-stat">Rating: <span class="shop-info-stat-val">18k</span></p>
+            <p class="shop-info-stat">Products: <span class="shop-info-stat-val">147</span></p>
+          </div>
+          <div class="col">
+            <p class="shop-info-stat">Chat reply percentage: <span class="shop-info-stat-val">100%</span></p>
+            <p class="shop-info-stat">Avg chat reply time: <span class="shop-info-stat-val">1 hour</span></p>
+          </div>
+          <div class="col">
+            <p class="shop-info-stat">Joined: <span class="shop-info-stat-val">1 month ago</span></p>
+            <p class="shop-info-stat">Followers: <span class="shop-info-stat-val">2.2k</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row product-detail-top">
+      <div class="col-5 p-detail-top-left">
+        <div class="row p-detail-main-img justify-content-center">
+          <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="437">
+        </div>
+        <div class="row p-detail-sub-row">
+          <div class="col p-detail-sub-img justify-content-center">
+            <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="96">
+          </div>
+          <div class="col p-detail-sub-img justify-content-center">
+            <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="96">
+          </div>
+          <div class="col p-detail-sub-img justify-content-center">
+            <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="96">
+          </div>
+          <div class="col p-detail-sub-img justify-content-center">
+            <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="96">
+          </div>
+        </div>
+      </div>
+      <div class="col p-detail-top-right">
+        <h1 class="main-product-name">AutoMeter 35054 Fan Motor - Direct Fit, Sold individually</h1>
+        <div class="row text-center">
+          <div class="col p-detail-rating align-self-center">5.0<StarRating /></div>
+          <div class="col p-detail-rates">139 ratings</div>
+          <div class="col p-detail-sold">140 sold</div>
+        </div>
+        <h1 class="main-product-price">Rp. 399.000</h1>
+        <p class="main-product-sku">SKU: 11141-69G03-000</p>
+        <div class="d-flex align-self-center">
+          <p class="main-product-quantity">Quantity</p>
+          <button class="btn quantity-btn">+</button>
+          <Input @class="quantity-input-box text-center" @value={{this.quantity}} />
+          <button class="btn quantity-btn">-</button>
+          <p class="main-product-stock">114 items left</p>
+        </div>
+        <div class="d-flex transaction-btn-div">
+          <button class="btn add-to-cart-btn">ADD TO CART</button>
+          <button class="btn buy-now-btn">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+    <div class="row product-detail-bottom">
+      <div class="col-8 product-decription-container">
+        <div class="row product-detail-spesification">
+          <div class="col">
+            <div class="row">
+              <p class="description-title">Product Specification</p>
+            </div>
+            <div class="row d-block spec-list">
+              <p>Categories: <span class="spec-value">Exhaust system</span></p>
+              <p>Brand: <span class="spec-value">HKS</span></p>
+              <p>Type: <span class="spec-value">Exhaust header</span></p>
+              <p>Warranty: <span class="spec-value">1 Year</span></p>
+              <p>Stock: <span class="spec-value">144</span></p>
+              <p>Sent from: <span class="spec-value">Tangerang city</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row product-detail-description">
+          <div class="col">
+            <div class="row">
+              <p class="description-title">Product Description</p>
+            </div>
+            <div class="row d-block description-content">
+              {{#if this.product.desc}}
+                {{{this.product.desc}}}
+              {{else}}
+                Oh no! the seller does not specify the description of this product :(
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+</div>

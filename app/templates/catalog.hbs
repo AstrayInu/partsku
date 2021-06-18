@@ -1,0 +1,60 @@
+<div class="catalog-bg">
+  <div class="container">
+    <div class="col justify-content-center">
+      <div class="row search-result">
+        <img src="https://res.cloudinary.com/partsku/image/upload/v1623923648/partsku/search-info-icon_ofmdbu.png"> 
+        <p class="search-info">Search result for "<span class="search-query">{{this.params.q}}</span>"</p>
+      </div>
+      <div class="row filter-row">
+        <div class="col align-self-center text-center">
+          <span>Sort by</span>
+        </div>
+        <div class="col text-center">
+          <button class="btn sort-btn">New</button>
+        </div> 
+        <div class="col text-center">
+          <button class="btn sort-btn">Best Seller</button>
+        </div>
+        <div class="col align-self-center">
+          <select class="price-sort">
+            <option value="" selected>Price</option>
+            <option value="min_price">Low to High</option>
+            <option value="max_price">High to Low</option>
+          </select>
+        </div>
+        <div class="col-5">
+
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        {{!-- product card --}}
+
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        <ProductCard @class="product-card-component" @product={{this.data}} />
+        {{!-- infinite scroller --}}
+        {{!-- <InfiniteScroller @onLoadMore={{this.loadMore}} @percent=80 as |scroller|>
+          {{#each data.data as |thing|}}
+            <ProductCard @class="product-card-component" @product={{this.thing}} />
+          {{/each}}
+          {{if scroller.isLoading "Please wait..."}}
+        </InfiniteScroller> --}}
+      </div>
+      <div class="row justify-content-center">
+        {{!-- pagination --}}
+        {{#if this.needsPagination}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

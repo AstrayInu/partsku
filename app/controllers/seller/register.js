@@ -66,9 +66,9 @@ export default class SellerRegisterController extends Controller {
       $(".sreg-title").hide()
       setTimeout( () => {
         $(".sreg-title").show()
+        this.transitionToRoute('user.profile')
       }, 4990)
       
-      this.transitionToRoute('user.profile')
     }).catch( e => {
       console.log('Error',e)
     })

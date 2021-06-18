@@ -1,38 +1,50 @@
-<div>
-  <h1>User profile </h1>
+<style>
+  .footer {
+    display: none;
+  }
+</style>
+<div class="container-fluid profile-container">
+  <div class="row justify-content-center">
+    {{!-- <div class="col"> --}}
+      <div class="col-3">
+        <ProfileCard />
+      </div>
+      <div class="col-5">
+        {{!-- <img id="imgss" src="" width="250" height="250">
+        <input type="file" onchange={{action "upload"}} accept="image/*"><br> --}}
 
-  <img id="imgss" src="" width="250" height="250">
-  <input type="file" onchange={{action "upload"}} accept="image/*"><br>
+        <label class="">Full Name</label>
+        <Input
+          @keyUp={{action 'inputName' value="target.value"}}
+          @maxlength="50"
+          @name="nama-user"
+          @type="text"
+          @value={{this.name}}
+        /><br>
 
-  <label class="">Full Name</label>
-  <Input
-    @keyUp={{action 'inputName' value="target.value"}}
-    @maxlength="50"
-    @name="nama-user"
-    @type="text"
-    @value={{this.name}}
-  /><br>
+        <label class="">E-mail</label>
+        <Input
+          @keyUp={{action 'inputEmail' value="target.value"}}
+          @maxlength="50"
+          @name="email-user"
+          @type="text"
+          @value={{this.email}}
+        /><br>
 
-  <label class="">E-mail</label>
-  <Input
-    @keyUp={{action 'inputEmail' value="target.value"}}
-    @maxlength="50"
-    @name="email-user"
-    @type="text"
-    @value={{this.email}}
-  /><br>
+        <label class="">Phone Number</label>
+        <Input
+          @keyUp={{action 'inputPhone' value="target.value"}}
+          @maxlength="14"
+          @name="tlp-user"
+          @type="text"
+          @value={{this.phoneNumber}}
+        /><br>
 
-  <label class="">Phone Number</label>
-  <Input
-    @keyUp={{action 'inputPhone' value="target.value"}}
-    @maxlength="14"
-    @name="tlp-user"
-    @type="text"
-    @value={{this.phoneNumber}}
-  /><br>
-
-  <label class="">Address</label>
-  <textarea name="" id="" cols="30" rows="10" onkeyup={{action "inputAddress" value="target.value"}} value={{this.address}}></textarea>
-  
-  <button onclick={{action "save"}}>Save</button>
+        <label class="">Address</label>
+        <textarea name="" id="" cols="30" rows="10" onkeyup={{action "inputAddress" value="target.value"}} value={{this.address}}></textarea>
+        
+        <button onclick={{action "save"}}>Save</button>
+      </div>
+    {{!-- </div> --}}
+  </div>
 </div>

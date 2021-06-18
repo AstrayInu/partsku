@@ -7,12 +7,32 @@
   padding: 20px !important;
 }
 
+/* .header-user-console-outer {
+  display: table;
+  margin: 0 auto;
+} */
+
 .header-user-console {
-  padding-left: 11%;
+	/* list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; */
+  display: inline-flex;
+  margin: 0;
+}
+
+.header-user-console li {
+  height: 37px;
 }
 
 .top-consoles {
   color: #000;
+  width: auto;
+  margin: 0 10px;
+  /* display: block;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none; */
 }
 
 .top-consoles:hover {
@@ -21,6 +41,28 @@
 
 .top-consoles-wishlist:hover {
   color: magenta;
+}
+
+.header-logout {
+  cursor: pointer;
+}
+
+.loggedin-name {
+  padding-top: 6px;
+}
+
+.header-username {
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-right: 10px;
+  /* width: 6em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip; */
+}
+
+.header-pp {
+  border-radius: 50%;
 }
 
 .header-seperator {
@@ -40,6 +82,7 @@
 
 .bot-consoles:hover {
   color: white;
+  text-decoration: none;
   background-color: #384170;
   opacity: 90%;
 }
@@ -48,6 +91,7 @@
 .footer {
   background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623327025/partsku/footer_bg_yp7x3r.png');
   background-repeat: no-repeat;
+  background-color: #F7F8FF;
   height: 600px;
 }
 
@@ -442,4 +486,327 @@
 .profcard-email {
   font-size: 14px;
   opacity: 80%;
+}
+
+/* catalogs */
+.catalog-bg {
+  background-color: #F7F8FF;
+  box-shadow: 0px 20px 20px #2d2d2d2b inset;
+}
+
+.search-result {
+  padding-top: 42px;
+  padding-bottom: 20px;
+}
+
+.search-info {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 7px 7px 7px 15px;
+  margin: 0;
+}
+
+.search-query {
+  color: #FF4F04;
+}
+
+.filter-row {
+  background-color: white;
+  border-radius: 6px;
+}
+
+.sort-btn {
+  width: 101px;
+  background-color: #F7F8FF;
+  border-radius: 6px;
+  font-size: 14px;
+  margin: 15px 0 15px;
+}
+
+.sort-btn:hover {
+  background-color: #FF4F04;
+  color: white
+}
+
+.price-sort {
+  width: 204px;
+  height: 35px;
+  background-color: #F7F8FF;
+  border-radius: 10px;
+  border-style: none;
+  font-size: 14px;
+  padding-left: 10px;
+  margin: 15px 0 15px;
+}
+
+/* product card */
+.product-card-component {
+  width: 25%;
+  text-align: -webkit-center;
+}
+
+.product-card-container {
+  /* width: 25%; */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.pcard-img-container {
+  width: 250px;
+  height: 269px;
+  background-color: white;
+  border-radius: 10px;  
+}
+
+.product-card-img {
+  
+}
+
+.product-card-info {
+  padding-top: 15px;
+}
+
+.product-card-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-card-price {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FF4F04;
+  width: auto;
+  border-radius: 17px;
+  background-color: #F8EAE9;
+}
+
+/* product detail */
+.product-detail-container {
+  padding-top: 76px;
+}
+
+.shop-info-box {
+  height: 150px;
+  background-color: white;
+  border-radius: 10px;
+  border-width: thin;
+  border-style: solid;
+  border-color: #384170;
+}
+
+.left-shop-info {
+  border-right: 1px solid #384170;
+}
+
+.shop-info-pp {
+  
+}
+
+.shop-info-name {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.visit-shop-btn {
+  width: 30vh;
+  background-color: #E81D1D;
+  color: white;
+  border-radius: 2px;
+}
+
+.visit-shop-btn:hover {
+  color: #E81D1D;
+  background-color: white;
+  border-color: #E81D1D;
+  border-width: thin;
+}
+
+.shop-info-stat {
+  font-size: 15px;
+}
+
+.shop-info-stat-val {
+  color: #E81D1D;
+  font-weight: bold;
+}
+
+.product-detail-top {
+  padding-top: 40px;
+}
+
+.p-detail-main-img, .p-detail-sub-img {
+  background-color: white;
+  border-radius: 10px;
+  border-width: thin;
+  border-style: solid;
+  border-color: #384170;
+}
+
+.p-detail-sub-row {
+  padding-top: 20px;
+}
+
+.p-detail-sub-img {
+  width: 96px;
+}
+
+.p-detail-top-right {
+  padding-left: 40px;
+}
+
+.main-product-name {
+  font-size: 28px;
+  font-family: montserrat;
+  font-weight: bold;
+}
+
+.p-detail-rating {
+  color: #E81D1D;
+}
+
+.p-detail-stars {
+  display: inline;
+  padding-left: 10px;
+}
+
+.p-detail-rating, .p-detail-rates, .p-detail-sold {
+  font-family: roboto;
+  font-size: 20px;
+}
+
+.p-detail-rates {
+  border-left: 1px solid #384170;
+  border-right: 1px solid #384170;
+}
+
+.p-detail-sold {
+
+}
+
+.main-product-price {
+  font-size: 45px;
+  font-family: montserrat;
+  font-weight: bold;
+  color: #E81D1D;
+  padding-top: 20px;
+  padding-bottom: 155px;
+}
+
+.main-product-sku {
+  font-size: 18px;
+  font-family: roboto;
+  padding-bottom: 11px;
+}
+
+.main-product-quantity {
+  font-size: 20px;
+  font-family: roboto;
+  font-weight: 500;
+  padding: 5px 40px 5px 0;
+  margin: 0;
+}
+
+.quantity-btn, .quantity-input-box {
+  font-size: 20px;
+  font-family: roboto;
+  font-weight: 500;
+  background-color: white;
+  border-radius: 0;
+  border-color: #7b7b7b;
+  border-width: thin;
+  border-style: solid;
+}
+
+.quantity-input-box {
+  width: 84px;
+}
+
+.main-product-stock {
+  font-size: 20px;
+  font-family: roboto;
+  padding: 5px 0 5px 40px;
+  margin: 0;
+}
+
+.transaction-btn-div {
+  padding-top: 57px;
+}
+
+.add-to-cart-btn, .buy-now-btn {
+  font-size: 20px;
+  font-weight: 500;
+  width: 245px;
+  height: 60px;
+}
+
+.add-to-cart-btn {
+  background-color: white;
+  color: #E81D1D;
+  border-radius: 2px;
+  border-color: #E81D1D;
+  border-style: solid;
+  border-width: 2px;
+  margin-right: 25px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #E81D1D;
+  color: white;
+}
+
+.buy-now-btn {
+  background-color: #E81D1D;
+  color: white;
+  border-radius: 2px;
+}
+
+.buy-now-btn:hover {
+  background-color: white;
+  color: #E81D1D;
+  border-radius: 2px;
+  border-color: #E81D1D;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.product-detail-bottom {
+
+}
+
+.product-decription-container {
+  margin-top: 50px;
+  border-radius: 10px;
+  border-color: #384170;
+  border-width: thin;
+  border-style: solid;
+}
+
+.description-title {
+  padding: 25px 0 10px 30px;
+  color: #302F2F;
+  font-size: 19px;
+  font-weight: 600;
+  font-family: montserrat;
+}
+
+.spec-list {
+  color: #302F2F;
+  font-size: 15px;
+  font-family: Roboto;
+  padding: 0 0 0 30px;
+  
+}
+
+.spec-value {
+  color: #302F2F;
+  font-size: 17px;
+  font-family: Roboto;
+}
+
+.description-content {
+  padding: 0 0 30px 30px;
+  color: #302F2F;
+  font-size: 17px;
+  font-family: Roboto;
 }

@@ -69,6 +69,14 @@ export default class AdminService extends Service {
     });
   }
 
+  getProductData(pid) {
+    return fetch(`${this.config.appenv.API_ENDPOINT}/products/${pid}`, {
+      method: 'GET',
+    }).then( response => response.json())
+    .catch( e => e.json())
+  }
+
+
   base64toBlob(data) {
     var byteString = atob(data.split(',')[1]);
     var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
