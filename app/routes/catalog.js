@@ -20,23 +20,35 @@ export default class CatalogRoute extends Route {
   model(params) {
     let query = {
       q: params.q,
-      limit: params.limit ? params.limit : 24,
-      offset: params.offset,
+      limit: params.limit ? params.limit : 16,
+      offset: params.offset ? params.offset : 0,
     }
     console.log(params)
+
+    let dummy = {
+        imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png',
+        name: 'AutoMeter 35054 Fan Motor - Direct Fit, Sold individually',
+        price: 69000000,
+        sku: '11141-69G03-000',
+        pid: 1234
+      }
+      , dummy_container = []
+      
+    for(let i=0;i<17;i++) dummy_container.push(dummy)
+
     return hash({
       // catalogs: this.commerce.getProducts(query).then(results => {
       //   console.log(results)
       //   // return { data: results.toArray(), total: results.meta.total }
       // }),
+      catalogs: {data: dummy_container, total: dummy_container.length},
       query,
       params
     })
   }
 
-  setupController(controller, { /*catalogs,*/ query, params }) {
-    // controller.set('data', catalogs)
-    controller.set('data', {pid: 1234, name: 'T36 Turbo', price: 3999000})
+  setupController(controller, { catalogs, query, params }) {
+    controller.set('data', catalogs)
     controller.set('query', query)
     controller.set('params', params)
   }

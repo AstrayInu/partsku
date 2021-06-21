@@ -13,8 +13,8 @@ export default class ProductDetailRoute extends Route {
     let pid = params.product_id
     console.log(pid)
 
-    let product_data = await this.admin.getProductData(pid)
-    return product_data
+    // let product_data = await this.admin.getProductData(pid)
+    // return product_data
   }
 
   setupController(controller, model) {

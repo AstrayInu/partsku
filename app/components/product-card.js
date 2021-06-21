@@ -17,6 +17,10 @@ export default class ProductCardComponent extends Component {
     return final
   }
 
+  get formatedprice() {
+    return new Intl.NumberFormat('de-de').format(this.product.price)
+  }
+
   @action
   productUrl() {
     return `/product/${this.product.pid}`

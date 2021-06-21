@@ -497,6 +497,7 @@
 .search-result {
   padding-top: 42px;
   padding-bottom: 20px;
+  display: inline-flex;
 }
 
 .search-info {
@@ -541,7 +542,6 @@
 
 /* product card */
 .product-card-component {
-  width: 25%;
   text-align: -webkit-center;
 }
 
@@ -549,13 +549,21 @@
   /* width: 25%; */
   margin-top: 20px;
   margin-bottom: 10px;
+  height: 350px;
+  background-color: white;
+  border-radius: 10px;  
 }
 
 .pcard-img-container {
-  width: 250px;
-  height: 269px;
-  background-color: white;
-  border-radius: 10px;  
+
+}
+
+.product-card-sku {
+  font-size: 12px;
+  font-family: roboto;
+  color: #111111;
+  padding: 8px 10px 0 0;
+  float: right;
 }
 
 .product-card-img {
@@ -566,19 +574,31 @@
   padding-top: 15px;
 }
 
+.product-card-info p, .p-detail-stars{
+  padding-left: 25px !important;
+  padding-right: 25px;
+}
+
 .product-card-name {
   margin: 0;
   font-size: 16px;
   font-weight: bold;
+  text-align: left;
 }
 
 .product-card-price {
   font-size: 15px;
   font-weight: bold;
   color: #FF4F04;
-  width: auto;
-  border-radius: 17px;
-  background-color: #F8EAE9;
+}
+
+/* pagination */
+.pagination-container {
+  padding-top: 30px;
+}
+
+.pagination {
+  margin: 0;
 }
 
 /* product detail */
@@ -593,6 +613,7 @@
   border-width: thin;
   border-style: solid;
   border-color: #384170;
+  padding: 23.6px;
 }
 
 .left-shop-info {
@@ -606,6 +627,10 @@
 .shop-info-name {
   font-size: 19px;
   font-weight: bold;
+}
+
+.shop-stat-box {
+  padding-top: 15px;
 }
 
 .visit-shop-btn {
@@ -645,10 +670,22 @@
 
 .p-detail-sub-row {
   padding-top: 20px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .p-detail-sub-img {
-  width: 96px;
+  padding: 0 10px;
+}
+
+.p-detail-sub-img img {
+  width: 100%;
+}
+
+.p-detail-sub-row .col-md-3 {
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .p-detail-top-right {
@@ -668,6 +705,11 @@
 .p-detail-stars {
   display: inline;
   padding-left: 10px;
+}
+
+.p-detail-stars i {
+  color: #E81D1D;
+  font-size: 20px;
 }
 
 .p-detail-rating, .p-detail-rates, .p-detail-sold {

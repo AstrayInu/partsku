@@ -7,18 +7,20 @@
     text-decoration: none;
   }
 </style>
-<a href="/product-detail/{{@product.pid}}" class="">
-  <div class="col product-card-container">
-    <div class="row pcard-img-container justify-content-center">
-      <img class="product-card-img" src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png" width="203" height="211">
+<div class="product-card-container">
+  <a href="/product-detail/{{@product.pid}}" class="">
+    <div class="pcard-img-container justify-content-end">
+      <span class="product-card-sku">{{@product.sku}}</span>
+      <div class="justify-content-center">
+        <img class="product-card-img" src="{{@product.imgUrl}}" width="200">
+      </div>
     </div>
-    <div class="row product-card-info">
-      <div class="col">
+    <div class="product-card-info">
+      <div class="row">
+        <StarRating @class="" />
         <p class="product-card-name">{{@product.name}}</p>
-      </div>
-      <div class="col text-center">
-        <div class="product-card-price">{{this.productPrice}}</div>
+        <p class="product-card-price">{{this.formatedPrice}}</p>
       </div>
     </div>
-  </div>
-</a>
+  </a>
+</div>
