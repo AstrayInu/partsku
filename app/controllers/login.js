@@ -55,13 +55,16 @@ export default class LoginController extends Controller {
       this.storage.lset('user_email', res.email)
       this.storage.lset('user_id', res.id)
       this.storage.lset('user_name', res.name)
+      this.storage.lset('user_attributes', res.attributes)
+      this.storage.lset('user_pp', res.attributes.imgUrl)
       this.storage.lset('s_token', res.token)
       if(res.sid) this.storage.lset('seller_id', res.sid)
       if(res.type) this.storage.lset("user_type", res.type)
       
-      this.transitionToRoute('user.profile')
+      if(!res.phone_number || !res.attributes.address) location.href = 'user/profile' // data not complete
+      else location.href = '/'
     }).catch( e => {
-      let err = e.msg ? e.msg : e
+      let err = e.responseJSON.msg ? e.responseJSON.msg : e
       set(this, 'errorMessage', err)
       console.log("ERROR", err)
     })

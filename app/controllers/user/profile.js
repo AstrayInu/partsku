@@ -9,18 +9,22 @@ export default class UserProfileController extends Controller {
   @service admin
   @service config
 
+  get isSeller() {
+    return this.storage.lget("seller_id")
+  }
+
   @action
-  inputName() {
+  inputName(val) {
     set(this, 'name', val)
   }
 
   @action
-  inputEmail() {
+  inputEmail(val) {
     set(this, 'email', val)
   }
 
   @action
-  inputPhone() {
+  inputPhone(val) {
     set(this, 'phoneNumber', val)
   }
 
@@ -30,83 +34,27 @@ export default class UserProfileController extends Controller {
   }
 
   @action
-  upload(event) {
-    const file = event.target.files[0];
-    let formData = new FormData();
-    let reader = new FileReader()
-    
-    // show img
-    var imgs = document.getElementById("imgss")
-    imgs.src = URL.createObjectURL(file)
-
-    if(file.type != 'image/jpeg' && file.type != 'image/png') {
-      alert('Gambar harus berformat .jpg atau .png')
-    } else {
-      if(file) reader.readAsDataURL(file) // calls reader.onload if the file exists
-      
-      reader.onload = (e) => {
-        let img64 = e.target.result
-          , url = `${this.config.appenv.API_ENDPOINT}/users/profilePicture`
-        // console.log("reader", img64)
-        formData.append('imgData', img64)
-    
-        // put file in formData
-        formData.append('imgData', this.admin.base64toBlob(img64), `user-123.png`)
-        // console.log(this.admin.base64toBlob(img64))
-        formData.append('uid', this.storage.lget('_partsku_uid'))
-        
-        console.log(formData)
-        // let postType = `POST`
-        // $.ajax({
-        //   xhr: function() {
-        //     var xhr = new window.XMLHttpRequest();
-        //     //Upload progress
-        //     // xhr.upload.addEventListener("progress", function(evt){
-        //       //   if (evt.lengthComputable) {
-        //         //     var percentComplete = evt.loaded / evt.total;
-        //         //     //Do something with upload progress
-        //         //     set(_this, 'progressBar', Math.floor(percentComplete*100))
-        //         //   }
-        //         // }, false);
-                
-        //     return xhr;
-        //   },
-        //   processData: false,
-        //   contentType: false,
-        //   cache: false,
-        //   enctype: 'multipart/form-data',
-        //   type: postType,
-        //   url,
-        //   data: formData,
-        //   success: function(response){
-        //     console.log("response",response)
-        //   },
-        //   error: function(reason) {
-        //     console.log("reason", reason)
-        //   },
-        //   // headers: {
-        //     //   'X-TOKEN': this.storage.lget('_dop_token')
-        //     // }
-        //   })
-        fetch(`${this.config.appenv.API_ENDPOINT}/users/profilePicture`, {
-          method: 'POST',
-          body: formData,
-          // headers: {
-          //   'X-TOKEN': xtoken
-          // }
-        }).then( response => {
-          console.log("RESPONSE", response)
-        }).catch( e => {
-          console.log("ERROR", e)
-          // alert(e)
-        })
-      }      
-    }
-  }
-
-  @action
   save() {
-    this.transitionToRoute("/")
+    let data = {
+      name: this.name,
+      email: this.email,
+      phone_number: this.phoneNumber,
+      address: this.address
+    }
+    // console.log(data)
+    this.admin.saveUserData(data, this.storage.lget('user_id')).then( response => {
+      console.log("RESPONSE",response)
+      this.storage.lset("user_name", this.name)
+      this.storage.lset("user_email", this.email)
+      this.storage.lset("user_address", this.address)
+      this.storage.lset("user_phone", this.phoneNumber)
+      alert(response.msg)
+      location.reload();
+    }).catch( e => {
+      console.log(e)
+      alert(e.err)
+      set(this, 'errorMessage', e.err)
+    })
   }
 
 }

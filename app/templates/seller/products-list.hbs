@@ -1,0 +1,185 @@
+<style>
+  .footer {
+    display: none;
+  }
+
+  body {
+    overflow: hidden;
+  }
+</style>
+<div class="secondary-color seller-products-container">
+  <div class="container-fluid">
+    <div id="add-item-container" class="row justify-content-center">
+      <div class="col-sm-10 mr-5">
+        <div class="row justify-content-end">
+          <div class="col-sm-3 text-right pt-5 add-item-btn">
+            <button type="button" class="btn btn-add font-weight-bold text-right" onclick={{action "addProduct"}}>
+              ADD ITEM +
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center pt-4">
+      <div id="plist-main-island-container" class="col-sm-10">
+        <div id="plist-main-island" class="row justify-content-center">
+          <ProfileCard @class="col-sm-3" @where="parts" />
+          <div class="col-sm-7 mx-4">
+            <div id="list-infobox" class="row justify-content-between border border-radius-1 p-3 bg-white">
+              <div class="col-sm-2 justify-content-start">
+                <div class="d-flex">
+                  <div class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 15 15">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                  </div>
+                  <div class="ml-2">
+                    Product
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="d-flex row justify-content-between">
+                  <div class="ml-4">
+                    Price
+                  </div>
+                  <div class="ml-2">
+                    Edit
+                  </div>
+                  <div class="mr-1">
+                    Delete
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="list-container" class="row justify-content-center">
+              <div class="col-sm-12">
+                {{#if this.productsList}}
+                  {{#each this.products as |item|}}
+                    <ProductCard @style="seller-p-list" @product={{item}} />
+                  {{/each}}
+                {{else}}
+                  <div class="row justify-content-center pt-5 product-empty-text">
+                      IT'S EMPTY :(
+                  </div>
+                  <div class="row justify-content-center mx-5 px-5">
+                      <img src="https://res.cloudinary.com/partsku/image/upload/v1624270216/partsku/illu_loub2m.png" alt="IT'S EMPTY :(" class="img-fluid img-resize">
+                  </div>
+                  <div class="row justify-content-center pt-2">
+                    <button class="btn btn-add-secondary font-weight-bold text-right" onclick={{action "addProduct"}}>
+                        ADD ITEM +
+                    </button>
+                  </div>
+                {{/if}}
+                <div class="">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="add-p-main-island" class="row justify-content-center d-none">
+          <div class="col">
+            <div class="text-center">
+              <span class="add-item-title primary-text-color">ADD ITEM</span>
+              <button type="button" class="close" aria-label="Close" onclick={{action "closeAddProduct"}}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="main-img-input-box">
+                  <img id="img-1" src="https://res.cloudinary.com/partsku/image/upload/v1624973731/partsku/Item_wp83he.png" width="400px" height="400px">
+                  <input class="input-main-p-img" type="file" onchange={{action "upload" "1"}} accept="image/*">
+                </div>
+                <div class="row">
+                  <div class="p-list-sub-imgs">
+                    <div class="col-md-3 justify-content-center">
+                      <div class="sub-img-input-box">
+                        <img id="img-2" src="https://res.cloudinary.com/partsku/image/upload/v1624973380/partsku/Item_dekxco.png" width="93px" height="93px">
+                        <input class="input-sub-p-img" type="file" onchange={{action "upload" "2"}} accept="image/*">
+                      </div>
+                    </div>
+                    <div class="col-md-3 justify-content-center">
+                      <div class="sub-img-input-box">
+                        <img id="img-3" src="https://res.cloudinary.com/partsku/image/upload/v1624973380/partsku/Item_dekxco.png" width="93px" height="93px">
+                        <input class="input-sub-p-img" type="file" onchange={{action "upload" "3"}} accept="image/*">
+                      </div>
+                    </div>
+                    <div class="col-md-3 justify-content-center">
+                      <div class="sub-img-input-box">
+                        <img id="img-4" src="https://res.cloudinary.com/partsku/image/upload/v1624973380/partsku/Item_dekxco.png" width="93px" height="93px">
+                        <input class="input-sub-p-img" type="file" onchange={{action "upload" "4"}} accept="image/*">
+                      </div>
+                    </div>
+                    <div class="col-md-3 justify-content-center">
+                      <div class="sub-img-input-box">
+                        <img id="img-5" src="https://res.cloudinary.com/partsku/image/upload/v1624973380/partsku/Item_dekxco.png" width="93px" height="93px">
+                        <input class="input-sub-p-img" type="file" onchange={{action "upload" "5"}} accept="image/*">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">ITEM NAME</p>
+                    <Input @class="add-product-input-box input-font" @keyUp={{action 'inputName' value='target.value'}} @value={{this.itemName}} @maxlength=50 />
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <button id="add-item" class="btn submit-btn sreg-btn mb-4" onclick={{action 'addItem'}} disabled={{this.isDisabled}}>ADD ITEM</button>
+                    {{!-- <button id="add-item" class="btn submit-btn sreg-btn mb-4" onclick={{action 'addItem'}}>ADD ITEM</button> --}}
+                    <img id="spinner" class="" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">CATEGORIES</p>
+                    <Dropdowns @type="add-product-category" @data={{this.categories}} @action={{action "inputCategory"}} />
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">PRICE</p>
+                    <Input @class="add-product-input-box input-font" @keyUp={{action 'inputPrice' value='target.value'}} @value={{this.price}} @maxlength=50 />
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">SKU / PART NUMBER</p>
+                    <Input @class="add-product-input-box input-font" @keyUp={{action 'inputSKU' value='target.value'}} @value={{this.sku}} @maxlength=50 />
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">CONDITION</p>
+                    <select class="add-product-input-box" onchange={{action 'inputCondition' value='target.value'}}>
+                      {{#each itemConditions as |stuff| }}
+                        <option value={{stuff.value}}>{{stuff.msg}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">STOCK</p>
+                    <Input @class="add-product-input-box input-font" @keyUp={{action 'inputStock' value='target.value'}} @value={{this.stock}} @maxlength=50 />
+                  </div>
+                </div>
+                <div class="row mt-4 mb-3">
+                  <div class="col">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">BRAND</p>
+                    <Dropdowns @type="add-product-brand" @data={{this.brands}} @action={{action "inputBrand"}} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

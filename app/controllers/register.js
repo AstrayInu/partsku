@@ -47,25 +47,27 @@ export default class RegisterController extends Controller {
       set(this, 'errorMessage', null)
       set(this, 'successMessage', null)
       let data = {
+        fname: this.firstName,
+        lname: this.lastName,
         email: this.email,
         pass: this.password
       }
 
-      this.admin.checkUser(this.email).then(res => {
-        // if user already exist
-        set(this, 'errorMessage', 'Maaf, Email yang anda gunakan tidak valid / sudah terdaftar')
-      }).catch(e => {
+      // this.admin.checkUser(this.email).then(res => {
+      //   // if user already exist
+      //   set(this, 'errorMessage', 'Maaf, Email yang anda gunakan tidak valid / sudah terdaftar')
+      // }).catch(e => {
         this.createuser(data)
-      })
-    } else {
-      set(this, 'errorMessage', 'Password minimal 8 karakter & 1 huruf besar & 1 huruf kecil & 1 angka')
+      // })
+    // } else {
+    //   set(this, 'errorMessage', 'Password minimal 8 karakter & 1 huruf besar & 1 huruf kecil & 1 angka')
     }
   }
 
   createuser(data) {
-    this.admin.createUser(data).then( response => {
+    this.admin.createUser(data).then( async response => {
       set(this, 'successMessage', response.msg)
-      setTimeout(() => {
+      await setTimeout(() => {
         // this.transitionToRoute('login');
         location.href = '/login'
       }, 3000)

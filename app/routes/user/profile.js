@@ -11,6 +11,8 @@ export default class UserProfileRoute extends Route {
   }
 
   model() {
+    console.log(this.storage.lget("user_id"))
+
     return hash({
       account: this.admin.getUserData(this.storage.lget('user_id'))
     })
@@ -21,19 +23,15 @@ export default class UserProfileRoute extends Route {
   }
 
   setupController(controller, { account }) { // params for setupC => controller, model
-    console.log("==>", account)
+    // console.log("==>", account)
     let attr = account.attributes
-      , name
-    if(attr.firstname && attr.lastname) name = `${attr.firstname} ${attr.lastname}`
-    else if(attr.firstname && !attr.lastname) name = `${attr.firstname}`
-    else if(!attr.firstname && attr.lastname) name = `${attr.lastname}`
 
     controller.set('uid', account.uid ? account.uid : this.storage.lget('user_id'))
-    controller.set('name', name)
-    controller.set('email', attr.email)
+    controller.set('name', attr.name)
+    controller.set('email', account.email)
     controller.set('address', attr.address)
-    controller.set('phoneNumber', attr.phone_number != 0 ? attr.phone_number : null )
-    if(!name && !attr.email && !attr.address && !attr.phone_number) controller.set('incompleteData', true)
+    controller.set('phoneNumber', account.phone_number != 0 ? account.phone_number : null )
+    if(!name && !account.email && !attr.address && !account.phone_number) controller.set('incompleteData', true)
   }
 
   resetController(controller, isExiting, transition) {

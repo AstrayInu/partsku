@@ -9,6 +9,7 @@ module.exports = function(defaults) {
       importBootstrapCSS: true
     }
   });
+  app.import("node_modules/bootstrap/dist/js/bootstrap.js");
   app.import('vendor/font/bootstrap-icons.css', { destDir: 'assets' });
   app.import('vendor/font/fonts/bootstrap-icons.woff', { destDir: 'assets/fonts' });
   app.import('vendor/font/fonts/bootstrap-icons.woff2', { destDir: 'assets/fonts' });

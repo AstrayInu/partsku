@@ -3,48 +3,98 @@
     display: none;
   }
 </style>
-<div class="container-fluid profile-container">
-  <div class="row justify-content-center">
-    {{!-- <div class="col"> --}}
-      <div class="col-3">
-        <ProfileCard />
+{{!-- <img id="imgss" src="" width="250" height="250">
+<input type="file" onchange={{action "upload"}} accept="image/*"><br> --}}
+<div class="secondary-color profile-container">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sm-10">
+        <div class="row justify-content-center">
+          {{!-- Profile Card --}}
+          <ProfileCard @class="col-sm-3" @where="user" />
+          <div class="col-sm-3 mx-4">
+            <div class="row justify-content-center mb-3">
+              <div class="col-sm-11">
+                <h4 class="font-weight-bold primary-text-color label-font">
+                  FULL NAME
+                </h4>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-12">
+                <Input
+                  @class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color"
+                  @keyUp={{action 'inputName' value="target.value"}}
+                  @maxlength="50"
+                  @name="nama-user"
+                  @type="text"
+                  @value={{this.name}}
+                />
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-11">
+                <h4 class="font-weight-bold primary-text-color label-font">
+                  EMAIL
+                </h4>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-12">
+                <Input
+                  @class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color"
+                  @keyUp={{action 'inputEmail' value="target.value"}}
+                  @maxlength="50"
+                  @name="email-user"
+                  @type="text"
+                  @value={{this.email}}
+                />
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-11">
+                <h4 class="font-weight-bold primary-text-color label-font">
+                  ACTIVE WHATSAPP NUMBER
+                </h4>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-12 flex-row">
+                <label class="prepend-label input-font px-3 p-3 border border-radius-0 border-right-0">+62</label>
+                <Input
+                  @class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color"
+                  @keyUp={{action 'inputPhone' value="target.value"}}
+                  @maxlength="14"
+                  @name="tlp-user"
+                  @type="text"
+                  @value={{this.phoneNumber}}
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 mx-4">
+            <div class="row justify-content-center mb-3">
+              <div class="col-sm-11">
+                <h4 class="font-weight-bold primary-text-color label-font">
+                  ADDRESS <font class="red-text-color">*</font>
+                </h4>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="col-sm-12">
+                <textarea class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" cols="50" rows="6" onkeyup={{action "inputAddress" value="target.value"}} value={{this.address}}></textarea>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+              <div class="col-sm-12">
+                <button type="" class="btn btn-primary border-radius-0 btn-brand w-100 primary-color label-font p-3 px-3 mt-4" onclick={{action "save"}}>
+                  SAVE EDIT
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-5">
-        {{!-- <img id="imgss" src="" width="250" height="250">
-        <input type="file" onchange={{action "upload"}} accept="image/*"><br> --}}
-
-        <label class="">Full Name</label>
-        <Input
-          @keyUp={{action 'inputName' value="target.value"}}
-          @maxlength="50"
-          @name="nama-user"
-          @type="text"
-          @value={{this.name}}
-        /><br>
-
-        <label class="">E-mail</label>
-        <Input
-          @keyUp={{action 'inputEmail' value="target.value"}}
-          @maxlength="50"
-          @name="email-user"
-          @type="text"
-          @value={{this.email}}
-        /><br>
-
-        <label class="">Phone Number</label>
-        <Input
-          @keyUp={{action 'inputPhone' value="target.value"}}
-          @maxlength="14"
-          @name="tlp-user"
-          @type="text"
-          @value={{this.phoneNumber}}
-        /><br>
-
-        <label class="">Address</label>
-        <textarea name="" id="" cols="30" rows="10" onkeyup={{action "inputAddress" value="target.value"}} value={{this.address}}></textarea>
-        
-        <button onclick={{action "save"}}>Save</button>
-      </div>
-    {{!-- </div> --}}
+    </div>
   </div>
 </div>

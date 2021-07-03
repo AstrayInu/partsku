@@ -1,0 +1,87 @@
+{{#if (eq @type "add-product-brand")}}
+  <select class="add-product-input-box" onchange={{action 'trigger' value='target.value'}}>
+    <option value="">Choose Brand & Model</option>
+    <option value="">-----BMW-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "BMW")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----HONDA-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "HONDA")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----HYUNDAI-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "HYUNDAI")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----MAZDA-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "MAZDA")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----MERCEDES-BENZ-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "MERCEDES-BENZ")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----MITSUBISHI-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "MITSUBISHI")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----NISSAN-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "NISSAN")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----SUZUKI-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "SUZUKI")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----TOYOTA-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "TOYOTA")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----VOLKSWAGEN-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.brand "VOLKSWAGEN")}}
+        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+      {{/if}}
+    {{/each}}
+  </select>
+{{else if (eq @type "add-product-category")}}
+  <select class="add-product-input-box" onchange={{action 'trigger' value='target.value'}}>
+    <option value="">Choose item category</option>
+    <option value="">-----Engine & Transmission-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.family "Engine and Transmission")}}
+        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----Electrical-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.family "Electrical")}}
+        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+      {{/if}}
+    {{/each}}
+    <option value="">-----Suspension-----</option>
+    {{#each @data as |stuff|}}
+      {{#if (eq stuff.family "Suspension")}}
+        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+      {{/if}}
+    {{/each}}
+  </select>
+{{/if}}

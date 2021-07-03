@@ -7,6 +7,6 @@ export default class IndexController extends Controller {
   @action
   search(val) {
     let keyword = this.searchQuery
-    this.transitionToRoute("catalog", {queryParams: {q: keyword, limit: 24, offset: 0}})
+    this.transitionToRoute("catalog", {queryParams: {q: keyword, limit: 16, offset: 0}})
   }
 }

@@ -5,7 +5,7 @@
         <p class="buy-cp">BUY TRUSTWORTHY CAR PARTS</p>
         <p class="full-control">Full control of what you use and pay for</p>
         <div class="search-landing">
-          <Input @class="landing-search-box" @placeholder="Search car part by SKU or name here" @value={{this.searchQuery}} @insert-newline={{action "search" value="target.value"}} />
+          <Input @class="landing-search-box" @placeholder="Search car part by SKU or name here" @value={{this.searchQuery}} @insert-newline={{action "search"}} />
           <button class="landing-search-btn" onclick={{action "search"}}>Search</button>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default class AdminService extends Service {
       $.ajax({
         method: 'GET',
         contentType: 'application/json',
-        url: `${this.config.appenv.API_ENDPOINT}/users/check`,
+        url: `${this.config.appenv.API_ENDPOINT}/users/checkUser`,
         data: JSON.stringify(email)
       }).then((response) => {
         resolve(response)
@@ -39,13 +39,60 @@ export default class AdminService extends Service {
       });
     });
   }
-  
+
   getUserData(id) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({
         method: 'GET',
         contentType: 'application/json',
         url: `${this.config.appenv.API_ENDPOINT}/users/${id}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  uploadUserPicture(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/profilePicture`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  saveUserData(data, id) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/${id}`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  getSellers(data) {
+    console.log(data)
+    let urlname = `${this.config.appenv.API_ENDPOINT}/sellers`
+    if(data.admin) urlname += `?admin=1`
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: urlname
       }).then((response) => {
         resolve(response)
       }, (reason) => {
@@ -69,13 +116,145 @@ export default class AdminService extends Service {
     });
   }
 
-  getProductData(pid) {
-    return fetch(`${this.config.appenv.API_ENDPOINT}/products/${pid}`, {
-      method: 'GET',
-    }).then( response => response.json())
-    .catch( e => e.json())
+  approveSeller(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/approve-seller`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
   }
 
+  getSellerData(sid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/${sid}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  uploadSellerPicture(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/seller/profilePicture`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  getProducts(data) {
+    let params = ''
+    params += data.q ? `q=${data.q}&` : ''
+    params += data.sort ? `sort=${data.sort}&` : ''
+    params += data.brand ? `brand=${data.brand}&` : ''
+    params += data.limit ? `limit=${data.limit}&` : ''
+    params += data.offset ? `offset=${data.offset}&` : ''
+    params += data.sid ? `sid=${data.sid}&` : ''
+    console.log("params", data)
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products?${params}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+
+  getProductData(pid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products/${pid}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  createProduct(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  addToCart(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/cart/add`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  getCartData(uid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/cart/${uid}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  deleteCartItem(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'delete',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/cart/delete`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
 
   base64toBlob(data) {
     var byteString = atob(data.split(',')[1]);
@@ -101,9 +280,26 @@ export default class AdminService extends Service {
     { key: '3', value: 'used', msg: 'Used'}
   ]
 
-  brands = [
-    { key: '', name: 'Toyota', }
-  ]
+  getBrands() {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/public/get-brands`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  getCategory() {
+    return fetch(`${this.config.appenv.API_ENDPOINT}/public/get-category`, {
+      method: 'GET',
+    }).then( response => response.json())
+    .catch( e => e.json())
+  }
 
 
 }

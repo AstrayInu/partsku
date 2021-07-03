@@ -9,6 +9,8 @@ export default class SessionService extends Service {
   @service config
   @service storage
 
+  defaultPPic = `https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png`
+
   @computed()
   get currentUser() {
     return this.storage.lget("user_id")
@@ -48,7 +50,35 @@ export default class SessionService extends Service {
     });
   }
 
-  logoutUser(data) {
-    return fetch(`${this.config.appenv.API_ENDPOINT}`)
+  async logoutUser(data) {
+    // fetch(`${this.config.appenv.API_ENDPOINT}/users/logout`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // }).then(response => {
+    //   console.log(response)
+    //   if(response.err) alert(response.err)
+    //   else {
+        await this.storage.lremove("s_token")
+        await this.storage.lremove("seller_data")
+        await this.storage.lremove("seller_id")
+        await this.storage.lremove("user_id")
+        await this.storage.lremove("user_name")
+        await this.storage.lremove("user_pp")
+        await this.storage.lremove("user_type")
+        await this.storage.lremove("user_address")
+        await this.storage.lremove("user_email")
+        await this.storage.lremove("user_phone")
+        await this.storage.lremove("user_attributes")
+        
+        alert("Berhasil Logout!")
+        location.href = '/'
+    //   }
+    // }).catch(e => {
+    //   console.log(e)
+      
+    // })
   }
 }

@@ -61,13 +61,14 @@ export default class SellerRegisterController extends Controller {
       // console.log("BERHASIL", response)
       this.storage.lset("seller_id", response.sid)
       this.storage.lset("seller_data", response.data)
+      this.storage.lset("user_type", 'seller')
       
       set(this, 'successMessage', 'Registrasi berhasil')
       $(".sreg-title").hide()
       setTimeout( () => {
         $(".sreg-title").show()
-        this.transitionToRoute('user.profile')
-      }, 4990)
+        location.href = '/seller/profile'
+      }, 5000)
       
     }).catch( e => {
       console.log('Error',e)

@@ -1,0 +1,85 @@
+<style>
+  .footer {
+    display: none;
+  }
+</style>
+<div class="secondary-color seller-products-container">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sm-10">
+        <div class="row justify-content-end m-5">
+          <div class="col-sm-6 pr-5">
+            <div class="row justify-content-end mr-3">
+              <div class="col-sm-3">
+                <button id="new-btn" class="btn-red-border-radius" onclick={{action "changeView" "new"}}>
+                  New
+                </button>
+              </div>
+              <div class="col-sm-3">
+                <button id="appr-btn" class="btn-transparent" onclick={{action "changeView" "approved"}}>
+                  Approved
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <ProfileCard @class="col-sm-3" @where="admin" />
+          <div class="col-sm-7 mx-4">
+            <div class="row justify-content-between border border-radius-1 p-3 mb-2 bg-white">
+              <div class="col-sm-2">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                      fill="currentColor" class="bi bi-list" viewBox="0 0 15 15">
+                      <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                  </div>
+                  <div class="col-sm-6">
+                    Filter
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="row justify-content-center">
+                  <div class="col-sm-4">
+                    <div id="wrd-1" class="row justify-content-center">
+                      {{#if (eq this.showList "approved")}}
+                        Edit
+                      {{else}}
+                        Approve
+                      {{/if}}
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div id="wrd-2" class="row justify-content-center">
+                      {{#if (eq this.showList "approved")}}
+                        Remove
+                      {{else}}
+                        Reject
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{#if (eq this.showList "approved")}}
+              {{#if this.approvedSellers}}
+                {{#each this.approvedSellers as |item|}}
+                  <ProductCard @class="row justify-content-between border border-radius-1 p-3 pb-4 pt-4 mb-4 bg-white" @style="admin-seller-list" @data={{item}} @show={{showList}} />
+                {{/each}}
+              {{/if}}
+            {{else}}
+              {{#if this.newSellers}}
+                {{#each this.newSellers as |item|}}
+                  <ProductCard @class="row justify-content-between border border-radius-1 p-3 pb-4 pt-4 mb-4 bg-white" @style="admin-seller-list" @data={{item}} @show={{showList}} />
+                {{/each}}
+              {{/if}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

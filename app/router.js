@@ -22,12 +22,16 @@ Router.map(function() {
     this.route("profile");
     this.route("product", function() {
       this.route("add");
-      this.route("list");
       this.route("edit", { path: "/edit/:product_id"});
     });
+    this.route('products-list');
   });
 
   this.route("catalog")
   this.route("product-detail", { path: "product-detail/:product_id"})
 
+  this.route('admin', function() {
+    this.route('seller-list');
+    this.route('transaction-list');
+  });
 });
