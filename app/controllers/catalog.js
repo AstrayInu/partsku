@@ -6,8 +6,14 @@ export default class CatalogController extends Controller {
   constructor() {
     super(...arguments);
     this.queryParams = [
-      'q', 'limit', 'offset', 'sort'
+      'q', 'brand', "category", 'limit', 'offset', 'sort'
     ]
+  }
+
+  get searchResult() {
+    if(this.params.q) return this.params.q
+    else if(this.params.brand) return this.params.brand
+    else if(this.params.category) return this.params.category
   }
 
   @computed('offset')
@@ -47,6 +53,29 @@ export default class CatalogController extends Controller {
   @action
   applySort(val) {
     set(this, 'sort', val);
+  }
+
+  @action
+  applyBrand(val) {
+    console.log(val)
+    let split = val.split('.')
+    split = split.length == 2 ? split[1] : split[0]
+    set(this, 'brand', split)
+  }
+
+  @action
+  applyCategory(val) {
+    let split = val.split('.')
+    split = split.length == 2 ? split[1] : split[0]
+    set(this, 'category', split)
+  }
+
+  @action
+  clearFilters() {
+    let types = [ 'q', 'brand', 'category', 'sort' ]
+    for (let type of types) {
+      set(this, type, null)
+    }
   }
 
   @action

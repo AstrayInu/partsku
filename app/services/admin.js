@@ -85,7 +85,7 @@ export default class AdminService extends Service {
   }
 
   getSellers(data) {
-    console.log(data)
+    // console.log(data)
     let urlname = `${this.config.appenv.API_ENDPOINT}/sellers`
     if(data.admin) urlname += `?admin=1`
     return new EmberPromise((resolve, reject) => {
@@ -256,6 +256,68 @@ export default class AdminService extends Service {
     });
   }
 
+  newTransaction(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/commerce/transaction/new`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  getTransactions(data) {
+    let url = `${this.config.appenv.API_ENDPOINT}/commerce/transaction`
+    if(data.uid) url += `?uid=${data.uid}`
+    if(data.tid) url += `?tid=${data.tid}`
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: url
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  setTransactionStatus(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/commerce/transaction/update`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  uploadProof(data) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/commerce/transaction/upload-proof`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
   base64toBlob(data) {
     var byteString = atob(data.split(',')[1]);
     var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
@@ -278,6 +340,19 @@ export default class AdminService extends Service {
     { key: '1', value: 'bnib', msg: 'Brand New In Box (BNIB)'},
     { key: '2', value: 'bnob', msg: 'Brand New Open Box (BNoB)'},
     { key: '3', value: 'used', msg: 'Used'}
+  ]
+
+  indexBrand = [
+    {name: 'honda', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Honda-landing-logo_ndjwko.png'},
+    {name: 'toyota', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Toyota-landing-logo.png_eksggx.png'},
+    {name: 'mitsubishi', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1623222848/partsku/Mitsubishi-landing-logo.png_vhz97w.png'},
+    {name: 'mazda', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Mazda-landing-logo.png_tgexfj.png'},
+    {name: 'nissan', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625294527/partsku/nissan-landing-logo_i2xznu.png'},
+    {name: 'suzuki', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625294525/partsku/suzuki-landing-logo_b9it9t.png'},
+    {name: 'volkswagen', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625294523/partsku/vw-landing-logo_kejspw.png'},
+    {name: 'hyundai', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625294522/partsku/hyundai-landing-logo_xalxwi.png'},
+    {name: 'mercedes-benz', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625294522/partsku/mercedes-landing-logo_z6w7o2.png'},
+    {name: 'bmw', imgUrl: 'https://res.cloudinary.com/partsku/image/upload/v1625295672/partsku/bmw-landing-logo_w41zut.png'},
   ]
 
   getBrands() {

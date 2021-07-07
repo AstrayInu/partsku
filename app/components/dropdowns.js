@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class DropdownsComponent extends Component {
   @action
-  trigger(val) {
+  selectVal(val) {
     console.log("==>",val)
     this.action(val)
   }

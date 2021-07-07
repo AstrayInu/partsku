@@ -6,10 +6,15 @@ export default class CartCardComponent extends Component {
   @service admin
   @service storage
 
-  @action
-  selectAllComponent() {
-    
-    console.log('huwih')
+  get totalEach() {
+    let result = 0
+     this.data.forEach(x => {
+      if(x.sid == this.seller.sid) {
+        result = result + (x.price * x.quantity)
+      }
+    })
+
+    return result
   }
 
   @action
@@ -25,7 +30,7 @@ export default class CartCardComponent extends Component {
   @action
   min(val, idx, pid) {
     let q = Number(val) - 1
-    console.log("min", q, idx)
+    // console.log("min", q, idx)
     $(`#qty_for_index_${idx}`).val(q)
     this.minQuant(q, pid)
   }
@@ -33,20 +38,20 @@ export default class CartCardComponent extends Component {
   @action
   add(val, idx, pid) {
     let q = Number(val) + 1
-    console.log("add", q, idx)
-    $(`#qty_for_index_${idx}`).val(q)
+    // console.log("add", q, idx)
+    // $(`#qty_for_index_${idx}`).val(q)
     this.addQuant(q, pid)
   }
 
   @action
   deleteItem(pid, uid) {
-    console.log(pid)
+    // console.log(pid)
     this.admin.deleteCartItem({uid, pid}).then(res => {
-      console.log('res', res)
+      // console.log('res', res)
       alert(res)
       location.reload()
     }).catch(e => {
-      console.log(e)
+      // console.log(e)
       alert(e.responseJSON.err)
     })
   }

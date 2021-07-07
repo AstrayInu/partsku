@@ -1,62 +1,150 @@
-<div class="row justify-content-between border-radius-1 bg-white mb-3">
-  <div class="col-sm-12">
-    <div class="row justify-content-start border border-bottom-1 p-3">
-      <div class="col-sm-1">
-        <input type="checkbox" id="seller-{{@seller.sid}}-checkbox" onchange={{action "selectAllFromStore"}} checked={{this.isChecked}}>
+{{#if (eq @style "cart")}}
+  <div class="row justify-content-between border-radius-1 bg-white mb-3">
+    <div class="col-sm-12">
+      <div class="row justify-content-start border border-bottom-1 p-3">
+        <div class="col-sm-1">
+          <input type="checkbox" id="seller-{{@seller.sid}}-checkbox" onchange={{action "selectAllFromStore"}} checked={{this.isChecked}}>
+        </div>
+        <div class="col-sm-5 product-list-text my-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E81D1D" class="bi bi-patch-check-fill img-fluid mr-1 mb-1" viewBox="0 0 16 16">
+            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+          </svg>
+          {{@seller.shop_name}}
+        </div>
       </div>
-      <div class="col-sm-5 product-list-text my-auto">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E81D1D" class="bi bi-patch-check-fill img-fluid mr-1 mb-1" viewBox="0 0 16 16">
-          <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-        </svg>
-        {{@seller.shop_name}}
-      </div>
-    </div>
-    {{#each @data as |item idx|}}
-      {{!-- {{log "---->" item}} --}}
-      {{#if (eq item.sid @seller.sid)}}
-        <div class="row justify-content-between p-3 border border-bottom-1">
-          <div class="col-sm-6">
-            <div class="row">
-              <div class="col-sm-1 my-auto">
-                <input type="checkbox" name="" id="check-seller-{{item.sid}}-item-{{item.pid}}">
+      {{#each @data as |item idx|}}
+        {{!-- {{log "---->" item}} --}}
+        {{#if (eq item.sid @seller.sid)}}
+          <div class="row justify-content-between p-3 border border-bottom-1">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-1 my-auto">
+                  <input type="checkbox" name="" id="check-seller-{{item.sid}}-item-{{item.pid}}">
+                </div>
+                <div class="col-sm-5 my-auto">
+                  <img src="{{item.imgUrl}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-sm-5 text-justify product-list-text align-self-center">
+                  <a href="/product-detail/{{item.pid}}" class="no-href-style">{{item.name}}</a>
+                </div>
               </div>
-              <div class="col-sm-5 my-auto">
-                <img src="{{item.imgUrl}}" alt="" class="img-fluid">
-              </div>
-              <div class="col-sm-5 text-justify product-list-text align-self-center">
-                <a href="/product-detail/{{item.pid}}" class="no-href-style">{{item.name}}</a>
+            </div>
+            <div class="col-sm-6 my-auto">
+              <div class="row">
+                <div class="col-sm-3 text-left product-list-text align-self-center">
+                  {{format-currency item.price}}
+                </div>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    {{!-- <div class="input-group-prepend">
+                      <button id="" class="bg-white border-input" type="button" onclick={{action "min" item.quantity idx item.pid}}>&minus;</button>
+                    </div> --}}
+                    <input type="text" name="" id="qty_for_index_{{idx}}" value={{item.quantity}} class="form-control text-center border-dark" disabled>
+                    {{!-- <div class="input-group-append">
+                      <button id="" class="bg-white border-input" type="button" onclick={{action "add" item.quantity idx item.pid}}>&plus;</button>
+                    </div> --}}
+                  </div>
+                </div>
+                <div class="col-sm-3 product-list-text red-text-color align-self-center">
+                  {{cart-price item.price item.quantity}}
+                </div>
+                <div class="col-sm-2 align-self-center cursor-pointer" onclick={{action "deleteItem" item.pid item.uid}}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 my-auto">
-            <div class="row">
-              <div class="col-sm-3 text-left product-list-text align-self-center">
-                {{format-currency item.price}}
-              </div>
-              <div class="col-sm-4">
-                <div class="input-group">
-                  {{!-- <div class="input-group-prepend">
-                    <button id="" class="bg-white border-input" type="button" onclick={{action "min" item.quantity idx item.pid}}>&minus;</button>
-                  </div> --}}
-                  <input type="text" name="" id="qty_for_index_{{idx}}" value={{item.quantity}} class="form-control text-center border-dark" disabled>
-                  {{!-- <div class="input-group-append">
-                    <button id="" class="bg-white border-input" type="button" onclick={{action "add" item.quantity idx item.pid}}>&plus;</button>
-                  </div> --}}
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
+{{else if (eq @style "checkout")}}
+  <div class="row justify-content-center mb-4">
+    <div class="col-sm-10 content-card border">
+      <div class="row justify-content-between my-3 px-3">
+        <div class="col-sm-6 card-title-text">
+          DETAIL PRODUCT
+        </div>
+        <div class="col-sm-6">
+          <div class="row justify-content-end">
+            <div class="col-sm-4 my-1 text-center">
+              Quantity
+            </div>
+            <div class="col-sm-4 my-1  text-center">
+              Total
+            </div>
+          </div>
+        </div>
+      </div>
+      {{#each @data as |item idx|}}
+        {{#if (eq item.sid @seller.sid)}}
+          <div class="row justify-content-between px-3 mb-4">
+            <div class="col-sm-7">
+              <div class="row">
+                <div class="col-sm-4">
+                  <img src="{{item.imgUrl}}" class="img-fluid">
+                </div>
+                <div class="col-sm">
+                  {{item.name}}
+                  <p>@{{format-currency item.price}}</p>
                 </div>
               </div>
-              <div class="col-sm-3 product-list-text red-text-color align-self-center">
-                {{cart-price item.price item.quantity}}
+            </div>
+            <div class="col-sm-5">
+              <div class="row">
+                <div class="col-sm my-1 text-center">
+                  {{item.quantity}}
+                </div>
+                <div class="col-sm my-1 text-center">
+                  {{cart-price item.price item.quantity}}
+                </div>
               </div>
-              <div class="col-sm-2 align-self-center cursor-pointer" onclick={{action "deleteItem" item.pid item.uid}}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                </svg>
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+      <div class="row bottom-content-card pt-3">
+        <div class="col-sm-12">
+          <div class="row mb-4">
+            <div class="col-sm pl-4">
+              <div class="row">
+                <div class="col-sm-5 red-text-color font-weight-">
+                  <text class="text-highlight">
+                    Shipping Options
+                  </text>
+                </div>
+                <div class="col-sm-7 text-highlight">
+                  <div class="row">
+                    Regular
+                  </div>
+                  <div class="row">
+                    23 June - 24 June 2021
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 align-self-center">
+              <div class="row justify-content-end my-auto text-center">
+                <div class="col-sm my-1 text-center font-weight-bold">
+                  Rp8.000
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-4">
+              <div class="row bottom-right p-2">
+                <div class="col-sm">
+                    Total: <p class="m-0 red-text-color font-weight-bold">{{format-currency this.totalEach}}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      {{/if}}
-    {{/each}}
+      </div>
+    </div>
   </div>
-</div>
+{{/if}}

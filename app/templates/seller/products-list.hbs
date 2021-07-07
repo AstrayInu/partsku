@@ -4,7 +4,6 @@
   }
 
   body {
-    overflow: hidden;
   }
 </style>
 <div class="secondary-color seller-products-container">
@@ -134,11 +133,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
+              <div class="col scrollable h-720px">
                 <div class="row">
                   <div class="col">
                     <p class="label-font primary-text-color font-weight-bold text-left mb-2">CATEGORIES</p>
-                    <Dropdowns @type="add-product-category" @data={{this.categories}} @action={{action "inputCategory"}} />
+                    <Dropdowns @type="category" @look="add-product-input-box" @data={{this.categories}} @action={{action "inputCategory"}} />
                   </div>
                 </div>
                 <div class="row mt-4">
@@ -172,7 +171,13 @@
                 <div class="row mt-4 mb-3">
                   <div class="col">
                     <p class="label-font primary-text-color font-weight-bold text-left mb-2">BRAND</p>
-                    <Dropdowns @type="add-product-brand" @data={{this.brands}} @action={{action "inputBrand"}} />
+                    <Dropdowns @type="brand" @look="add-product-input-box" @data={{this.brands}} @action={{action "inputBrand"}} />
+                  </div>
+                </div>
+                <div class="row mt-4 mb-3">
+                  <div class="col pell_editor">
+                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">DESCRIPTION</p>
+                    <PellEditor @pellOptions={{pellOptions}} @value={{this.description}} @onChange={{action "inputDescription"}}/>
                   </div>
                 </div>
               </div>

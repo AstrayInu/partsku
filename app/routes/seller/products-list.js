@@ -6,6 +6,12 @@ export default class SellerProductsListRoute extends Route {
   @service admin
   @service storage
 
+  beforeModel() {
+    if(this.storage.lget("user_type") !== 'seller') {
+      location.href = '/'
+    }
+  }
+
   async model() {
     if(this.storage.sget("tmpProductPics")) this.storage.sset("tmpProductPics", [])
     let sid = this.storage.lget("seller_id")

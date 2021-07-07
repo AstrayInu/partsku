@@ -13,6 +13,11 @@ export default class UserProfileController extends Controller {
     return this.storage.lget("seller_id")
   }
 
+  get user_type() {
+    let type = this.storage.lget("user_type")
+    return type === 'admin' ? 'admin' : 'user'
+  }
+
   @action
   inputName(val) {
     set(this, 'name', val)

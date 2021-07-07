@@ -18,16 +18,25 @@ export default class ProfileCardComponent extends Component {
     let currRoute = this.router.currentRouteName
     if(currRoute === "user.profile") {
       $("#user-profile-tab").removeClass("font-weight-light")
+      $("#user-orders-tab").addClass("font-weight-light")
+      $("#seller-profile-tab").addClass("font-weight-light")
+      $("#parts-tab").addClass("font-weight-light")
+    }
+    if(currRoute === 'user.my-orders') {
+      $("#user-profile-tab").addClass("font-weight-light")
+      $("#user-orders-tab").removeClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
     if(currRoute === 'seller.profile') {
       $("#user-profile-tab").addClass("font-weight-light")
+      $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").removeClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
     if(currRoute === 'seller.pproducts-list') {
       $("#user-profile-tab").addClass("font-weight-light")
+      $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#parts-tab").removeClass("font-weight-light")
     }
@@ -63,7 +72,7 @@ export default class ProfileCardComponent extends Component {
   @computed('where')
   get imgUrl() {
     if(this.where == 'admin') return "https://res.cloudinary.com/partsku/image/upload/v1625020147/partsku/green_ranger_square_n2kcaw.jpg"
-    let url = this.where == "user" ? this.storage.lget("user_pp") : this.storage.lget("seller_data").attributes.logo
+    let url = this.where == "user" || this.where == "user-orders" ? this.storage.lget("user_pp") : this.storage.lget("seller_data").attributes.logo
     return url ? url : "https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png"
   }
 }

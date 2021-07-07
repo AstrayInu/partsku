@@ -14,7 +14,8 @@ export default class HeaderDesktopComponent extends Component {
   }
 
   get notSeller() {
-    return this.session.isUserLoggedin && !this.session.isSellerLoggedin
+    if(this.storage.lget("user_type") === "admin") return false
+    else return this.session.isUserLoggedin && !this.session.isSellerLoggedin
   }
 
   get showBar() {
@@ -36,7 +37,8 @@ export default class HeaderDesktopComponent extends Component {
   }
   
   get smallPp() {
-    return this.storage.lget("user_pp") ? this.storage.lget("user_pp") : "https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png"
+    if(this.storage.lget("user_type") === "admin") return `https://res.cloudinary.com/partsku/image/upload/v1625020147/partsku/green_ranger_square_n2kcaw.jpg`
+    else return this.storage.lget("user_pp") ? this.storage.lget("user_pp") : "https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png"
   }
 
   didInsertElement() {

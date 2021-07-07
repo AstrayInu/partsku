@@ -1,28 +1,38 @@
 <div class="catalog-bg">
   <div class="container">
     <div class="search-result">
-      <img src="https://res.cloudinary.com/partsku/image/upload/v1623923648/partsku/search-info-icon_ofmdbu.png"> 
-      <p class="search-info">Search result for "<span class="search-query">{{this.params.q}}</span>"</p>
+      <img src="https://res.cloudinary.com/partsku/image/upload/v1623923648/partsku/search-info-icon_ofmdbu.png">
+      <p class="search-info">Search result for "<span class="search-query">{{this.searchResult}}</span>"</p>
     </div>
     <div class="filter-row">
       <div class="row">
-        <div class="col align-self-center text-center">
-          <span>Sort by</span>
+        <div class="col-2 align-self-center text-center">
+          <span>Sort / filter by</span>
         </div>
-        <div class="col text-center">
+        <div class="text-center mr-3">
           <button class="btn sort-btn">New</button>
         </div> 
-        <div class="col text-center">
+        <div class="text-center mr-3">
           <button class="btn sort-btn">Best Seller</button>
         </div>
-        <div class="col align-self-center">
-          <select class="price-sort">
+        <div class="text-center mr-3">
+          <select class="sort-box med-sort">
             <option value="" selected>Price</option>
             <option value="min_price">Low to High</option>
             <option value="max_price">High to Low</option>
           </select>
         </div>
-        <div class="col-5"></div>
+        <div class="">
+          <Dropdowns @type="brand" @look="sort-box large-sort mr-3" @data={{this.brands}} @action={{action "applyBrand"}} />
+        </div>
+        <div class="">
+          <Dropdowns @type="category" @look="sort-box large-sort mr-3" @data={{this.category}} @action={{action "applyCategory"}} />
+        </div>
+        <div class="align-self-center">
+          <button type="button" class="close" aria-label="Close" onclick={{action "clearFilters"}}>
+            X
+          </button>
+        </div>
       </div>
     </div>
     <div class="row">

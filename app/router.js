@@ -15,6 +15,7 @@ Router.map(function() {
     this.route("changepass");
     this.route("wishlist")
     this.route("cart")
+    this.route('my-orders');
   })
 
   this.route("seller", function() {

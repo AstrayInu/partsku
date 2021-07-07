@@ -13,6 +13,12 @@ export default class SellerProductsListController extends Controller {
     return !this.isValidName || !this.isValidCategory || !this.isValidPrice || !this.isValidSKU || !this.isValidCondition || !this.isValidStock || !this.isValidBrand
   }
 
+  get pellOptions() {
+    return {
+      actions: ['bold', 'italic', 'underline', 'strikethrough', 'heading1', 'heading2', 'paragraph', 'olist', 'ulist', 'line']
+    }
+  }
+
   get itemConditions() {
     return this.admin.itemConditions;
   }
@@ -131,6 +137,11 @@ export default class SellerProductsListController extends Controller {
       set(this, "isValidBrand", true)
       set(this, 'brand', val)
     } else set(this, "isValidBrand", false)
+  }
+
+  @action
+  inputDescription() {
+
   }
 
   @action

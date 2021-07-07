@@ -1,0 +1,27 @@
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { hash } from 'rsvp';
+
+export default class UserMyOrdersRoute extends Route {
+  @service admin
+  @service storage
+
+  async model() {
+    let seller_data
+    if(!this.storage.lget("seller_data")) {
+      let sid = this.storage.lget("seller_id")
+      seller_data = await this.admin.getSellerData(sid)
+      
+      this.storage.lset("seller_data", seller_data)
+    } else {
+      seller_data = this.storage.lget("seller_data")
+    }
+    return hash({ seller_data, orders: this.admin.getTransactions({uid: this.storage.lget("user_id")}) })
+  }
+
+  setupController(controller, { seller_data, orders }) {
+    console.log('orders', orders)
+    controller.set("orders", orders)
+    controller.set("seller_data", seller_data)
+  }
+}

@@ -5,21 +5,15 @@ import { hash } from 'rsvp';
 export default class UserProfileRoute extends Route {
   @service admin
   @service storage
-  beforeModel() {
-    // this.headData.set('title', 'User Dashboard')
 
+  beforeModel() {
+    
   }
 
   model() {
-    console.log(this.storage.lget("user_id"))
-
     return hash({
       account: this.admin.getUserData(this.storage.lget('user_id'))
     })
-  }
-
-  afterModel({ account }) {
-    // if(account.type)
   }
 
   setupController(controller, { account }) { // params for setupC => controller, model

@@ -18,21 +18,23 @@
       <p class="landing-head-title">RECOMMENDED FOR YOU</p>
       <p class="landing-subtitle">EXPLORE AWESOME PRODUCTS</p>
       <div class="col brand-list">
+      {{#each this.indexBrands1 as |item|}}
         <span class="col">
-          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Honda-landing-logo_ndjwko.png">
+          <a href="/catalog?brand={{item.name}}">
+            <img class="brand-list-img" src="{{item.imgUrl}}">
+          </a>
         </span>
-        <span class="col">
-          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222848/partsku/Mitsubishi-landing-logo.png_vhz97w.png">
-        </span>
-        <span class="col">
-          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Toyota-landing-logo.png_eksggx.png">
-        </span>
-        <span class="col">
-          <img class="brand-list-img" src="https://res.cloudinary.com/partsku/image/upload/v1623222847/partsku/Mazda-landing-logo.png_tgexfj.png">
-        </span>
+      {{/each}}
+      </div>
+      <div id="brand-list2" class="col brand-list d-none">
+        {{#each this.indexBrands2 as |item|}}
+          <span class="col">
+            <img class="brand-list-img" src="{{item.imgUrl}}">
+          </span>
+        {{/each}}
       </div>
       <div class="">
-        <button class="btn explore-landing-btn">Explore Other Brands</button>
+        <button class="btn explore-landing-btn" onclick={{action "showBrands"}}>Explore Other Brands</button>
       </div>
     </div>
   </div>
