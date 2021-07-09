@@ -22,6 +22,8 @@ export default class UserMyOrdersRoute extends Route {
   setupController(controller, { seller_data, orders }) {
     console.log('orders', orders)
     controller.set("orders", orders)
+    controller.set("pending", orders.pending)
+    controller.set("done", orders.done)
     controller.set("seller_data", seller_data)
   }
 }

@@ -7,10 +7,10 @@ export default class SellerProductsListController extends Controller {
   @service admin
   @service storage
 
-  @computed('isValidImgs', 'isValidName', 'isValidCategory', 'isValidPrice', 'isValidSKU', 'isValidCondition', 'isValidStock', 'isValidBrand')
+  @computed('isValidImgs', 'isValidName', 'isValidCategory', 'isValidPrice', 'isValidSKU', 'isValidCondition', 'isValidStock', 'isValidBrand', 'isValidDesc')
   get isDisabled() {
-    console.log(!this.isValidName, !this.isValidCategory, !this.isValidPrice, !this.isValidSKU, !this.isValidCondition, !this.isValidStock, !this.isValidBrand)
-    return !this.isValidName || !this.isValidCategory || !this.isValidPrice || !this.isValidSKU || !this.isValidCondition || !this.isValidStock || !this.isValidBrand
+    console.log(!this.isValidName, !this.isValidCategory, !this.isValidPrice, !this.isValidSKU, !this.isValidCondition, !this.isValidStock, !this.isValidBrand, !this.isValidDesc)
+    return !this.isValidName || !this.isValidCategory || !this.isValidPrice || !this.isValidSKU || !this.isValidCondition || !this.isValidStock || !this.isValidBrand || !this.isValidDesc
   }
 
   get pellOptions() {
@@ -141,7 +141,8 @@ export default class SellerProductsListController extends Controller {
 
   @action
   inputDescription() {
-
+    console.log($('.pell-content').html().length)
+    if($('.pell-content').html().length > 10) set(this, 'isValidDesc', true)
   }
 
   @action
@@ -156,8 +157,9 @@ export default class SellerProductsListController extends Controller {
       condition: this.condition,
       stock: this.stock,
       brand: this.brand,
-      description: this.description
+      description: $('.pell-content').html()
     }
+    // console.log('data', data)
     
     $("#add-item").hide()
     $("#spinner").show()

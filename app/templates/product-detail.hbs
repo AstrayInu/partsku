@@ -77,9 +77,9 @@
         <p class="main-product-sku">SKU: {{this.product.sku}}</p>
         <div class="d-flex align-self-center">
           <p class="main-product-quantity">Quantity</p>
-          <button class="btn quantity-btn">+</button>
+          <button class="btn quantity-btn" onclick={{action "plusQuantity"}}>+</button>
           <Input @class="quantity-input-box text-center" @value={{this.quantity}} />
-          <button class="btn quantity-btn">-</button>
+          <button class="btn quantity-btn" onclick={{action "minQuantity"}}>-</button>
           <p class="main-product-stock">{{this.product.stock}} items left</p>
         </div>
         <div class="d-flex transaction-btn-div">
@@ -110,8 +110,8 @@
               <p class="description-title">Product Description</p>
             </div>
             <div class="row d-block description-content">
-              {{#if this.product.desc}}
-                {{{this.product.desc}}}
+              {{#if this.product.description}}
+                {{{this.product.description}}}
               {{else}}
                 Oh no! the seller does not specify the description of this product :(
               {{/if}}

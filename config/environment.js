@@ -23,7 +23,7 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') { // make sure u have api turned on
+  if (environment === 'development' || environment === 'dev') { // make sure u have api turned on
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -35,14 +35,17 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.locationType = 'none';
+    // ENV.locationType = 'none';
 
     // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    // ENV.APP.LOG_ACTIVE_GENERATION = false;
+    // ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.autoboot = false;
+    // ENV.APP.rootElement = '#ember-testing';
+    // ENV.APP.autoboot = false;
+
+    ENV.APP.API_ENDPOINT = `https://serene-spire-28591.herokuapp.com`
+    ENV.APP.HOST_URL = `http://localhost:4000`
   }
 
   if (environment === 'production') {

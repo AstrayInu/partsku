@@ -92,7 +92,7 @@ export default class UserCartController extends Controller {
     this.admin.newTransaction(data).then(result => {
       console.log(result)
       alert(result)
-      // location.href = '/upload-proof'
+      location.href = '/user/my-orders'
     }).catch(e => {
       console.log(e)
     })

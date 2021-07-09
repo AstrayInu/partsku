@@ -25,7 +25,7 @@ export default class UserProfileRoute extends Route {
     controller.set('email', account.email)
     controller.set('address', attr.address)
     controller.set('phoneNumber', account.phone_number != 0 ? account.phone_number : null )
-    if(!name && !account.email && !attr.address && !account.phone_number) controller.set('incompleteData', true)
+    if(!attr.name && !account.email && !attr.address && !account.phone_number) controller.set('incompleteData', true)
   }
 
   resetController(controller, isExiting, transition) {

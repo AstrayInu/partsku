@@ -413,7 +413,7 @@
 }
 
 .sreg-container {
-  padding-top: 14vh;
+  height: 75vh;
 }
 
 .sreg-main-container {
@@ -432,40 +432,54 @@
   font-size: 14px;
   font-style: italic;
   color: #384170;
-  padding: 15px 0 1vw 15px;
+  padding: 15px 0 0 15px;
 }
 
 .left-sreg-container {
   height: 100%;
 }
 
+.mt-27px {
+  margin-top: 27px;
+}
+
 .sreg-input-box, .sreg-address-box {
   display: block;
   width: 400px;
+  height: 60px;
   border-color: #384170;
   border-radius: 6px;
   border-width: thin;
   border-style: solid;
-  padding: 15px;
+  padding: 13px;
   font-size: 18px;
 }
 
 .sreg-address-box {
-  height: 184px;
+  height: 116px;
 }
 
 .seller-tnc-container {
+  width: 400px;
   padding-top: 1.5vw;
   color: #73A1C2;
 }
 
 .sreg-btn-div {
-  padding-top: 35px;
+  padding-top: 0;
 }
 
 .sreg-btn:hover {
   color: white;
   background-color: #596292;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.sreg-spinner {
+  padding: 0 43%;
 }
 
 /* user / seller profile */
@@ -521,7 +535,7 @@
   border-radius: 10px;
   border-color: #384170 !important;
   border-width: 0.15rem !important;
-  border-style: solid;
+  /* border-style: solid; */
 }
 
 .border-radius-0{
@@ -707,22 +721,54 @@
   height: 720px !important;
 }
 
+.h-650px {
+  height: 650px !important;
+}
+
 .scrollable {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.scrollable::-webkit-scrollbar-button {
-  display: block;
+.scrollable::-webkit-scrollbar {
+  width: 11px;
+  border: 5px solid white;
+
 }
 
-.scrollable::-webkit-scrollbar {
-  width: 7px;
-  background-color: #fff;
-} 
-
 .scrollable::-webkit-scrollbar-thumb {
-  background: #384170;
+  background-color: #384170;
+  background-clip: border-box;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.scrollable::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 11px;
+  width: 16px;
+}
+
+.scrollable::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 6px 6px 6px;
+  border-color: transparent transparent #555555 transparent;
+}
+
+.scrollable::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #777777 transparent;
+}
+
+.scrollable::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 6px 6px 0 6px;
+  border-color: #555555 transparent transparent transparent;
+}
+
+.scrollable::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #777777 transparent transparent transparent;
 }
 
 .main-img-input-box {
@@ -1061,9 +1107,8 @@
   padding-top: 15px;
 }
 
-.product-card-info p, .p-detail-stars{
-  padding-left: 10px !important;
-  padding-right: 20px;
+.product-card-info, .p-detail-stars{
+  padding-left: 15px !important;
 }
 
 .product-card-name {
@@ -1074,6 +1119,7 @@
 }
 
 .product-card-price {
+  padding-left: 15px !important;
   font-size: 15px;
   font-weight: bold;
   color: #FF4F04;
@@ -1197,7 +1243,6 @@
 }
 
 .p-detail-stars {
-  display: inline;
   padding-left: 10px;
 }
 

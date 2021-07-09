@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="row justify-content-center sreg-container">
-    <div class="col-6">
+    <div class="col-6 align-self-center">
       <span class="login-logo row justify-content-center">
         <a href="/">
           <img src="https://res.cloudinary.com/partsku/image/upload/v1622973318/partsku/Logo_nyz2hs.png" alt="">
@@ -34,32 +34,45 @@
             <div class="col left-sreg-container">
               <div class="row justify-content-center">
                 <div>
-                  <label class="sreg-input-titles" for="shop-name">SHOP NAME <span style="color: red;">*</span></label>
+                  <label class="sreg-input-titles" for="shop-name">SHOP NAME<span style="color: red;">*</span></label>
                   <Input @class="sreg-input-box" @type="text" @name="shop-name" @value={{this.shopName}} @keyUp={{action 'inputShopName' value="target.value"}} placeholder="Shop Name" @maxlength=50 />
                   <p class="sreg-subtitles">*May only contian alphanumeric, '&' and '-'</p>
                 </div>
               </div>
-              <div class="row justify-content-center">
+              <div class="row justify-content-center mt-2">
                 <div>
-                  <label class="sreg-input-titles" for="wa-num">ACTIVE WHATSAPP NO. <span style="color: red;">*</span></label>
+                  <label class="sreg-input-titles" for="wa-num">ACTIVE WHATSAPP NO.<span style="color: red;">*</span></label>
                   <Input @class="sreg-input-box" @type="text" @name="wa-num" @keyUp={{action 'inputWANum' value="target.value"}} @value={{this.waNum}} placeholder="81234567890" @maxlength=11/>
-                  <div class="seller-tnc-container">
-                    <Input class="checkbox-register" @type="checkbox" @name="tnc" @checked={{this.tncChecked}} @change={{action 'checkTNC'}} />
-                    <label for="seller-tnc">I have read and agree to the <a href="#">Terms & Condition</a></label>
-                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-27px">
+                <div>
+                  <label class="sreg-input-titles" for="ktp">KTP<span style="color: red;">*</span></label>
+                  <Input @class="sreg-input-box" @type="file" @name="ktp" @input={{action 'inputKTP'}} />
                 </div>
               </div>
             </div>
             <div class="col right-sreg-container">
               <div class="row justify-content-center">
                 <div>
+                  <label class="sreg-input-titles" for="pap-toko">SHOP PICTURE<span style="color: red;">*</span></label>
+                  <Input @class="sreg-input-box" @type="file" @name="pap-toko" @input={{action 'inputFotoToko'}} />
+                </div>
+              </div>
+              <div class="row justify-content-center mt-2">
+                <div>
                   <label class="sreg-input-titles" for="shop-address">ADDRESS <span style="color: red;">*</span></label>
                   <textarea class="sreg-address-box" id="shop-address" name="shop-address" rows="3" value={{this.shopAddress}} onkeyup={{action 'inputAddress' value='target.value'}} placeholder="Jl. Kebagusan III no. 69, Banten, Tangerang, 69420"></textarea>
                 </div>
               </div>
-              <div class="row justify-content-center sreg-btn-div">
-                <button class="btn submit-btn sreg-btn" onclick={{action 'register'}} disabled={{this.isDisabled}}>BECOME A SELLER</button>
-                {{!-- <button class="btn submit-btn sreg-btn" onclick={{action 'register'}}>BECOME A SELLER</button> --}}
+              <div class="row justify-content-center sreg-btn-div d-grid">
+                <div class="seller-tnc-container">
+                  <Input class="checkbox-register" @type="checkbox" @name="tnc" @checked={{this.tncChecked}} @change={{action 'checkTNC'}} />
+                  <label for="seller-tnc">I have read and agree to the <a href="#">Terms & Condition</a></label>
+                </div>
+                <button id="reg-btn" class="btn submit-btn sreg-btn" onclick={{action 'register'}} disabled={{this.isDisabled}}>BECOME A SELLER</button>
+                {{!-- <button id="reg-btn" class="btn submit-btn sreg-btn" onclick={{action 'register'}}>BECOME A SELLER</button> --}}
+                <img id="spinner" class="d-none sreg-spinner" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
               </div>
             </div>
           </div>

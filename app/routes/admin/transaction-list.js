@@ -13,7 +13,7 @@ export default class AdminTransactionListRoute extends Route {
   }
   
   async model() {
-    let transactions = await this.admin.getTransactions()
+    let transactions = await this.admin.getTransactions({})
     console.log('transactions', transactions)
     return hash({transactions})
   }

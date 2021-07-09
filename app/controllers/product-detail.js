@@ -13,7 +13,7 @@ export default class ProductDetailController extends Controller {
   get sellerImg() {
     return this.sellerAttr.logo ? this.sellerAttr.logo : this.session.defaultPPic
   }
-  
+
   get mainImg() {
     // console.log(this.product)
     return this.productAttr.imgUrl[0]
@@ -33,6 +33,16 @@ export default class ProductDetailController extends Controller {
   }
 
   @action
+  plusQuantity() {
+    if(this.quantity < this.product.stock) set(this, 'quantity', this.quantity + 1)
+  }
+
+  @action
+  minQuantity() {
+    if(this.quantity > 1) set(this, 'quantity', this.quantity - 1)
+  }
+
+  @action
   addToCart() {
     if(this.session.isUserLoggedin) {
       let toCart = {
@@ -41,7 +51,7 @@ export default class ProductDetailController extends Controller {
         pid: this.product.pid,
         quantity: this.quantity
       }
-      
+
       this.admin.addToCart(toCart).then(res => {
         // console.log("RES CART", res)
         // this.storage.lset("user_attributes", attr)

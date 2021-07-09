@@ -16,6 +16,10 @@ Router.map(function() {
     this.route("wishlist")
     this.route("cart")
     this.route('my-orders');
+
+    this.route('orders', function() {
+      this.route('detail');
+    });
   })
 
   this.route("seller", function() {
