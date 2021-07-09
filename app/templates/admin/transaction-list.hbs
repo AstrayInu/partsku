@@ -3,30 +3,13 @@
     display: none;
   }
 </style>
-<div class="secondary-color seller-products-container">
+<div class="secondary-color">
   <div class="container-fluid h-100">
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <div class="row justify-content-end m-5">
-          <div class="col-sm-6 pr-5">
-            <div class="row justify-content-end mr-3">
-              <div class="col-sm-3">
-                <button id="new-btn" class="btn-red-border-radius" onclick={{action "changeView" "new"}}>
-                  Pending
-                </button>
-              </div>
-              <div class="col-sm-3">
-                <button id="appr-btn" class="btn-transparent" onclick={{action "changeView" "approved"}}>
-                  Approved
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row justify-content-center mt-5">
           <ProfileCard @class="col-sm-3" @where="admin" />
           <div class="col-sm-7 mx-4">
-            {{!-- info box --}}
             <div class="row justify-content-between border-radius-1 bg-white p-3 mb-3">
               <div class="col-sm-2">
                 <div class="row">
@@ -42,12 +25,12 @@
                 <div class="row">
                   <div class="col-sm-3">
                     <div class="row justify-content-center">
-                      {{!-- Price --}}
+                      Price
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="row justify-content-center">
-                      {{!-- Quantity --}}
+                      Quantity
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -57,139 +40,417 @@
                   </div>
                   <div class="col-sm-3">
                     <div class="row justify-content-center">
-                      Status
+                      Confirm
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {{#if (eq this.shows "approved")}}
-              {{#if this.notPending}}
-                {{#each this.notPending as |item|}}
-                  <div class="row justify-content-between border-radius-1 bg-white mb-3">
-                    <div class="col-sm-12">
-                      <div class="row justify-content-between border border-bottom-1 ">
-                        <div class="col-sm-4 product-list-text my-auto p-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#384170"
-                            class="bi bi-person mr-2" viewBox="0 0 16 16">
+            <div class="row justify-content-between border-radius-1 bg-white mb-3">
+              <div class="col-sm-12">
+                <div class="row justify-content-between border border-bottom-1 ">
+                  <div class="col-sm-4 product-list-text my-auto p-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#384170"
+                      class="bi bi-person mr-2" viewBox="0 0 16 16">
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+                    Store name
+                  </div>
+                  <div class="col-sm-2 p-4 top-right-confirmed">
+                    CONFIRMED
+                  </div>
+                </div>
+                <div class="row justify-content-between p-3 mt-3 border border-bottom-1">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <div class="col-sm-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                              fill="#8ac273" class="bi bi-check-circle" viewBox="0 0 16 16">
+                              <path
+                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                              <path
+                                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                            </svg>
+                          </div>
+                          <div class="col-sm-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                              fill="#ef6060" class="bi bi-x-circle" viewBox="0 0 16 16">
+                              <path
+                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                              <path
+                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-between p-3 mt-3">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="red" class="bi bi-trash" viewBox="0 0 16 16">
                             <path
-                              d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                           </svg>
-                          {{item.transaction_id}}
-                        </div>
-                        <div class="col-sm-2 p-4 top-right-confirmed">
-                          APPROVED
-                        </div>
-                      </div>
-                      <div class="row justify-content-between p-3 my-2">
-                        <div class="col-sm-5">
-                          <div class="row">
-                            <button type="button" class="btn btn-proof" data-toggle="modal" data-target="#exampleModal" onclick={{action "showImg" item.trf_proof}}>
-                              See Payment Proof
-                            </button>
-                          </div>
-                        </div>
-                        <div class="col-sm-7 my-auto">
-                          <div class="row">
-                            <div class="col-sm-3 text-left product-list-text">
-                              {{!-- <div class="row justify-content-center">
-                                6/30/2021
-                              </div> --}}
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="row justify-content-center">
-                                {{!-- 2 --}}
-                              </div>
-                            </div>
-                            <div class="col-sm-3 product-list-text red-text-color align-self-center">
-                              <div class="row justify-content-center">
-                                {{format-currency item.total_price}}
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="row justify-content-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-trash" viewBox="0 0 16 16">
-                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                {{/each}}
-              {{else}}
-                No approved transaction yet
-              {{/if}}
-            {{else}}
-              {{#if this.pending}}
-                {{#each this.pending as |item|}}
-                  <div class="row justify-content-between border-radius-1 bg-white mb-3">
-                    <div class="col-sm-12">
-                      <div class="row justify-content-between border border-bottom-1 ">
-                        <div class="col-sm-4 product-list-text my-auto p-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#384170" class="bi bi-person mr-2" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                          </svg>
-                          {{item.transaction_id}}
-                        </div>
-                        <div class="col-sm-2 p-4 top-right-pending">
-                          PENDING
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-between border-radius-1 bg-white mb-3">
+              <div class="col-sm-12">
+                <div class="row justify-content-between border border-bottom-1 ">
+                  <div class="col-sm-4 product-list-text my-auto p-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#384170"
+                      class="bi bi-person mr-2" viewBox="0 0 16 16">
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+                    Store name
+                  </div>
+                  <div class="col-sm-2 p-4 top-right-confirm">
+                    PENDING
+                  </div>
+                </div>
+                <div class="row justify-content-between p-3 mt-3 border border-bottom-1">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
                         </div>
                       </div>
-                      <div class="row justify-content-between p-3 my-2">
-                        <div class="col-sm-5">
-                          <div class="row">
-                            <button type="button" class="btn btn-proof" data-toggle="modal" data-target="#exampleModal" onclick={{action "showImg" item.trf_proof}}>
-                              See Payment Proof
-                            </button>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
                           </div>
                         </div>
-                        <div class="col-sm-7 my-auto">
-                          <div class="row">
-                            <div class="col-sm-3 text-left product-list-text">
-                              {{!-- <div class="row justify-content-center">
-                                6/30/2021
-                              </div> --}}
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="row justify-content-center">
-                                {{!-- 2 --}}
-                              </div>
-                            </div>
-                            <div class="col-sm-3 product-list-text red-text-color align-self-center">
-                              <div class="row justify-content-center">
-                                {{format-currency item.total_price}}
-                              </div>
-                            </div>
-                            <div class="col-sm-3">
-                              <div class="row justify-content-center">
-                                <div class="col-sm-6" onclick={{action "changeTransStatus" 1 item.transaction_id}}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                  </svg>
-                                </div>
-                                <div class="col-sm-6" onclick={{action "changeTransStatus" 2 item.transaction_id}}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ef6060" class="bi bi-x-circle cursor-pointer" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg>
                         </div>
                       </div>
                     </div>
                   </div>
-                {{/each}}
-              {{else}}
-                There are no transactions right now :(
-              {{/if}}
-            {{/if}}
+                </div>
+                <div class="row justify-content-between p-3 mt-3">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-between border-radius-1 bg-white mb-3">
+              <div class="col-sm-12">
+                <!--CARD HEADER-->
+                <div class="row justify-content-between border border-bottom-1 ">
+                  <div class="col-sm-4 product-list-text my-auto p-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#384170"
+                      class="bi bi-person mr-2" viewBox="0 0 16 16">
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+                    Store name
+                  </div>
+                  <div class="col-sm-2 p-4 top-right-canceled">
+                    CANCELED
+                  </div>
+                </div>
+                <div class="row justify-content-between p-3 mt-3 border border-bottom-1">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-between p-3 mt-3">
+                  <div class="col-sm-5">
+                    <div class="row">
+                      <div class="col-sm-5 my-auto">
+                        <img src="https://res.cloudinary.com/partsku/image/upload/v1624280093/partsku/dummy_product_2_aylnng.png"
+                          alt="" class="img-fluid">
+                      </div>
+                      <div class="col-sm-6 text-justify product-list-text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quia
+                        tempore
+                        corporis distinctio? Eos atque asperiores reprehenderit eaque nemo neque
+                        consequatur repellat, tempora sed nobis delectus, beatae at
+                        necessitatibus
+                        consectetur.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-7 my-auto">
+                    <div class="row">
+                      <div class="col-sm-3 text-left product-list-text">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <div class="input-group-prepend" onclick="updateQty(-1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&minus;</button>
+                          </div>
+                          <input type="text" name="" id="qty_for_index_0" value=0
+                            class="form-control text-center border-dark">
+                          <div class="input-group-append" onclick="updateQty(+1,0)">
+                            <button id="" class="bg-white border-input"
+                              type="button">&plus;</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3 product-list-text red-text-color">
+                        <div class="row justify-content-center">
+                          Rp346.000
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="row justify-content-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path
+                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
