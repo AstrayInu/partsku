@@ -150,7 +150,7 @@ export default class AdminService extends Service {
       $.ajax({
         method: 'POST',
         contentType: 'application/json',
-        url: `${this.config.appenv.API_ENDPOINT}/seller/profilePicture`,
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/profile-picture`,
         data: JSON.stringify(data)
       }).then((response) => {
         resolve(response)
@@ -168,7 +168,7 @@ export default class AdminService extends Service {
     params += data.limit ? `limit=${data.limit}&` : ''
     params += data.offset ? `offset=${data.offset}&` : ''
     params += data.sid ? `sid=${data.sid}&` : ''
-    console.log("params", data)
+    // console.log("params", data)
     return new EmberPromise((resolve, reject) => {
       $.ajax({
         method: 'GET',
@@ -204,6 +204,35 @@ export default class AdminService extends Service {
         contentType: 'application/json',
         url: `${this.config.appenv.API_ENDPOINT}/products`,
         data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
+  createProduct(pid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products/${pid}`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+  
+  deleteProduct(pid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'DELETE',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products/${pid}`,
       }).then((response) => {
         resolve(response)
       }, (reason) => {
@@ -275,6 +304,7 @@ export default class AdminService extends Service {
     let url = `${this.config.appenv.API_ENDPOINT}/commerce/transaction`
     if(data.uid) url += `?uid=${data.uid}`
     if(data.tid) url += `?tid=${data.tid}`
+    if(data.sid) url += `?sid=${data.sid}`
     return new EmberPromise((resolve, reject) => {
       $.ajax({
         method: 'GET',

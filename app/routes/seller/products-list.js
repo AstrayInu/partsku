@@ -26,7 +26,7 @@ export default class SellerProductsListRoute extends Route {
   }
 
   setupController(controller, { products, brand_list, category_list }) {
-    console.log(products)
+    // console.log(products)
     controller.set('products', products.data)
     controller.set('brands', brand_list)
     controller.set('categories', category_list)
