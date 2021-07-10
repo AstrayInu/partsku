@@ -39,6 +39,30 @@ export default class ProductCardComponent extends Component {
   }
 
   @action
+  editProduct(val) {
+    this.action(val)
+  }
+
+  @action
+  deleteProduct(val) {
+    console.log(val)
+    set(this, 'deletePid', val)
+  }
+
+  @action
+  delete(pid) {
+    this.admin.deleteProduct(pid).then(res => {
+      console.log('res', res)
+      alert(res)
+      location.reload();
+    }).catch(e => {
+      console.log("Error",e)
+      alert(e.responseJSON.msg)
+      location.reload();
+    })
+  }
+
+  @action
   productUrl() {
     return `/product/${this.product.pid}`
   }

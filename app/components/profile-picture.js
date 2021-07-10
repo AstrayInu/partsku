@@ -30,7 +30,7 @@ export default class ProfileCardComponent extends Component {
             uid: this.storage.lget("user_id")
           }
 
-        if(this.where == "user") {
+        if(this.where == "user" || this.where == "user-orders") {
           this.admin.uploadUserPicture(uploadData).then(response => {
             console.log("ADMIN response", response)
             this.storage.lset("user_pp", response.url)
@@ -42,9 +42,12 @@ export default class ProfileCardComponent extends Component {
           this.admin.uploadSellerPicture(uploadData).then(response => {
             console.log("ADMIN response", response)
             this.storage.lset("seller_pp", response.url)
+            alert(response.msg)
             location.reload();
           }).catch(e => {
+            alert(e.responseText)
             console.log("ADMIN ERROR",e)
+            location.reload()
           })
         }
       }

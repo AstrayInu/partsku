@@ -9,7 +9,7 @@ export default class SellerProductsListController extends Controller {
 
   @computed('isValidImgs', 'isValidName', 'isValidCategory', 'isValidPrice', 'isValidSKU', 'isValidCondition', 'isValidStock', 'isValidBrand', 'isValidDesc')
   get isDisabled() {
-    console.log(!this.isValidName, !this.isValidCategory, !this.isValidPrice, !this.isValidSKU, !this.isValidCondition, !this.isValidStock, !this.isValidBrand, !this.isValidDesc)
+    // console.log(!this.isValidName, !this.isValidCategory, !this.isValidPrice, !this.isValidSKU, !this.isValidCondition, !this.isValidStock, !this.isValidBrand, !this.isValidDesc)
     return !this.isValidName || !this.isValidCategory || !this.isValidPrice || !this.isValidSKU || !this.isValidCondition || !this.isValidStock || !this.isValidBrand || !this.isValidDesc
   }
 
@@ -36,7 +36,23 @@ export default class SellerProductsListController extends Controller {
   }
 
   @action
-  addProduct() {
+  addProduct(val) {
+    console.log('val', val)
+    if(val.brand) {
+      val.attributes = JSON.parse(val.attributes)
+      for(let i=0 ; i<val.attributes.imgUrl.length ; i++) {
+        document.getElementById(`img-${i+1}`).src = val.attributes.imgUrl[i]
+      }
+      
+      set(this, 'itemName', val.name)
+      set(this, 'category', val.category)
+      set(this, 'price', val.price)
+      set(this, 'sku', val.sku)
+      set(this, 'condition', val.condition)
+      set(this, 'stock', val.stock)
+      set(this, 'brand', val.brand)
+      set(this, 'description', val.description)
+    }
     $("#plist-main-island-container").addClass("col-sm-6")
     $("#plist-main-island").addClass("d-none")
     $("#add-item-container").addClass("d-none")

@@ -508,6 +508,10 @@
   color:red;
 }
 
+.white-text-color {
+  color: white;
+}
+
 .main-container{
   margin-left: 30px;
   margin-right: 30px;
@@ -534,8 +538,7 @@
 .border-radius-1{
   border-radius: 10px;
   border-color: #384170 !important;
-  border-width: 0.15rem !important;
-  /* border-style: solid; */
+  border-width: 1px !important;
 }
 
 .border-radius-0{
@@ -550,6 +553,11 @@
 .profile-card-linkto:hover {
   background-color: #F7F8FF;
   text-decoration: none;
+}
+
+.border-bottom-radius-10px {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .profile-card-text {
@@ -906,7 +914,7 @@
   font-weight: 500;
 }
 
-.modal-title{
+.checkout-title{
   color: #e92424;
   font-size: xx-large;
   font-weight: bold;
@@ -1502,12 +1510,29 @@
   color: #8ac273;
 }
 
+.btn-proof-user {
+  text-decoration: underline solid #384170 2px;
+}
+
+.btn-proof-user:hover {
+  color: #4c578d;
+  text-decoration: underline solid #4c578d 2px;
+}
+
 .h-100vh {
   height: 100vh;
 }
 
 .fs-20px {
   font-size: 20px;
+}
+
+.fs-14px {
+  font-size: 14px;
+}
+
+.text-color-grey {
+  color: #767676;
 }
 
 .ff-nunito {
@@ -1561,9 +1586,9 @@
   background-color: #384170;
 }
 
-.modal-dialog {
+/* .modal-dialog {
   max-width: 50%;
-}
+} */
 
 .show-proof-img {
   width: 700px

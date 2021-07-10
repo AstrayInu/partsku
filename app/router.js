@@ -30,6 +30,7 @@ Router.map(function() {
       this.route("edit", { path: "/edit/:product_id"});
     });
     this.route('products-list');
+    this.route('transaction-list');
   });
 
   this.route("catalog")

@@ -20,33 +20,50 @@ export default class ProfileCardComponent extends Component {
       $("#user-profile-tab").removeClass("font-weight-light")
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
+      $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
     if(currRoute === 'user.my-orders') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#user-orders-tab").removeClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
+      $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
     if(currRoute === 'seller.profile') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").removeClass("font-weight-light")
+      $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
-    if(currRoute === 'seller.pproducts-list') {
+    if(currRoute === 'seller.transaction-list') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
+      $("#orders-tab").removeClass("font-weight-light")
+      $("#parts-tab").addClass("font-weight-light")
+    }
+    if(currRoute === 'seller.products-list') {
+      $("#user-profile-tab").addClass("font-weight-light")
+      $("#user-orders-tab").addClass("font-weight-light")
+      $("#seller-profile-tab").addClass("font-weight-light")
+      $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").removeClass("font-weight-light")
     }
     if(currRoute == 'admin.seller-list') {
+      $("#user-profile-tab").addClass("font-weight-light")
       $("#transaction-tab").addClass("font-weight-light")
       $("#seller-tab").removeClass("font-weight-light")
     }
     if(currRoute == 'admin.transaction-list') {
+      $("#user-profile-tab").addClass("font-weight-light")
       $("#transaction-tab").removeClass("font-weight-light")
       $("#seller-tab").addClass("font-weight-light")
+    }
+
+    if(this.isSeller) {
+      $("#my-order").removeClass("border-bottom-radius-10px")
     }
   }
 
