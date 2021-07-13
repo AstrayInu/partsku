@@ -57,6 +57,16 @@ export default class UserMyOrdersController extends Controller {
   }
 
   @action
+  changeTransStatus(val, tid) {
+    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid: this.storage.lget("seller_id")}).then(result => {
+      alert("Transaction Updated!")
+      location.reload()
+    }).catch(e => {
+      console.log(e)
+    })
+  }
+
+  @action
   upload() {
     let uploadData = {
       imgData: this.storage.sget("proof"),

@@ -21,22 +21,8 @@ export default class UserMyOrdersRoute extends Route {
 
   setupController(controller, { seller_data, orders }) {
     console.log('orders', orders)
-    // orders.pending.forEach(x => {
-    //   orders.sellerList.forEach(y => {
-    //     if(x.pid == y.pid) {
-    //       x.sid = y.sid
-    //       x.pname = y.name
-    //       x.shop_name = y.shop_name
-    //       x.price = y.price
-    //       x.img = y.imgUrl
-    //     }
-    //   })
-    // })
     controller.set("orders", orders)
-    controller.set("pending", orders.pending)
-    controller.set("done", orders.done)
-    controller.set("sellerList", orders.sellerList)
-    controller.set("tidList", orders.tidList)
+    controller.set("pending", orders.final)
     controller.set("status", orders.status)
     controller.set("seller_data", seller_data)
   }

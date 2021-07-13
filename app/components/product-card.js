@@ -24,7 +24,7 @@ export default class ProductCardComponent extends Component {
 
   @computed('data')
   get sellerAttributes() {
-    let attr = JSON.parse(this.data.attributes)
+    let attr = this.data.attributes
     return attr
   }
 
@@ -35,7 +35,7 @@ export default class ProductCardComponent extends Component {
 
   @computed('data')
   get productImg() {
-    return JSON.parse(this.product.attributes).imgUrl[0]
+    return this.product.attributes.imgUrl[0]
   }
 
   @action

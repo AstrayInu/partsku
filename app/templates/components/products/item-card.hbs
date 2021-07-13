@@ -1,22 +1,38 @@
 {{#if (eq @source 'new-item-left')}}
-  <div class="col item-card left-item-card">
-    <span class="new-product-left">
-      <img src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png">
-    </span>
-    <div class="row item-card-info">
-      <p class="col item-card-name">HKS Performance Header set</p>
-      <span class="col item-card-price">Rp. 399k</span>
+  <div class="secondary-color item-card pb-1 left-item-card">
+    <div class="item-card-sku secondary-color">
+      <p class="m-0 font-weight-bold">{{@data.sku}}</p>
+    </div>
+    <div class="new-product-left pt-3">
+      <div class="item-card-img-left" style="background-image: url('{{@data.imgUrl}}');"></div>
+    </div>
+    <div class="row item-card-info pt-2">
+      <div class="col">
+        <p class="item-card-name text-highlight font-weight-bold ff-poppins">{{@data.name}}</p>
+      </div>
+    </div>
+    <div class="item-card-price">
+      <p class="font-weight-bold ff-poppins">{{format-currency @data.price}}</p>
     </div>
   </div>
 {{/if}}
 {{#if (eq @source 'new-item-right')}}
-  <div class="col item-card right-item-card">
-    <span class="new-product-right">
-      <img class="new-product-img-right" src="https://res.cloudinary.com/partsku/image/upload/v1623229275/partsku/dummy-product_vfxcoy.png">
-    </span>
+  <div class="secondary-color item-card right-item-card">
+    <div class="item-card-sku-right secondary-color">
+      <p class="m-0 font-weight-bold">{{@data.sku}}</p>
+    </div>
+    <div class="row new-product-right justify-content-center pt-4">
+      <div class="item-card-img-right" style="background-image: url('{{@data.imgUrl}}');"></div>
+    </div>
+    <div class="row item-card-info-right pt-3">
+      <div class="col">
+        <p class="item-card-name-right font-weight-bold ff-poppins">{{@data.name}}</p>
+      </div>
+    </div>
     <div class="row item-card-info">
-      <p class="col item-card-name">HKS Performance Header set</p>
-      <span class="col item-card-price">Rp. 399k</span>
+      <div class="col font-weight-bold ff-poppins">
+        <p class="m-0 item-card-price-right">{{format-currency @data.price}}</p>
+      </div>
     </div>
   </div>
 {{/if}}

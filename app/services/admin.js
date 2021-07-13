@@ -212,21 +212,6 @@ export default class AdminService extends Service {
     });
   }
 
-  createProduct(pid) {
-    return new EmberPromise((resolve, reject) => {
-      $.ajax({
-        method: 'PUT',
-        contentType: 'application/json',
-        url: `${this.config.appenv.API_ENDPOINT}/products/${pid}`,
-        data: JSON.stringify(data)
-      }).then((response) => {
-        resolve(response)
-      }, (reason) => {
-        reject(reason);
-      });
-    });
-  }
-  
   deleteProduct(pid) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({

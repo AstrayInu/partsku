@@ -39,7 +39,8 @@ export default class SellerTransactionListController extends Controller {
 
   @action
   changeTransStatus(val, tid) {
-    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid: this.storage.lget("seller_id")}).then(result => {
+    let sid = this.storage.lget("seller_id")
+    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid}).then(result => {
       alert("Transaction Updated!")
       location.reload()
     }).catch(e => {

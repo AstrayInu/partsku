@@ -50,8 +50,8 @@
               {{/if}}
             {{else}}
               {{#if this.pending}}
-                {{#each this.tidList as |tids|}}
-                  {{#each this.sellerList as |seller|}}
+                {{#each this.pending as |tids|}}
+                  {{#each tids.data as |seller|}}
                     <div class="row">
                       <div class="col-sm-11">
                         <div class="row justify-content-between border border-radius-1 mb-4 bg-white">
@@ -63,26 +63,46 @@
                                 </svg>
                                 {{seller.shop_name}}
                               </div>
-                              <div class="col-4 ">
-                                {{#each this.status as |status|}}
-                                  {{#if (eq status.tid tids.transaction_id)}}
-                                    {{#if (eq status.status 0)}}
-                                      <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#uploadProof" onclick={{action 'setTID' status.tid}}>
-                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                        Upload Proof
-                                      </button>
+                              {{#each this.status as |data|}}
+                                {{#if (eq tids.tid data.tid)}}
+                                  {{#if (eq data.sid seller.sid)}}
+                                    {{#if (eq data.status 0)}}
+                                      <div class="col-auto">
+                                        <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#uploadProof" onclick={{action 'setTID' data.tid}}>
+                                          <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+                                          Upload Proof
+                                        </button>
+                                      </div>
                                     {{else}}
-                                      <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" status.trf_proof}}>
-                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                        See Payment Proof
-                                      </button>
+                                      {{#if (eq data.shipment_status 2)}}
+                                        <div class="col-3 align-self-center">have you recieved the order?</div>
+                                        <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 3 tids.tid}}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                          </svg>
+                                        </div>
+                                        <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 5 tids.tid}}>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#ef6060" class="bi bi-x-circle cursor-pointer" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                          </svg>
+                                        </div>
+                                      {{else}}
+                                      <div class="col-">
+                                        <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" data.trf_proof}}>
+                                          <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+                                          See Payment Proof
+                                        </button>
+                                      </div>
+                                      {{/if}}
                                     {{/if}}
                                   {{/if}}
-                                {{/each}}
-                              </div>
+                                {{/if}}
+                              {{/each}}
                             </div>
-                            {{#each this.pending as |data|}}
-                              {{#if (eq data.transaction_id tids.transaction_id)}}
+                            {{#each seller.data as |data|}}
+                              {{#if (eq data.transaction_id tids.tid)}}
                                 {{#if (eq seller.sid data.sid)}}
                                   <div class="row border border-bottom-1 p-3">
                                     <div class="col-sm-7">
@@ -109,26 +129,38 @@
                               {{/if}}
                             {{/each}}
                             <div class="row justify-content-between">
-                              {{#each this.status as |status|}}
-                                {{#if (eq status.tid tids.transaction_id)}}
-                                  <div class="col-sm-6 ml-3 grey-text-color align-self-center">
-                                    Transaction ID: <b>{{status.tid}}</b>
-                                  </div>
-                                  <div class="col-sm-4 p-0 justify-content-center d-flex flex-row">
-                                    {{#if (eq status.approval 0)}}
-                                      {{#if (eq status.status 0)}}
-                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/trans_upload_thy6jd.png" width="283px" height="70px">
-                                      {{else if (eq status.status 1)}}
-                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/tans_waiting_b4ui2i.png" width="283px" height="70px">
+                              {{#each this.status as |data|}}
+                                {{#if (eq data.tid tids.tid)}}
+                                  {{#if (eq data.sid seller.sid)}}
+                                    <div class="col-sm-6 ml-3 grey-text-color align-self-center">
+                                      Transaction ID: <b>{{data.tid}}</b>
+                                    </div>
+                                    <div class="col-sm-4 p-0 justify-content-center d-flex flex-row">
+                                      {{#if (eq data.approval 0)}}
+                                        {{#if (eq data.status 0)}}
+                                          <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/trans_upload_thy6jd.png" width="283px" height="70px">
+                                        {{else if (eq data.status 1)}}
+                                          <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/tans_waiting_b4ui2i.png" width="283px" height="70px">
+                                        {{/if}}
+                                      {{else if (eq data.approval 1)}}
+                                        {{#if (eq data.shipment_status 0)}}
+                                          <a href="/user/order/detail">
+                                            <img src="https://res.cloudinary.com/partsku/image/upload/v1625837569/partsku/Waiting_Seller_fcie1y.png" width="283px" height="70px">
+                                          </a>
+                                        {{else if (eq data.shipment_status 1)}}
+                                            <img src="https://res.cloudinary.com/partsku/image/upload/v1625747815/partsku/Processed_drwvyc.png" width="283px" height="70px">
+                                        {{else if (eq data.shipment_status 2)}}
+                                            <img src="https://res.cloudinary.com/partsku/image/upload/v1625747814/partsku/Otw_whtyga.png" width="283px" height="70px">
+                                        {{else if (eq data.shipment_status 3)}}
+                                            <img src="https://res.cloudinary.com/partsku/image/upload/v1625837548/partsku/Complete-1_zkgam1.png" width="283px" height="70px">
+                                        {{else if (eq data.shipment_status 4)}}
+                                            <img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="283px" height="70px">
+                                        {{/if}}
+                                      {{else if (eq data.approval 2)}}
+                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="283px" height="70px">
                                       {{/if}}
-                                    {{else if (eq status.approval 1)}}
-                                      <a href="/user/order/detail">
-                                        <img src="https://res.cloudinary.com/partsku/image/upload/v1625747809/partsku/Approved_Admin_kvdkce.png" width="283px" height="70px">
-                                      </a>
-                                    {{else if (eq status.approval 2)}}
-                                      <img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="283px" height="70px">
-                                    {{/if}}
-                                  </div>
+                                    </div>
+                                  {{/if}}
                                 {{/if}}
                               {{/each}}
                             </div>

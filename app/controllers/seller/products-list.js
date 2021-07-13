@@ -39,7 +39,6 @@ export default class SellerProductsListController extends Controller {
   addProduct(val) {
     console.log('val', val)
     if(val.brand) {
-      val.attributes = JSON.parse(val.attributes)
       for(let i=0 ; i<val.attributes.imgUrl.length ; i++) {
         document.getElementById(`img-${i+1}`).src = val.attributes.imgUrl[i]
       }
@@ -175,7 +174,7 @@ export default class SellerProductsListController extends Controller {
       brand: this.brand,
       description: $('.pell-content').html()
     }
-    // console.log('data', data)
+    console.log('data', data)
     
     $("#add-item").hide()
     $("#spinner").show()

@@ -229,7 +229,68 @@
 }
 
 .item-card {
-  background-color: #F7F8FF;
+  background-color: #F7F8FF !important;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.item-card-sku {
+  font-size: 14px;
+  font-family: roboto;
+  color: #FF4F04;
+  padding: 3px 5px;
+  margin: 0;
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border-bottom-left-radius: 5px;
+}
+
+.item-card-sku-right {
+  font-size: 18px;
+  font-family: roboto;
+  color: #FF4F04;
+  padding: 3px 5px;
+  margin: 0;
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  border-bottom-left-radius: 5px;
+}
+
+.item-card-name {
+  text-align: left;
+  word-wrap: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.item-card-name-right {
+  font-size: 25px;
+  text-align: left;
+  word-wrap: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.item-card-price {
+  color: #FF4F04;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.item-card-price-right {
+  color: #FF4F04;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 32px;
 }
 
 .top-new-item {
@@ -237,24 +298,34 @@
 }
 
 .left-item-card {
-  width: 255px;
-  height: 313px;
   border-radius: 11px;
-  margin-right: 7px;
   box-shadow: -6px 6px 20px #2d2d2d2b;
+}
+
+.item-card-img-left {
+  width: 250px;
+  height: 220px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+}
+
+.item-card-img-right {
+  width: 540px;
+  height: 530px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
 }
 
 .right-item-card {
-  width: 540px;
-  height: 680px;
   border-radius: 11px;
   box-shadow: -6px 6px 20px #2d2d2d2b;
+  padding-bottom: 20px;
 }
 
-.new-product-img-right {
-  width: 471px;
-  height: 461px;
-}
 
 .abt-us-island {
   text-align: center;
@@ -784,10 +855,12 @@
   border-radius: 10px;
   height: 400px;
   width: 400px;
-
+  position: relative;
+  padding: 5px;
 }
 
 .input-main-p-img {
+  left: 0;
   top: 0;
   width: 400px;
   height: 400px;
@@ -1523,12 +1596,16 @@
   height: 100vh;
 }
 
+.fs-14px {
+  font-size: 14px;
+}
+
 .fs-20px {
   font-size: 20px;
 }
 
-.fs-14px {
-  font-size: 14px;
+.fs-25px {
+  font-size: 25px;
 }
 
 .text-color-grey {
@@ -1537,6 +1614,10 @@
 
 .ff-nunito {
   font-family: nunito;
+}
+
+.ff-poppins {
+  font-family: poppins;
 }
 
 .input-style {

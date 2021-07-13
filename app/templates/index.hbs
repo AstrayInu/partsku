@@ -43,18 +43,17 @@
       <p class="landing-head-title">NEW ITEMS</p>
       <p class="landing-subtitle">RECENTLY ADDED SPARE PARTS JUST FOR YOU</p>
       <div class="row new-item-list">
-        <div class="col new-item-left">
+        <div class="col-6 new-item-left">
           <div class="row justify-content-end top-new-item">
-            <Products::ItemCard @source="new-item-left" />
-            <Products::ItemCard @source="new-item-left" />
-          </div>
-          <div class="row justify-content-end">
-            <Products::ItemCard @source="new-item-left" />
-            <Products::ItemCard @source="new-item-left" />
+            {{#each this.thing as |item|}}
+              <div class="col-md-6">
+                <Products::ItemCard @source="new-item-left" @data={{item}}/>
+              </div>
+            {{/each}}
           </div>
         </div>
-        <div class="col new-item-right">
-          <Products::ItemCard @source='new-item-right' />
+        <div class="col-6 new-item-right">
+          <Products::ItemCard @source='new-item-right' @data={{this.thing1}}/>
         </div>
       </div>
     </div>
