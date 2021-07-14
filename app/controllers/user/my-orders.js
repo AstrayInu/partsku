@@ -7,6 +7,11 @@ export default class UserMyOrdersController extends Controller {
   @service admin
   @service storage
 
+  @computed('shows')
+  get shownData() {
+    return this.shows == 'done' ? this.done : this.pending
+  }
+
   @action
   changeView(val) {
     set(this, 'shows', val)
@@ -57,8 +62,8 @@ export default class UserMyOrdersController extends Controller {
   }
 
   @action
-  changeTransStatus(val, tid) {
-    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid: this.storage.lget("seller_id")}).then(result => {
+  changeTransStatus(val, tid, sid) {
+    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid}).then(result => {
       alert("Transaction Updated!")
       location.reload()
     }).catch(e => {
