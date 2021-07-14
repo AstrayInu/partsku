@@ -26,4 +26,10 @@ export default class UserMyOrdersRoute extends Route {
     controller.set("status", orders.status)
     controller.set("status_done", orders.status_done)
   }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.set('shows', null);
+    }
+  }
 }

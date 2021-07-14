@@ -91,13 +91,13 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-sm-6 px-1 my-auto">
-            <button class="btn-red-reversed">
-              CHAT SHOP
+            <button type="button" class="btn-red-reversed" data-toggle="modal" data-target="#view" onclick={{action 'setShopImg' @data.attributes.store_pic}}>
+              SHOP PICTURE
             </button>
           </div>
           <div class="col-sm-6 px-1 my-auto">
-            <button class="btn-red">
-              VISIT SHOP
+            <button type="button" class="btn-red" data-toggle="modal" data-target="#view" onclick={{action 'setKTPImg' @data.attributes.ktp_pic}}>
+              KTP PICTURE
             </button>
           </div>
         </div>
@@ -167,6 +167,18 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" onclick={{action "delete" this.deletePid}}>Yes, I'm sure</button>
         <button type="button" class="btn primary-color white-text-color" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="view" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body show-proof-img w-100 text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img id="show-proof-img" src="" alt="" width="100%">
       </div>
     </div>
   </div>

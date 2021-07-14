@@ -20,13 +20,14 @@ export default class SellerTransactionListRoute extends Route {
   }
 
   setupController(controller, { seller_data, orders }) {
-    console.log('orders', orders)
-    controller.set("orders", orders)
+    // console.log('orders', orders)
     controller.set("pending", orders.pending)
     controller.set("done", orders.done)
-    controller.set("userList", orders.userList)
-    controller.set("tidList", orders.tidList)
-    controller.set("status", orders.status)
-    controller.set("seller_data", seller_data)
+  }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.set('shows', null);
+    }
   }
 }

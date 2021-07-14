@@ -24,6 +24,7 @@ export default class ProductCardComponent extends Component {
 
   @computed('data')
   get sellerAttributes() {
+    console.log(this.data)
     let attr = this.data.attributes
     return attr
   }
@@ -36,6 +37,18 @@ export default class ProductCardComponent extends Component {
   @computed('data')
   get productImg() {
     return this.product.attributes.imgUrl[0]
+  }
+
+  @action
+  setShopImg(val) {
+    var imgs = document.getElementById("show-proof-img")
+    imgs.src = val
+  }
+  
+  @action
+  setKTPImg(val) {
+    var imgs = document.getElementById("show-proof-img")
+    imgs.src = val
   }
 
   @action

@@ -7,6 +7,11 @@ export default class SellerTransactionListController extends Controller {
   @service admin
   @service storage
 
+  @computed('shows')
+  get shownData() {
+    return this.shows == 'done' ? this.done : this.pending
+  }
+
   @action
   changeView(val) {
     set(this, 'shows', val)
