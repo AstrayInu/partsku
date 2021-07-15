@@ -8,7 +8,7 @@ export default class SellerTransactionListController extends Controller {
   @service storage
 
   @computed('shows')
-  get shownData() {
+  get \() {
     return this.shows == 'done' ? this.done : this.pending
   }
 
@@ -43,9 +43,9 @@ export default class SellerTransactionListController extends Controller {
   }
 
   @action
-  changeTransStatus(val, tid) {
+  changeTransStatus(val, tid, quantity, pid) {
     let sid = this.storage.lget("seller_id")
-    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid}).then(result => {
+    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, pid, quantity}).then(result => {
       alert("Transaction Updated!")
       location.reload()
     }).catch(e => {

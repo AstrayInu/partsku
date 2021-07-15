@@ -65,6 +65,8 @@ export default class RegisterController extends Controller {
   }
 
   createuser(data) {
+    $("#reg-btn").addClass("d-none")
+    $("#spinner").removeClass("d-none")
     this.admin.createUser(data).then( async response => {
       set(this, 'successMessage', response.msg)
       await setTimeout(() => {
@@ -72,6 +74,8 @@ export default class RegisterController extends Controller {
         location.href = '/login'
       }, 3000)
     }).catch(e => {
+      $("#reg-btn").removeClass("d-none")
+      $("#spinner").addClass("d-none")
       // setTimeout(() => {
       //   location.reload();
       // }, 1500)

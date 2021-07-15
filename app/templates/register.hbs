@@ -70,8 +70,9 @@
           <label for="tnc" class="tnc-text">I have read and agree to the <a href="">Terms & Condition</a></label>
         </div>
         <div class="submit-btn-box row justify-content-center">
-          {{!-- <button class="btn submit-btn" disabled={{this.isDisabled}} onclick={{action "register"}}>Sign Up</button> --}}
-          <button class="btn submit-btn" onclick={{action "register"}}>Sign Up</button>
+          {{!-- <button id="reg-btn" class="btn submit-btn" disabled={{this.isDisabled}} onclick={{action "register"}}>Sign Up</button> --}}
+          <button id="reg-btn" class="btn submit-btn" onclick={{action "register"}}>Sign Up</button>
+          <img id="spinner"class="d-none" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
         </div>
       </div>
     </div>
