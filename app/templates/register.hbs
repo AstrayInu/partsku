@@ -15,7 +15,7 @@
         </svg>
       </div>
     </div>
-    <div class="col">
+    <div class="col align-self-center">
       <div class="side-container-register">
         <span class="login-logo row justify-content-center">
           <a href="/">
@@ -44,6 +44,7 @@
         <div class="row justify-content-center">
           <div class="pass-group-container">
             <Input @class="input-pass" @id="password" @type="password" @name="password" @value={{this.password}} placeholder="Password" />
+            <p for="password" class="password-label"><i>*Must contain at least 8 characters containing at least 1 Upper case, 1 lower case, and 1 number</i></p>
             {{!-- <span class="pass-icon" onclick={{action 'showPass'}}>
               <svg id="hide-pass" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
                 <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>

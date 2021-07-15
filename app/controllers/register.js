@@ -61,6 +61,8 @@ export default class RegisterController extends Controller {
       // })
     // } else {
     //   set(this, 'errorMessage', 'Password minimal 8 karakter & 1 huruf besar & 1 huruf kecil & 1 angka')
+    } else {
+      set(this, 'errorMessage', 'Password must contain at least 1 Capital letter, 1 small case letter and 1 number')
     }
   }
 

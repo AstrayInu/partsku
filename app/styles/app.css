@@ -359,7 +359,7 @@
   padding-left: 0 !important;
   background-image: url('https://res.cloudinary.com/partsku/image/upload/c_scale/partsku/login-bg_rnbqjk.png');
   background-position: -222px;
-  height: 50.45vw;
+  min-height: 100vh;
   background-color: grey;
 }
 
@@ -379,7 +379,7 @@
 }
 
 .side-container-register {
-  padding-top: 22%;
+
 }
 
 .login-logo {
@@ -473,6 +473,11 @@
 
 .forgot-pass {
   padding-top: 1%;
+}
+
+.password-label {
+  width: 400px;
+  word-wrap: break-word;
 }
 
 /* register seller */

@@ -8,7 +8,7 @@ export default class SellerTransactionListController extends Controller {
   @service storage
 
   @computed('shows')
-  get \() {
+  get shownData() {
     return this.shows == 'done' ? this.done : this.pending
   }
 
