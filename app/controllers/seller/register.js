@@ -86,37 +86,37 @@ export default class SellerRegisterController extends Controller {
 
   @action
   register() {
-    // let data = {
-    //   shopName: this.shopName.trim(),
-    //   waNum: this.waNum,
-    //   papKtp: this.papKtp,
-    //   papToko: this.papToko,
-    //   shopAddress: $("#shop-address").val(),
-    //   uid: this.storage.lget("user_id")
-    // }
+    let data = {
+      shopName: this.shopName.trim(),
+      waNum: this.waNum,
+      papKtp: this.papKtp,
+      papToko: this.papToko,
+      shopAddress: $("#shop-address").val(),
+      uid: this.storage.lget("user_id")
+    }
 
     $('#reg-btn').addClass("d-none")
     $('#spinner').removeClass("d-none")
 
-    // this.admin.createSeller(data).then( response => {
-    //   // console.log("BERHASIL", response)
-    //   this.storage.lset("seller_id", response.sid)
-    //   this.storage.lset("seller_data", response.data)
-    //   this.storage.lset("user_type", 'seller')
+    this.admin.createSeller(data).then( response => {
+      // console.log("BERHASIL", response)
+      this.storage.lset("seller_id", response.sid)
+      this.storage.lset("seller_data", response.data)
+      this.storage.lset("user_type", 'seller')
       
-    //   set(this, 'successMessage', 'Registrasi berhasil')
-    //   $(".sreg-title").hide()
-    //   setTimeout( () => {
-    //     $(".sreg-title").show()
-    //     location.href = '/seller/profile'
-    //   }, 5000)
+      set(this, 'successMessage', 'Registrasi berhasil')
+      $(".sreg-title").hide()
+      setTimeout( () => {
+        $(".sreg-title").show()
+        location.href = '/seller/profile'
+      }, 5000)
       
-    // }).catch( e => {
-    //   alert("Error :(\npls contact our devs")
-    //   $('#reg-btn').removeClass("d-none")
-    //   $('#spinner').addClass("d-none")
-    //   console.log('Error',e)
-    // })
+    }).catch( e => {
+      alert("Error :(\npls contact our devs")
+      $('#reg-btn').removeClass("d-none")
+      $('#spinner').addClass("d-none")
+      console.log('Error',e)
+    })
   }
 
 }
