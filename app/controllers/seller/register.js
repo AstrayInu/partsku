@@ -100,16 +100,17 @@ export default class SellerRegisterController extends Controller {
 
     this.admin.createSeller(data).then( response => {
       // console.log("BERHASIL", response)
-      this.storage.lset("seller_id", response.sid)
-      this.storage.lset("seller_data", response.data)
-      this.storage.lset("user_type", 'seller')
+      // this.storage.lset("seller_id", response.sid)
+      // this.storage.lset("seller_data", response.data)
+      // this.storage.lset("user_type", 'seller')
       
-      set(this, 'successMessage', 'Registrasi berhasil')
-      $(".sreg-title").hide()
-      setTimeout( () => {
-        $(".sreg-title").show()
-        location.href = '/seller/profile'
-      }, 5000)
+      // set(this, 'successMessage', 'Registrasi berhasil.')
+      alert("Registration completed! Please wait for the admin to validate the data you've given")
+      // $(".sreg-title").hide()
+      // setTimeout( () => {
+        // $(".sreg-title").show()
+        location.href = '/'
+      // }, 5000)
       
     }).catch( e => {
       alert("Error :(\npls contact our devs")

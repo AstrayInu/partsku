@@ -145,6 +145,20 @@ export default class AdminService extends Service {
     });
   }
 
+  checkSellerStatus(uid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'GET',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/${uid}`
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
   uploadSellerPicture(data) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({

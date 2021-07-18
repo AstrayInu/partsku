@@ -61,7 +61,7 @@ export default class LoginController extends Controller {
       if(res.sid) this.storage.lset('seller_id', res.sid)
       if(res.type) this.storage.lset("user_type", res.type)
       
-      if(!res.phone_number || !res.attributes.address) location.href = 'user/profile' // data not complete
+      if(!res.phone_number && !res.attributes.address) location.href = 'user/profile' // data not complete
       else location.href = '/'
     }).catch( e => {
       let err = e.responseJSON.msg ? e.responseJSON.msg : e

@@ -40,7 +40,7 @@
           </li>
           <li>
             {{#if this.isLoggedIn}}
-              <LinkTo @route="user.profile" @class="top-consoles loggedin-name d-flex">
+              <LinkTo @route="{{userSellerRoute}}" @class="top-consoles loggedin-name d-flex">
                 <p class="header-username">{{this.userName}}</p>
                 <img class="header-pp" src="{{this.smallPp}}" width="24" height="24">
               </LinkTo>
@@ -73,9 +73,8 @@
   <span class="row header-seperator"></span>
   {{#if this.notSeller}}
     <div class="row bottom-header-console">
-      <div class="col-10">
-
-      </div>
+      <div class="col-10"></div>
+      
       <LinkTo @route="seller.register" @class="col bot-consoles">
         Become a seller
       </LinkTo>

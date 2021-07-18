@@ -8,6 +8,7 @@ export default class HeaderDesktopComponent extends Component {
   @service session
   @service storage
   @service router
+  @service admin
   
   get isLoggedIn() {
     return this.session.isUserLoggedin
@@ -15,7 +16,13 @@ export default class HeaderDesktopComponent extends Component {
 
   get notSeller() {
     if(this.storage.lget("user_type") === "admin") return false
-    else return this.session.isUserLoggedin && !this.session.isSellerLoggedin
+    else {
+      this.admin.checkSellerStatus(this.storage.lget("user_id")).then(res => {
+        return false
+      }).catch(e => {
+        return true
+      })
+    }
   }
 
   get showBar() {
@@ -36,6 +43,10 @@ export default class HeaderDesktopComponent extends Component {
     return this.storage.lget("user_name")
   }
   
+  get userSellerRoute() {
+    return this.storage.lget("user_type") === "seller" ? 'seller.profile' : 'user.profile'
+  }
+
   get smallPp() {
     if(this.storage.lget("user_type") === "admin") return `https://res.cloudinary.com/partsku/image/upload/v1625020147/partsku/green_ranger_square_n2kcaw.jpg`
     else return this.storage.lget("user_pp") ? this.storage.lget("user_pp") : "https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png"

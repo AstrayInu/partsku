@@ -108,7 +108,8 @@
   background-image: url('https://res.cloudinary.com/partsku/image/upload/v1623327025/partsku/footer_bg_yp7x3r.png');
   background-repeat: no-repeat;
   background-color: #F7F8FF;
-  height: 600px;
+  background-size: cover;
+  height: 100%;
 }
 
 .footer-title {
@@ -117,6 +118,10 @@
 }
 
 .footer-container {
+  max-width: 87% !important;
+}
+
+.footer-content {
   color: white;
   padding-top: 12vw;
   padding-bottom: 1vw;
@@ -928,9 +933,9 @@
 
 
 /* cart */
-.backgroud-design{
+.background-design{
   background-image: url("https://res.cloudinary.com/partsku/image/upload/v1624280076/partsku/right_dotted_square_lwaatd.png"), url("https://res.cloudinary.com/partsku/image/upload/v1624280076/partsku/right_dotted_square_lwaatd.png");
-  min-height: 500px;
+  /* min-height: 100vh; */
   background-position: right top, left bottom;
   background-repeat: no-repeat;
 }
@@ -1294,24 +1299,36 @@
   border-color: #384170;
 }
 
+.p-detail-main-img {
+  align-items: center;
+  justify-content: center;
+  height: 390px;
+}
+
+.p-detail-main-img img{
+  border-radius: 8px;
+}
+
 .p-detail-sub-row {
   padding-top: 20px;
-  display: flex;
   padding-left: 10px;
   padding-right: 10px;
+  display: flex;
+  overflow: auto;
 }
 
 .p-detail-sub-img {
-  padding: 0 10px;
+  /* padding: 0 10px; */
+  height: 100px;
+  align-items: center;
 }
 
 .p-detail-sub-img img {
-  width: 100%;
+  border-radius: 8px;
 }
 
 .p-detail-sub-row .col-md-3 {
-  padding-right: 5px;
-  padding-left: 5px;
+  padding: 0 5px;
 }
 
 .p-detail-top-right {
@@ -1660,7 +1677,7 @@
 }
 
 .input-style:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
 .upload-btn {

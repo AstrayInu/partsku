@@ -47,15 +47,15 @@
     <div class="row product-detail-top">
       <div class="col-5">
         <div class="p-detail-top-left">
-          <div class="p-detail-main-img justify-content-center">
-            <img id="p-detail-main-img" src="{{this.mainImg}}" width="437">
+          <div class="justify-content-center p-detail-main-img d-flex">
+            <img id="p-detail-main-img" class="" src="{{this.mainImg}}" width="100%" height="100%">
           </div>
           <div class="row">
             <div class="p-detail-sub-row">
               {{#each this.productAttr.imgUrl as |thing|}}
                 <div class="col-md-3 justify-content-center">
-                  <div class="p-detail-sub-img">
-                    <img src="{{thing}}">
+                  <div class="p-detail-sub-img d-flex">
+                    <img class="w-100" src="{{thing}}">
                   </div>
                 </div>
               {{/each}}
@@ -66,7 +66,7 @@
       <div class="col p-detail-top-right">
         <h1 class="main-product-name">{{this.product.name}}</h1>
         <div class="row text-center">
-          <div class="col align-self-center">
+          <div class="col align-self-center d-flex">
             <span class="p-detail-rating">5.0</span>
             <StarRating />
           </div>
