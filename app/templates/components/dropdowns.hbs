@@ -1,87 +1,87 @@
-{{#if (eq @type "brand")}}
+{{#if (eq @type "brand")}}{{log @val}}
   <select class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
     <option value="">Choose Brand & Model</option>
-    <option value="BMW">-----BMW-----</option>
+    <option id="BMW" value="BMW">-----BMW-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "BMW")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="HONDA">-----HONDA-----</option>
+    <option id="HONDA" value="HONDA">-----HONDA-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "HONDA")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="HYUNDAI">-----HYUNDAI-----</option>
+    <option id="HYUNDAI" value="HYUNDAI">-----HYUNDAI-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "HYUNDAI")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="MAZDA">-----MAZDA-----</option>
+    <option id="MAZDA" value="MAZDA">-----MAZDA-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "MAZDA")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="MERCEDES">-----MERCEDES-BENZ-----</option>
+    <option id="MERCEDES" value="MERCEDES">-----MERCEDES-BENZ-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "MERCEDES-BENZ")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="MITSUBISHI">-----MITSUBISHI-----</option>
+    <option id="MITSUBISHI" value="MITSUBISHI">-----MITSUBISHI-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "MITSUBISHI")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="NISSAN">-----NISSAN-----</option>
+    <option id="NISSAN" value="NISSAN">-----NISSAN-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "NISSAN")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="SUZUKI">-----SUZUKI-----</option>
+    <option id="SUZUKI" value="SUZUKI">-----SUZUKI-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "SUZUKI")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="TOYOTA">-----TOYOTA-----</option>
+    <option id="TOYOTA" value="TOYOTA">-----TOYOTA-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "TOYOTA")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
-    <option value="VOLKSWAGEN">-----VOLKSWAGEN-----</option>
+    <option id="VOLKSWAGEN" value="VOLKSWAGEN">-----VOLKSWAGEN-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.brand "VOLKSWAGEN")}}
-        <option class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
+        <option id="{{stuff.brand}}.{{stuff.model}}" class="" value="{{stuff.brand}}.{{stuff.model}}">{{stuff.model}}</option>
       {{/if}}
     {{/each}}
   </select>
-{{else if (eq @type "category")}}
+{{else if (eq @type "category")}}{{log @val}}
   <select class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
     <option value="">Choose item category</option>
-    <option value="Engine and Transmission">-----Engine & Transmission-----</option>
+    <option id="Engine and Transmission" value="Engine and Transmission">-----Engine & Transmission-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.family "Engine and Transmission")}}
-        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+        <option id="{{stuff.family}}.{{stuff.sub_family}}" class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
       {{/if}}
     {{/each}}
-    <option value="Electrical">-----Electrical-----</option>
+    <option id="Electrical" value="Electrical">-----Electrical-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.family "Electrical")}}
-        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+        <option id="{{stuff.family}}.{{stuff.sub_family}}" class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
       {{/if}}
     {{/each}}
-    <option value="Suspension">-----Suspension-----</option>
+    <option id="Suspension" value="Suspension">-----Suspension-----</option>
     {{#each @data as |stuff|}}
       {{#if (eq stuff.family "Suspension")}}
-        <option class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
+        <option id="{{stuff.family}}.{{stuff.sub_family}}" class="" value="{{stuff.family}}.{{stuff.sub_family}}">{{stuff.sub_family}}</option>
       {{/if}}
     {{/each}}
   </select>
-{{/if}}
+{{/if}}{{selected}}

@@ -7,7 +7,6 @@
     overflow: hidden;
   }
 </style>
-{{countdown}}
 <div class="secondary-color seller-products-container h-100vh">
   <div class="container-fluid h-100">
     <div class="row justify-content-center pt-3">
@@ -65,7 +64,7 @@
                               </div>
                             {{else}}
                               {{#if (eq data.shipment_status 2)}}
-                                <div class="col-3 align-self-center">have you recieved the order?</div>
+                                <div class="col-3 align-self-center">have you recieved the order?</div>{{log data}}
                                 <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 3 data.transaction_id data.sid}}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -78,18 +77,34 @@
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                   </svg>
                                 </div>
+                              {{else if (eq data.shipment_status 3)}}
+                                {{#if (eq data.rated 0)}}
+                                  <div class="col">
+                                    <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#rateProduct" onclick={{action "rateProduct" data}}>
+                                      <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+                                      Rate Product
+                                    </button>
+                                  </div>
+                                {{else}}
+                                  <div class="col">
+                                    <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#seeReview" onclick={{action "seeReview" data.rated}}>
+                                      <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+                                      See review
+                                    </button>
+                                  </div>
+                                {{/if}}
                               {{else}}
-                              <div class="col-">
-                                <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" data.trf_proof}}>
-                                  <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                  See Payment Proof
-                                </button>
-                              </div>
+                                <div class="col">
+                                  <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" data.trf_proof}}>
+                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+                                    See Payment Proof
+                                  </button>
+                                </div>
                               {{/if}}
                             {{/if}}
                           </div>
                           <div class="row border border-bottom-1 p-3">
-                            <div class="col-sm-7">
+                            <div class="col-sm-6">
                               <div class="row">
                                 <div class="col-sm-4 my-auto">
                                   <div class="d-flex">
@@ -97,13 +112,22 @@
                                   </div>
                                 </div>
                                 <div class="col align-self-center justify-content-start product-list-text">
-                                  {{data.name}}
+                                  <a class="no-href-style" href="/product-detail/{{data.pid}}">
+                                    {{data.name}}
+                                  </a>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-sm-4 my-auto mx-auto">
+                            <div class="col-2 my-auto mx-auto">
+                               <div class="row px-auto">
+                                <div class="col text-left price-text pl-4">
+                                  {{data.quantity}}pcs
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col my-auto mx-auto">
                               <div class="row px-auto">
-                                <div class="col-sm-12 text-left price-text">
+                                <div class="col text-left price-text">
                                   {{cart_price data.price data.quantity}}
                                 </div>
                               </div>
@@ -153,59 +177,7 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="uploadProof" tabindex="-1" role="dialog" aria-labelledby="uploadproof" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload Proof of Payment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <h5 class="text-center primary-text-color">You need to upload your proof of payment and the admin will validate your payment</h5>
-          </div>
-          <div class="row justify-content-center">
-            <p>Please transfer to the following bank account before the time expires</p>
-          </div>
-          <div class="row justify-content-center">
-            <img src="https://res.cloudinary.com/partsku/image/upload/v1625287005/partsku/bca-bank-central-asia-logo_yjkmnc.png" alt="" width="50%">
-          </div>
-          <div class="row justify-content-center">
-            <h4 class="font-weight-bold">1234 5678 90</h4>
-          </div>
-          <div class="row justify-content-center">
-            <h5 class="text-center">Please complete the transaction in:</h5>
-          </div>
-          <div class="row justify-content-center">
-            <p id="countdown"></p>
-          </div>
-          <div class="row justify-content-center">
-            <img id="preview-proof" class="my-5 w-75" src="" width="100%">
-          </div>
-          <div class="row justify-content-center text-center">
-            <input id="input-proof" class="input-style mr-5 p-2" type="file" accept="image/*" onchange={{action "inputFoto"}}>
-            {{#if this.uploaded}}
-              <button id="upload-btn" class="btn upload-btn ml-5" onclick={{action "upload"}}>UPLOAD</button>
-              <img id="spinner" class="d-none" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
-            {{/if}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="viewProof" tabindex="-1" role="dialog" aria-labelledby="viewProof" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body show-proof-img w-100 text-center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <img id="show-proof-img" src="" alt="" width="100%">
-      </div>
-    </div>
-  </div>
-</div>
+<Modal::Popups @style="upload-proof" @tid={{this.uploadProofTID}} @time={{created_at}} />
+<Modal::Popups @style="view-proof" @data={{proofData}} />
+<Modal::Popups @style="rate-product" @data={{pData}} />
+<Modal::Popups @style="see-review" @data={{reviewData}} />

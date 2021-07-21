@@ -66,10 +66,21 @@
       <div class="col p-detail-top-right">
         <h1 class="main-product-name">{{this.product.name}}</h1>
         <div class="row text-center">
-          <div class="col align-self-center d-flex">
-            <span class="p-detail-rating">5.0</span>
-            <StarRating />
-          </div>
+          <div class="col d-flex">
+            <span class="p-detail-rating">{{this.avg}}</span>
+            <fieldset class="rating-static">
+              <input type="radio" id="star5-static" name="rating" value="5" disabled readonly/><label class = "full" for="star5"></label>
+              <input type="radio" id="star4half-static" name="rating" value="4.5" disabled readonly /><label class="half" for="star4half"></label>
+              <input type="radio" id="star4-static" name="rating" value="4" disabled readonly /><label class = "full" for="star4"></label>
+              <input type="radio" id="star3half-static" name="rating" value="3.5" disabled readonly /><label class="half" for="star3half"></label>
+              <input type="radio" id="star3-static" name="rating" value="3" disabled readonly /><label class = "full" for="star3"></label>
+              <input type="radio" id="star2half-static" name="rating" value="2.5" disabled readonly /><label class="half" for="star2half"></label>
+              <input type="radio" id="star2-static" name="rating" value="2" disabled readonly /><label class = "full" for="star2"></label>
+              <input type="radio" id="star1half-static" name="rating" value="1.5" disabled readonly /><label class="half" for="star1half"></label>
+              <input type="radio" id="star1-static" name="rating" value="1" disabled readonly /><label class = "full" for="star1"></label>
+              <input type="radio" id="starhalf-static" name="rating" value="0.5" disabled readonly /><label class="half" for="starhalf"></label>
+            </fieldset>
+          </div>{{starRating}}
           <div class="col p-detail-rates">139 ratings</div>
           <div class="col p-detail-sold">{{this.product.sold}} sold</div>
         </div>

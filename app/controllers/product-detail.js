@@ -24,6 +24,17 @@ export default class ProductDetailController extends Controller {
     return `${x[0]} > ${x[1]}`
   }
 
+  @computed("avg")
+  get starRating() {
+    if(this.avg) {
+      let rate = this.avg
+        , ids = ['starhalf-static', 'star1-static', 'star1half-static', 'star2-static', 'star2half-static', 'star3-static', 'star3half-static', 'star4-static', 'star4half-static', 'star5-static']
+        , count = rate / 0.5
+
+      document.getElementById(`${ids[count-1]}`).checked = true
+    }
+  }
+
   @action
   waSeller() {
     let text = `Hi, I would like to ask about this product of yours :)%0Ahttps://partsku.id/product-detail/${this.product.pid}`
