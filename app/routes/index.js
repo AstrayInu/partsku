@@ -11,7 +11,7 @@ export default class IndexRoute extends Route {
   }
 
   setupController(controller, { newItems }) {
-    console.log('newItems', newItems)
+    // console.log('newItems', newItems)
     newItems.data.forEach(x => {
       x.imgUrl = x.attributes.imgUrl[0]
       delete x.attributes

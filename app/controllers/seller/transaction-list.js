@@ -89,7 +89,7 @@ export default class SellerTransactionListController extends Controller {
     $("#upload-btn").addClass("d-none")
     $("#spinner").removeClass("d-none")
     this.admin.uploadProof(uploadData).then(result => {
-      console.log(result)
+      // console.log(result)
       alert(result.msg)
       location.reload()
     }).catch(e => {

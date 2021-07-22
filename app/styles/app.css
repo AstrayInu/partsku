@@ -8,6 +8,12 @@
   padding: 20px !important;
 }
 
+@media (max-width: 480px) {
+  .header-logo {
+    padding: 15px !important;
+  }
+}
+
 /* .header-user-console-outer {
   display: table;
   margin: 0 auto;
@@ -145,6 +151,33 @@
   color: white;
   padding-left: 6.5vw;
   padding-top: 13vw;
+}
+
+@media (max-width: 480px) {
+  .main-island {
+    color: white;
+    padding: 7vw 3vw 0;
+  }
+  .buy-cp {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 1 rem;
+  }
+  .landing-search-box{
+    font-size: 14px;
+    width: 100% !important;
+  }
+  .landing-search-btn {
+    background-color: #8C9EFC;
+    color: white;
+    width: 46.23px !important;
+    height: 46.23px !important;
+    margin: 0 7vw 0 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    position: absolute;
+    right: 0;
+  }
 }
 
 .buy-cp {
@@ -1168,6 +1201,7 @@ input:checked + .slider:before {
 .catalog-bg {
   background-color: #F7F8FF;
   box-shadow: 0px 20px 20px #2d2d2d2b inset;
+  min-height: 40vh;
 }
 
 .search-result {

@@ -10,6 +10,7 @@ export default class CatalogController extends Controller {
     ]
   }
 
+  @computed('params')
   get searchResult() {
     if(this.params.q) return this.params.q
     else if(this.params.brand) return this.params.brand
@@ -18,7 +19,7 @@ export default class CatalogController extends Controller {
 
   @computed('offset')
   get currentPage() {
-    console.log("currentPage" , (Number(this.offset) / Number(this.limit)) + 1)
+    // console.log("currentPage" , (Number(this.offset) / Number(this.limit)) + 1)
     return (Number(this.offset) / Number(this.limit)) + 1
   }
 
@@ -57,7 +58,7 @@ export default class CatalogController extends Controller {
 
   @action
   applyBrand(val) {
-    console.log(val)
+    // console.log(val)
     let split = val.split('.')
     split = split.length == 2 ? split[1] : split[0]
     set(this, 'brand', split)
@@ -87,7 +88,7 @@ export default class CatalogController extends Controller {
 
   @action
   nextPage() {
-    console.log("NEXT", this.offset)
+    // console.log("NEXT", this.offset)
     set(this, 'offset', Number(this.offset)+16)
   }
 

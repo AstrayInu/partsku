@@ -37,7 +37,7 @@ export default class SellerRegisterController extends Controller {
 
   @action
   inputKTP(val) {
-    console.log('val', val)
+    // console.log('val', val)
     const file = val.target.files[0];
     let reader = new FileReader()
 
@@ -56,7 +56,7 @@ export default class SellerRegisterController extends Controller {
 
   @action
   inputFotoToko(val) {
-    console.log('val', val)
+    // console.log('val', val)
     const file = val.target.files[0];
     let reader = new FileReader()
 

@@ -51,7 +51,7 @@ export default class LoginController extends Controller {
 
     this.session.loginUser(data).then( res => {
       set(this, 'successMessage', res.msg)
-      console.log("BERHASIL LOGIN", res)
+      // console.log("BERHASIL LOGIN", res)
       this.storage.lset('user_email', res.email)
       this.storage.lset('user_id', res.id)
       this.storage.lset('user_name', res.name)

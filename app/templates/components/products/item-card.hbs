@@ -1,5 +1,5 @@
 {{#if (eq @source 'new-item-left')}}
-  <div class="secondary-color item-card pb-1 left-item-card">
+  <div class="secondary-color item-card pb-1 left-item-card cursor-pointer" onclick={{action "goTo" @data.pid}}>
     <div class="item-card-sku secondary-color">
       <p class="m-0 font-weight-bold">{{@data.sku}}</p>
     </div>
@@ -17,7 +17,7 @@
   </div>
 {{/if}}
 {{#if (eq @source 'new-item-right')}}
-  <div class="secondary-color item-card right-item-card">
+  <div class="secondary-color item-card right-item-card cursor-pointer" onclick={{action "goTo" @data.pid}}>
     <div class="item-card-sku-right secondary-color">
       <p class="m-0 font-weight-bold">{{@data.sku}}</p>
     </div>

@@ -15,13 +15,15 @@ export default class HeaderDesktopComponent extends Component {
   }
 
   get notSeller() {
-    if(this.storage.lget("user_type") === "admin") return false
-    else {
-      this.admin.checkSellerStatus(this.storage.lget("user_id")).then(res => {
-        return false
-      }).catch(e => {
-        return true
-      })
+    if(this.isLoggedIn) {
+      if(this.storage.lget("user_type") === "admin") return false
+      else {
+        this.admin.checkSellerStatus(this.storage.lget("user_id")).then(res => {
+          return false
+        }).catch(e => {
+          return true
+        })
+      }
     }
   }
 

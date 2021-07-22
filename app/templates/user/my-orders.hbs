@@ -64,7 +64,7 @@
                               </div>
                             {{else}}
                               {{#if (eq data.shipment_status 2)}}
-                                <div class="col-3 align-self-center">have you recieved the order?</div>{{log data}}
+                                <div class="col-3 align-self-center">have you recieved the order?</div>
                                 <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 3 data.transaction_id data.sid}}>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

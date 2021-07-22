@@ -11,7 +11,7 @@ export default class StarRatingComponent extends Component {
         , ids = ['starhalf-static', 'star1-static', 'star1half-static', 'star2-static', 'star2half-static', 'star3-static', 'star3half-static', 'star4-static', 'star4half-static', 'star5-static']
         , count = rate / 0.5
       // console.log(document.getElementById(`${ids[count-1]}-${this.pid}`))
-      document.getElementById(`${ids[count-1]}-${this.pid}`).checked = true
+      $(`#${ids[count-1]}-${this.pid}`).prop("checked", true)
     }
   }
 }

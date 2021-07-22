@@ -49,7 +49,7 @@ export default class ProductCardComponent extends Component {
     let newStatus = this.product.is_active == 1 ? 0 : 1
       , msg = newStatus ? `Product is now active` : `Product is now inactive`
     this.admin.setProductActive(newStatus, this.product.pid).then(res => {
-      console.log('res', res)
+      // console.log('res', res)
       alert(msg)
       location.reload()
     }).catch(e => {
@@ -77,14 +77,14 @@ export default class ProductCardComponent extends Component {
 
   @action
   deleteProduct(val) {
-    console.log(val)
+    // console.log(val)
     set(this, 'deletePid', val)
   }
 
   @action
   delete(pid) {
     this.admin.deleteProduct(pid).then(res => {
-      console.log('res', res)
+      // console.log('res', res)
       alert(res)
       location.reload();
     }).catch(e => {
