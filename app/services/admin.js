@@ -241,6 +241,20 @@ export default class AdminService extends Service {
     });
   }
 
+  setProductActive(newStatus, pid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/products/activate/${pid}?active=${newStatus}`,
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
   deleteProduct(pid) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({

@@ -24,7 +24,7 @@ export default class ProductCardComponent extends Component {
 
   @computed('data')
   get sellerAttributes() {
-    console.log(this.data)
+    // console.log(this.data)
     let attr = this.data.attributes
     return attr
   }
@@ -34,9 +34,28 @@ export default class ProductCardComponent extends Component {
     return this.sellerAttributes.logo ? this.sellerAttributes.logo : `https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png`
   }
 
+  @computed('product')
+  get itemActive() {
+    return this.product.is_active == 1
+  }
+
   @computed('data')
   get productImg() {
     return this.product.attributes.imgUrl[0]
+  }
+
+  @action
+  activateProduct() {
+    let newStatus = this.product.is_active == 1 ? 0 : 1
+      , msg = newStatus ? `Product is now active` : `Product is now inactive`
+    this.admin.setProductActive(newStatus, this.product.pid).then(res => {
+      console.log('res', res)
+      alert(msg)
+      location.reload()
+    }).catch(e => {
+      console.log(e)
+      alert("ERROR")
+    })
   }
 
   @action
@@ -73,11 +92,6 @@ export default class ProductCardComponent extends Component {
       alert(e.responseJSON.msg)
       location.reload();
     })
-  }
-
-  @action
-  productUrl() {
-    return `/product/${this.product.pid}`
   }
 
   @action

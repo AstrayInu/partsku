@@ -53,7 +53,7 @@
           <div class="row">
             <div class="p-detail-sub-row">
               {{#each this.productAttr.imgUrl as |thing|}}
-                <div class="col-md-3 justify-content-center">
+                <div class="col-md-3 justify-content-center cursor-pointer" onclick={{action 'setMainImg' thing}}>
                   <div class="p-detail-sub-img d-flex">
                     <img class="w-100" src="{{thing}}">
                   </div>
@@ -81,7 +81,7 @@
               <input type="radio" id="starhalf-static" name="rating" value="0.5" disabled readonly /><label class="half" for="starhalf"></label>
             </fieldset>
           </div>{{starRating}}
-          <div class="col p-detail-rates">139 ratings</div>
+          <div class="col p-detail-rates d-flex justify-content-center">{{this.ratingCount}} ratings</div>
           <div class="col p-detail-sold">{{this.product.sold}} sold</div>
         </div>
         <h1 class="main-product-price">{{format-currency this.product.price}}</h1>

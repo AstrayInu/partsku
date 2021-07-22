@@ -19,9 +19,9 @@
             <img class="product-card-img" src="{{this.productImg}}" width="200" height="200">
           </div>
         </div>
-        <div class="product-card-info pl-4">
+        <div class="product-card-info">
           <div class="col">
-            <StarRating @class="" />
+            <StarRating @rate={{@product.rating}} @num={{@product.times_rated}} @pid={{@product.pid}} />
             <p class="row product-card-name">{{@product.name}}</p>
             <p class="row product-card-price">Rp {{this.formatedPrice}}</p>
           </div>
@@ -31,7 +31,7 @@
   </div>
 {{else if (eq @style "seller-p-list")}}
   <div class="row justify-content-between border border-radius-0 p-3 bg-white">
-    <div class="col-sm-7">
+    <div class="col-sm">
       <div class="row">
         <div class="col-sm-4 my-auto">
           <div class="d-flex">
@@ -43,20 +43,26 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4 my-auto">
+    <div class="col-sm my-auto">
       <div class="row">
-        <div class="col-sm-4 text-left product-list-text">
+        <div class="col-3 d-flex align-self-center">
+          <label class="switch mb-0">
+            <input type="checkbox" onclick={{action "activateProduct"}} checked={{this.itemActive}}>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="col-sm-4 text-left product-list-text d-flex align-self-center">
           {{@product.price}}
         </div>
-        <div class="col-sm-4 text-center">
+        <div class="col-sm-2 text-center d-flex align-self-center pl-1">
           <button class="btn" data-toggle="modal" data-target="#edit-product" onclick={{action "editProduct" @product}}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#384170" class="bi bi-pencil-square ml-4 cursor-pointer" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#384170" class="bi bi-pencil-square cursor-pointer" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
             </svg>
           </button>
         </div>
-        <div class="col-sm-3 text-right mr-2">
+        <div class="col-sm-2 text-right mr-2 d-flex align-self-center pl-2">
           <button class="btn" data-toggle="modal" data-target="#delete-product" onclick={{action "deleteProduct" @product.pid}}>
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-trash cursor-pointer" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

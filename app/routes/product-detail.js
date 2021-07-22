@@ -16,6 +16,7 @@ export default class ProductDetailRoute extends Route {
       avg = avg + Number(x.rate)
     });
     avg = avg / product_rating.count
+    avg = isNaN(avg) ? 0 : avg
     return hash({product_data, product_rating, avg})
   }
 
@@ -26,6 +27,7 @@ export default class ProductDetailRoute extends Route {
     controller.set("seller", product_data.seller)
     controller.set("sellerAttr", product_data.seller.attributes)
     controller.set("product_rating", product_rating)
+    controller.set("ratingCount", product_rating.count)
     controller.set("avg", avg)
   }
 }

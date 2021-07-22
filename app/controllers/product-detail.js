@@ -44,6 +44,11 @@ export default class ProductDetailController extends Controller {
   }
 
   @action
+  setMainImg(val) {
+    document.getElementById("p-detail-main-img").src = val
+  }
+
+  @action
   plusQuantity() {
     if(this.quantity < this.product.stock) set(this, 'quantity', this.quantity + 1)
   }
