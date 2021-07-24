@@ -17,6 +17,23 @@ export default class CartCardComponent extends Component {
     return result
   }
 
+  @computed('data')
+  get estimateDate() {
+    let now = new Date()
+      , nowTime = now.toTimeString()
+      , today = now.toDateString()
+      , next = new Date(now.setDate(now.getDate() + 1))
+      , twodays = new Date(now.setDate(now.getDate() + 2))
+      , front
+
+    today = today.split(" ")
+    next = next.toDateString().split(" ")
+    twodays = twodays.toDateString().split(" ")
+    front = (nowTime.split(" ")[0].split(":")[0] >= 16) ? `${next[2]} ${next[1]}` : `${today[2]} ${today[1]}`
+
+    return `${front} - ${twodays[2]} ${twodays[1]} ${twodays[3]}`
+  }
+
   @action
   selectAllFromStore() {
     this.data.forEach(x => {
@@ -34,7 +51,7 @@ export default class CartCardComponent extends Component {
     $(`#qty_for_index_${idx}`).val(q)
     this.minQuant(q, pid)
   }
-  
+
   @action
   add(val, idx, pid) {
     let q = Number(val) + 1

@@ -1,181 +1,181 @@
 <style>
-  .footer {
-    display: none;
-  }
+	.footer {
+		display: none;
+	}
 
-  body {
-    overflow: hidden;
-  }
+	body {
+		overflow: hidden;
+	}
 </style>
 <div class="secondary-color seller-products-container h-100vh">
-  <div class="container-fluid h-100">
-    <div class="row justify-content-center pt-3">
-      <div class="col-sm-10">
-        <div class="row justify-content-end mt-5 mb-4">
-          <div class="col-sm-6 pr-5">
-            <div class="row justify-content-end mr-3">
-              <div class="col-sm-3">
-                <button id="new-btn" class="btn-red-border-radius" onclick={{action "changeView" "unfinished"}}>
-                  In Progress
-                </button>
-              </div>
-              <div class="col-sm-3">
-                <button id="appr-btn" class="btn-transparent" onclick={{action "changeView" "done"}}>
-                  Done
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-end m-3">
-          <div class="col-sm-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-search" viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <ProfileCard @class="col-sm-3" @where="user-orders" />
-          <div class="col-sm-7 mx-4 scrollable h-650px">
-            {{#if this.shownData}}
-              {{#each this.shownData as |data|}}
-                  <div class="row">
-                    <div class="col-sm-11">
-                      <div class="row justify-content-between border border-radius-1 mb-4 bg-white">
-                        <div class="col-sm-12">
-                          <div class="row justify-content-start border border-bottom-1 p-3">
-                            <div class="col product-list-text my-auto">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E81D1D" class="bi bi-patch-check-fill img-fluid mr-1 mb-1" viewBox="0 0 16 16">
-                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                              </svg>
-                              {{data.shop_name}}
-                            </div>
-                            {{#if (eq data.status 0)}}
-                              <div class="col-auto">
-                                <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#uploadProof" onclick={{action 'setTID' data.transaction_id data.created_at}}>
-                                  <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                  Upload Proof
-                                </button>
-                              </div>
-                            {{else}}
-                              {{#if (eq data.shipment_status 2)}}
-                                <div class="col-3 align-self-center">have you recieved the order?</div>
-                                <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 3 data.transaction_id data.sid}}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                                  </svg>
-                                </div>
-                                <div class="col-1 align-self-center" onclick={{action "changeTransStatus" 5 data.transaction_id data.sid}}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#ef6060" class="bi bi-x-circle cursor-pointer" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                  </svg>
-                                </div>
-                              {{else if (eq data.shipment_status 3)}}
-                                {{#if (eq data.rated 0)}}
-                                  <div class="col">
-                                    <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#rateProduct" onclick={{action "rateProduct" data}}>
-                                      <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                      Rate Product
-                                    </button>
-                                  </div>
-                                {{else}}
-                                  <div class="col">
-                                    <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#seeReview" onclick={{action "seeReview" data.rated}}>
-                                      <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                      See review
-                                    </button>
-                                  </div>
-                                {{/if}}
-                              {{else}}
-                                <div class="col">
-                                  <button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" data.trf_proof}}>
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
-                                    See Payment Proof
-                                  </button>
-                                </div>
-                              {{/if}}
-                            {{/if}}
-                          </div>
-                          <div class="row border border-bottom-1 p-3">
-                            <div class="col-sm-6">
-                              <div class="row">
-                                <div class="col-sm-4 my-auto">
-                                  <div class="d-flex">
-                                    <img src="{{data.imgUrl}}" alt="Product Image" class="img-fluid" width="113" height="119">
-                                  </div>
-                                </div>
-                                <div class="col align-self-center justify-content-start product-list-text">
-                                  <a class="no-href-style" href="/product-detail/{{data.pid}}">
-                                    {{data.name}}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-2 my-auto mx-auto">
-                               <div class="row px-auto">
-                                <div class="col text-left price-text pl-4">
-                                  {{data.quantity}}pcs
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col my-auto mx-auto">
-                              <div class="row px-auto">
-                                <div class="col text-left price-text">
-                                  {{cart_price data.price data.quantity}}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row justify-content-between">
-                            <div class="col-sm-6 ml-3 grey-text-color align-self-center">
-                              Transaction ID: <b>{{data.transaction_id}}</b>
-                            </div>
-                            <div class="col-sm-4 p-0 justify-content-center d-flex flex-row">
-                              {{#if (eq data.approval 0)}}
-                                {{#if (eq data.status 0)}}
-                                  <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/trans_upload_thy6jd.png" width="100%" height="100%">
-                                {{else if (eq data.status 1)}}
-                                  <img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/tans_waiting_b4ui2i.png" width="100%" height="100%">
-                                {{/if}}
-                              {{else if (eq data.approval 1)}}
-                                {{#if (eq data.shipment_status 0)}}
-                                  <a href="/user/order/detail">
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625837569/partsku/Waiting_Seller_fcie1y.png" width="100%" height="100%">
-                                  </a>
-                                {{else if (eq data.shipment_status 1)}}
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625747815/partsku/Processed_drwvyc.png" width="100%" height="100%">
-                                {{else if (eq data.shipment_status 2)}}
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625747814/partsku/Otw_whtyga.png" width="100%" height="100%">
-                                {{else if (eq data.shipment_status 3)}}
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625837548/partsku/Complete-1_zkgam1.png" width="100%" height="100%">
-                                {{else if (eq data.shipment_status 4)}}
-                                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="100%" height="100%">
-                                {{/if}}
-                              {{else if (eq data.approval 2)}}
-                                <img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="100%" height="100%">
-                              {{/if}}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              {{/each}}
-            {{else}}
-              No unfinished transaction
-            {{/if}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="container-fluid h-100">
+		<div class="row justify-content-center pt-3">
+			<div class="col-sm-10">
+				<div class="row justify-content-end mt-5 mb-4">
+					<div class="col-sm-6 pr-5">
+						<div class="row justify-content-end mr-3">
+							<div class="col-sm-3">
+								<button id="new-btn" class="btn-red-border-radius" onclick={{action "changeView" "unfinished"}}>
+									In Progress
+								</button>
+							</div>
+							<div class="col-sm-3">
+								<button id="appr-btn" class="btn-transparent" onclick={{action "changeView" "done"}}>
+									Done
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-end m-3">
+					<div class="col-sm-2">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+							<path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+						</svg>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-search" viewBox="0 0 16 16">
+							<path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+						</svg>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<ProfileCard @class="col-sm-3" @where="user-orders" />
+					<div class="col-sm-7 mx-4 scrollable h-650px">
+						{{#if this.shownData}}
+							{{#each this.shownData as |data|}}
+									<div class="row">
+										<div class="col-sm-11">
+											<div class="row justify-content-between border border-radius-1 mb-4 bg-white">
+												<div class="col-sm-12">
+													<div class="row justify-content-start border border-bottom-1 p-3">
+														<div class="col product-list-text my-auto">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E81D1D" class="bi bi-patch-check-fill img-fluid mr-1 mb-1" viewBox="0 0 16 16">
+																<path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+															</svg>
+															{{data.shop_name}}
+														</div>
+														{{#if (eq data.status 0)}}
+															<div class="col-auto">
+																<button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#uploadProof" onclick={{action 'setTID' data.transaction_id data.created_at}}>
+																	<img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+																	Upload Proof
+																</button>
+															</div>
+														{{else}}
+															{{#if (eq data.shipment_status 2)}}
+																<div class="col-3 align-self-center">have you recieved the order?</div>
+																<div class="col-1 align-self-center" onclick={{action "changeTransStatus" 3 data.transaction_id data.sid}}>
+																	<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#8ac273" class="bi bi-check-circle cursor-pointer" viewBox="0 0 16 16">
+																		<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+																		<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+																	</svg>
+																</div>
+																<div class="col-1 align-self-center" onclick={{action "changeTransStatus" 5 data.transaction_id data.sid}}>
+																	<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#ef6060" class="bi bi-x-circle cursor-pointer" viewBox="0 0 16 16">
+																		<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+																		<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+																	</svg>
+																</div>
+															{{else if (eq data.shipment_status 3)}}
+																{{#if (eq data.rated 0)}}
+																	<div class="col">
+																		<button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#rateProduct" onclick={{action "rateProduct" data}}>
+																			<img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+																			Rate Product
+																		</button>
+																	</div>
+																{{else}}
+																	<div class="col">
+																		<button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#seeReview" onclick={{action "seeReview" data.rated}}>
+																			<img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+																			See review
+																		</button>
+																	</div>
+																{{/if}}
+															{{else}}
+																<div class="col">
+																	<button type="button" class="btn btn-proof-user font-weight-bold primary-text-color float-right" data-toggle="modal" data-target="#viewProof" onclick={{action "showImg" data.trf_proof}}>
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625837536/partsku/bill_copy_tczz6s.png">
+																		See Payment Proof
+																	</button>
+																</div>
+															{{/if}}
+														{{/if}}
+													</div>
+													<div class="row border border-bottom-1 p-3">
+														<div class="col-sm-6">
+															<div class="row">
+																<div class="col-sm-4 my-auto">
+																	<div class="d-flex">
+																		<img src="{{data.imgUrl}}" alt="Product Image" class="img-fluid" width="113" height="119">
+																	</div>
+																</div>
+																<div class="col align-self-center justify-content-start product-list-text">
+																	<a class="no-href-style" href="/product-detail/{{data.pid}}">
+																		{{data.name}}
+																	</a>
+																</div>
+															</div>
+														</div>
+														<div class="col-2 my-auto mx-auto">
+															 <div class="row px-auto">
+																<div class="col text-left price-text pl-4">
+																	{{data.quantity}}pcs
+																</div>
+															</div>
+														</div>
+														<div class="col my-auto mx-auto">
+															<div class="row px-auto">
+																<div class="col text-left price-text">
+																	{{cart_price data.price data.quantity}}
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row justify-content-between">
+														<div class="col-sm-6 ml-3 grey-text-color align-self-center">
+															Transaction ID: <b>{{data.transaction_id}}</b>
+														</div>
+														<div class="col-sm-4 p-0 justify-content-center d-flex flex-row">
+															{{#if (eq data.approval 0)}}
+																{{#if (eq data.status 0)}}
+																	<img class="cursor-pointer" src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/trans_upload_thy6jd.png" data-toggle="modal" data-target="#uploadProof" onclick={{action 'setTID' data.transaction_id data.created_at}} width="100%" height="100%">
+																{{else if (eq data.status 1)}}
+																	<img src="https://res.cloudinary.com/partsku/image/upload/v1625321903/partsku/tans_waiting_b4ui2i.png" width="100%" height="100%">
+																{{/if}}
+															{{else if (eq data.approval 1)}}
+																{{#if (eq data.shipment_status 0)}}
+																	<a href="/user/order/detail">
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625837569/partsku/Waiting_Seller_fcie1y.png" width="100%" height="100%">
+																	</a>
+																{{else if (eq data.shipment_status 1)}}
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625747815/partsku/Processed_drwvyc.png" width="100%" height="100%">
+																{{else if (eq data.shipment_status 2)}}
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625747814/partsku/Otw_whtyga.png" width="100%" height="100%">
+																{{else if (eq data.shipment_status 3)}}
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625837548/partsku/Complete-1_zkgam1.png" width="100%" height="100%">
+																{{else if (eq data.shipment_status 4)}}
+																		<img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="100%" height="100%">
+																{{/if}}
+															{{else if (eq data.approval 2)}}
+																<img src="https://res.cloudinary.com/partsku/image/upload/v1625747816/partsku/Rejected_ovece1.png" width="100%" height="100%">
+															{{/if}}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							{{/each}}
+						{{else}}
+							No unfinished transaction
+						{{/if}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <Modal::Popups @style="upload-proof" @tid={{this.uploadProofTID}} @time={{created_at}} />
 <Modal::Popups @style="view-proof" @data={{proofData}} />

@@ -62,13 +62,13 @@
 						<div class="col-sm-6">
 							<div class="row justify-content-end">
 								<div class="col-sm-7 product-list-text my-auto">
-									Total [{{this.productTotal}} Product]: 
+									Total [{{this.productTotal}} Product]:
 									<text class="red-text-color">
 										{{format-currency this.totalCart}}
-									</text> 
+									</text>
 								</div>
 								<div class="col-sm-3 mr-5">
-									<button class="btn btn-danger border-radius-0 product-list-text checkout-btn" onclick={{action "checkout"}}>
+									<button class="btn btn-danger border-radius-0 product-list-text checkout-btn" data-toggle="modal" data-target="#checkoutTab" onclick={{action "checkout"}}>
 										CHECKOUT
 									</button>
 								</div>
@@ -80,165 +80,156 @@
 		{{/if}}
 	</div>
 </div>
-<div class="container-fluid secondary-color p-5 pt-5 content-modal p-absolute top-0 scrollable h-100" id="modal">
-	<div class="row justify-content-center mx-5 px-5">
-		<div class="col-sm-6 card">
-			<!--content header-->
-			<div class="row justify-content-center mt-5">
-				<div class="col-sm-9">
-					<div class="row justify-content-start">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="60" height="60"
-							fill="#e92424">
-							<path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
-									c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
-									C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
-									s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
-						</svg>
-						<text class="checkout-title my-auto">
-							Checkout
-						</text>
-					</div>
+{{!-- <div class="container-fluid secondary-color p-5 pt-5 content-modal p-absolute top-0 scrollable h-100" id="modal"> --}}
+<div class="modal fade" id="checkoutTab" tabindex="-1" role="dialog" aria-labelledby="checkoutTab" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="d-flex align-self-center">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="50" height="50"
+						fill="#e92424">
+						<path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+								c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+								C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+								s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
+					</svg>
+					<text class="checkout-title my-auto">
+						Checkout
+					</text>
 				</div>
-				<div class="col-sm-1">
-					<button type="button" class="close text-highlight" aria-label="Close" onclick={{action "closeModal"}}>
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-sm-10">
-					<div class="row justify-content-end">
-						<button class="btn btn-brand-reversed">
-							+ ADD NEW ADDRESS
-						</button>
-					</div>
-				</div>
-			</div>
-			<!--content header-->
-			<!--Address box-->
-			<div class="row justify-content-center mb-4">
-				<div class="col-sm-10 content-card border px-5">
-					<div class="row card-title-text mt-3">
-						{{this.userName}}
-					</div>
-					<div class="row my-3">
-						<div class="mx-1 mr-3">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
-								<path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
-										c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
-										C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
-										s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
-							</svg>
-						</div>
-						<div class="col-sm-6">
-							<div class="row">
-								{{this.userAddress}}
+			<div class="modal-body">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-sm-10">
+							<div class="row justify-content-end">
+								<button class="btn btn-brand-reversed">
+									+ ADD NEW ADDRESS
+								</button>
 							</div>
 						</div>
 					</div>
-					<div class="row mt-3 mb-2">
-						<div class="mx-1 mr-3">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
-								<path d="M499.66,376.96l-71.68-71.68c-25.6-25.6-69.12-15.359-79.36,17.92c-7.68,23.041-33.28,35.841-56.32,30.72
-									c-51.2-12.8-120.32-79.36-133.12-133.12c-7.68-23.041,7.68-48.641,30.72-56.32c33.28-10.24,43.52-53.76,17.92-79.36l-71.68-71.68
-									c-20.48-17.92-51.2-17.92-69.12,0l-48.64,48.64c-48.64,51.2,5.12,186.88,125.44,307.2c120.32,120.32,256,176.641,307.2,125.44
-									l48.64-48.64C517.581,425.6,517.581,394.88,499.66,376.96z" />
-							</svg>
-						</div>
-						<div class="col-sm-6">
-							<div class="row font-weight-bold my-1">
-								+ 62 - 08123123123
+					<div class="row justify-content-center mb-4">
+						<div class="col-sm-10 content-card border px-5">
+							<div class="row card-title-text mt-3">
+								{{this.userName}}
 							</div>
-						</div>
-					</div>
-					<div class="row justify-content-end">
-						<div class="col-sm-2 mx-1 btn-brand-clear">
-							DELETE
-						</div>
-						<div class="col-sm-2 mx-1 btn-brand">
-							CHANGE
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--Address box end-->
-			<!--DETAIL PRODUCT-->
-			<div class="">
-				{{#each this.cartSeller as |item|}}
-					<CartCard @style="checkout" @data={{this.cartData}} @seller={{item}} />
-				{{/each}}
-			</div>
-			<!--DETAIL PRODUCT end-->
-			<!--Payment Method-->
-			<div class="row justify-content-center mb-3">
-				<div class="col-sm-10 content-card border px-5">
-					<div class="row card-title-text">
-						<div class="col-4 align-self-center">
-							Payment Method
-						</div>
-						<div class="col-sm-2 d-flex flex-row">
-							<div class="my-auto">
-								<input type="radio" name="pay-bca" id="pay-bca" selected="true">
-							</div>
-							<img src="https://res.cloudinary.com/partsku/image/upload/v1625287005/partsku/bca-bank-central-asia-logo_yjkmnc.png" alt="" class="img-fluid img-resize">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--Payment Method end-->
-			<!--bottom content-->
-			<div class="row justify-content-center mb-3">
-				<div class="col-sm-10">
-					<div class="row justify-content-end">
-						<div class="col-sm-9">
-							<div class="row justify-content-end px-4">
-								<div class="col-sm-5">
-									<div class="row">
-										<h5 class="font-weight-normal">
-											Subtotal For Product
-										</h5>
-									</div>
-									<div class="row mt-2">
-										<h5 class="font-weight-normal">
-											Shipping Payment
-										</h5>
-									</div>
-									<div class="row mt-4">
-										<h5 class="font-weight-normal">
-											Total Cost
-										</h5>
-									</div>
+							<div class="row my-3">
+								<div class="mx-1 mr-3">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+										<path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+												c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+												C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+												s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
+									</svg>
 								</div>
 								<div class="col-sm-6">
-									<div class="row justify-content-end">
-										<h5 class="font-weight-normal">
-											{{format-currency this.totalCart}}
-										</h5>
+									<div class="row">
+										{{this.userAddress}}
 									</div>
-									<div class="row justify-content-end mt-2">
-										<h5 class="font-weight-normal">
-											Rp 0
-										</h5>
+								</div>
+							</div>
+							<div class="row mt-3 mb-2">
+								<div class="mx-1 mr-3">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+										<path d="M499.66,376.96l-71.68-71.68c-25.6-25.6-69.12-15.359-79.36,17.92c-7.68,23.041-33.28,35.841-56.32,30.72
+											c-51.2-12.8-120.32-79.36-133.12-133.12c-7.68-23.041,7.68-48.641,30.72-56.32c33.28-10.24,43.52-53.76,17.92-79.36l-71.68-71.68
+											c-20.48-17.92-51.2-17.92-69.12,0l-48.64,48.64c-48.64,51.2,5.12,186.88,125.44,307.2c120.32,120.32,256,176.641,307.2,125.44
+											l48.64-48.64C517.581,425.6,517.581,394.88,499.66,376.96z" />
+									</svg>
+								</div>
+								<div class="col-sm-6">
+									<div class="row font-weight-bold my-1">
+									+ 62 - 08123123123
 									</div>
-									<div class="row justify-content-end mt-3">
-										<h2 class="font-weight-normal">
-											{{format-currency this.totalCart}}
-										</h2>
+								</div>
+							</div>
+							<div class="row justify-content-end">
+								{{!-- <div class="col-sm-2 mx-1 btn-brand-clear">
+									DELETE
+								</div>
+								<div class="col-sm-2 mx-1 btn-brand">
+									CHANGE
+								</div> --}}
+							</div>
+						</div>
+					</div>
+					<div class="">
+						{{#each this.cartSeller as |item|}}
+							<CartCard @style="checkout" @data={{this.cartData}} @seller={{item}} />
+						{{/each}}
+					</div>
+					<div class="row justify-content-center mb-3">
+						<div class="col-sm-10 content-card border px-5">
+							<div class="row card-title-text">
+								<div class="col-4 align-self-center">
+									Payment Method
+								</div>
+								<div class="col-sm-2 d-flex flex-row">
+									<div class="my-auto">
+										<input type="radio" name="pay-bca" id="pay-bca" checked>
+									</div>
+									<img src="https://res.cloudinary.com/partsku/image/upload/v1625287005/partsku/bca-bank-central-asia-logo_yjkmnc.png" alt="" class="img-fluid img-resize my-auto">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center mb-3">
+						<div class="col-sm-10">
+							<div class="row justify-content-end">
+								<div class="col-sm-9">
+									<div class="row justify-content-end px-4">
+										<div class="col-sm-5">
+											<div class="row">
+												<h5 class="font-weight-normal">
+													Subtotal For Product
+												</h5>
+											</div>
+											<div class="row mt-2">
+												<h5 class="font-weight-normal">
+													Shipping Payment
+												</h5>
+											</div>
+											<div class="row mt-4">
+												<h5 class="font-weight-normal">
+													Total Cost
+												</h5>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="row justify-content-end">
+												<h5 class="font-weight-normal">
+													{{format-currency this.totalCart}}
+												</h5>
+											</div>
+											<div class="row justify-content-end mt-2">
+												<h5 class="font-weight-normal">
+													Rp 0
+												</h5>
+											</div>
+											<div class="row justify-content-end mt-3">
+												<h2 class="font-weight-normal">
+													{{format-currency this.totalCart}}
+												</h2>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="row justify-content-center mb-3">
+						<div class="col-sm-10">
+							<button class="btn-brand p-3 px-4 float-right" onclick={{action "confirm"}}>
+									Confirm Purchased
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="row justify-content-center mb-3">
-				<div class="col-sm-10">
-					<button class="btn-brand p-3 px-4 float-right" onclick={{action "confirm"}}>
-							Confirm Purchased
-					</button>
-				</div>
-			</div>
-			<!--bottom content end-->
 		</div>
 	</div>
 </div>
