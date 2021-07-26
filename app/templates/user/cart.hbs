@@ -31,7 +31,7 @@
 				</div>
 				{{#if this.cartSeller}}
 					{{#each this.cartSeller as |item|}}
-						<CartCard @style="cart" @data={{this.cartData}} @seller={{item}} @minQuant={{action 'minQuant'}} @addQuant={{action 'addQuant'}} />
+						<CartCard @style="cart" @data={{this.cartData}} @seller={{item}} @setQuant={{action 'setQuant'}} />
 					{{/each}}
 				{{else}}
 					no item here yet

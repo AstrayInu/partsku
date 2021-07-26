@@ -6,6 +6,7 @@ export default class CartCardComponent extends Component {
   @service admin
   @service storage
 
+  @computed("data")
   get totalEach() {
     if(!this.buynow) {
       let result = 0
@@ -14,9 +15,11 @@ export default class CartCardComponent extends Component {
           result = result + (x.price * x.quantity)
         }
       })
+
+      return result
     }
 
-    return this.buynow ? this.totalCart : result
+    return this.totalCart
   }
 
   get viewImg() {
@@ -53,39 +56,60 @@ export default class CartCardComponent extends Component {
   }
 
   @action
-  min(val, idx, pid) {
-    let q = Number(val) - 1
-    // console.log("min", q, idx)
-    $(`#qty_for_index_${idx}`).val(q)
-    this.minQuant(q, pid)
+  min(idx, pid) {
+    let val = Number($(`#qty_for_index_${idx}`).val())
+    if(val >= 1) {
+      let q = Number(val) - 1
+      if(!isNaN(q)) {
+        this.data.forEach(x => {
+          if(x.pid == pid) x.quantity = q
+        })
+      } else {
+        for(let x of this.data) {
+          if(x.pid = pid) {
+            $(`#qty_for_index_${idx}`).val(x.quantity)
+          }
+        }
+      }
+      this.setQuant(this.data)
+    }
   }
 
   @action
-  add(val, idx, pid) {
-    let q = Number(val) + 1
-    // console.log("add", q, idx)
-    // $(`#qty_for_index_${idx}`).val(q)
-    this.addQuant(q, pid)
+  add(idx, pid, stock) {
+    let val = Number($(`#qty_for_index_${idx}`).val())
+    if(val < stock) {
+      let q = Number(val) + 1
+      if(!isNaN(q)) {
+        this.data.forEach(x => {
+          if(x.pid == pid) x.quantity = q
+        })
+      } else {
+        for(let x of this.data) {
+          if(x.pid = pid) {
+            $(`#qty_for_index_${idx}`).val(x.quantity)
+          }
+        }
+      }
+      this.setQuant(this.data)
+    }
   }
 
   @action
-  setQuant(idx, pid) {
-    console.log(pid)
-    let q = $(`#qty_for_index_${idx}`).val()
-    if(!isNaN(Number(q))) {
-      console.log(this.data)
+  typeQuant(idx, pid) {
+    let q = Number($(`#qty_for_index_${idx}`).val())
+    if(!isNaN(q)) {
       this.data.forEach(x => {
         if(x.pid == pid) x.quantity = q
       })
-      console.log(this.data)
     } else {
       for(let x of this.data) {
         if(x.pid = pid) {
-          console.log(x)
           $(`#qty_for_index_${idx}`).val(x.quantity)
         }
       }
     }
+    this.setQuant(this.data)
   }
 
   @action

@@ -25,18 +25,12 @@ export default class UserCartController extends Controller {
   }
 
   @action
-  minQuant(val, pid) {
-    // console.log("MIN", val)
-    this.cartData.map(x => {
-      if(x.pid == pid) x.quantity = val
-    })
-  }
-
-  @action
-  addQuant(val, pid) {
-    // console.log("MAX", val)
-    this.cartData.map(x => {
-      if(x.pid == pid) x.quantity = val
+  setQuant(data) {
+    set(this, 'cart.data', data)
+    this.admin.updateCart(data).then(response => {
+      console.log('response', response)
+    }).catch(e => {
+      console.log('e', e)
     })
   }
 

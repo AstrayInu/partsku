@@ -298,10 +298,26 @@ export default class AdminService extends Service {
     });
   }
 
+  updateCart(data) {
+    console.log('data', data)
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/users/cart/update`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
   deleteCartItem(data) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({
-        method: 'delete',
+        method: 'DELETE',
         contentType: 'application/json',
         url: `${this.config.appenv.API_ENDPOINT}/users/cart/delete`,
         data: JSON.stringify(data)
