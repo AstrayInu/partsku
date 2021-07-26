@@ -7,14 +7,22 @@ export default class CartCardComponent extends Component {
   @service storage
 
   get totalEach() {
-    let result = 0
-     this.data.forEach(x => {
-      if(x.sid == this.seller.sid) {
-        result = result + (x.price * x.quantity)
-      }
-    })
+    if(!this.buynow) {
+      let result = 0
+      this.data.forEach(x => {
+        if(x.sid == this.seller.sid) {
+          result = result + (x.price * x.quantity)
+        }
+      })
+    }
 
-    return result
+    return this.buynow ? this.totalCart : result
+  }
+
+  get viewImg() {
+    if(this.buynow) {
+      return this.product.attributes.imgUrl[0]
+    }
   }
 
   @computed('data')
@@ -58,6 +66,26 @@ export default class CartCardComponent extends Component {
     // console.log("add", q, idx)
     // $(`#qty_for_index_${idx}`).val(q)
     this.addQuant(q, pid)
+  }
+
+  @action
+  setQuant(idx, pid) {
+    console.log(pid)
+    let q = $(`#qty_for_index_${idx}`).val()
+    if(!isNaN(Number(q))) {
+      console.log(this.data)
+      this.data.forEach(x => {
+        if(x.pid == pid) x.quantity = q
+      })
+      console.log(this.data)
+    } else {
+      for(let x of this.data) {
+        if(x.pid = pid) {
+          console.log(x)
+          $(`#qty_for_index_${idx}`).val(x.quantity)
+        }
+      }
+    }
   }
 
   @action

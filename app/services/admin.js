@@ -150,7 +150,7 @@ export default class AdminService extends Service {
       $.ajax({
         method: 'GET',
         contentType: 'application/json',
-        url: `${this.config.appenv.API_ENDPOINT}/sellers/${uid}`
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/check-seller-status/${uid}`
       }).then((response) => {
         resolve(response)
       }, (reason) => {

@@ -6,14 +6,6 @@ export default class UserCartController extends Controller {
   @service storage
   @service admin
 
-  get userName() {
-    return this.storage.lget("user_name")
-  }
-
-  get userAddress() {
-    return this.storage.lget("user_attributes").address
-  }
-
   @computed('cartData')
   get productTotal() {
     let total = 0
@@ -34,7 +26,7 @@ export default class UserCartController extends Controller {
 
   @action
   minQuant(val, pid) {
-    console.log("MIN", val)
+    // console.log("MIN", val)
     this.cartData.map(x => {
       if(x.pid == pid) x.quantity = val
     })
@@ -42,7 +34,7 @@ export default class UserCartController extends Controller {
 
   @action
   addQuant(val, pid) {
-    console.log("MAX", val)
+    // console.log("MAX", val)
     this.cartData.map(x => {
       if(x.pid == pid) x.quantity = val
     })
@@ -61,11 +53,8 @@ export default class UserCartController extends Controller {
   }
 
   @action
-  async checkout() {
-    await window.scrollTo(0,0)
-    var modal = document.getElementById('modal');
-			modal.style.display = "block";
-    $("body").addClass('no-body-scroll')
+  checkout() {
+
   }
 
   @action
@@ -90,7 +79,7 @@ export default class UserCartController extends Controller {
       }
 
     this.admin.newTransaction(data).then(result => {
-      console.log(result)
+      // console.log(result)
       alert(result)
       location.href = '/user/my-orders'
     }).catch(e => {

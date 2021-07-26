@@ -48,6 +48,8 @@ export default class LoginController extends Controller {
       email: this.email,
       password: this.password
     }
+    $("#reg-btn").addClass("d-none")
+    $("#spinner").removeClass("d-none")
 
     this.session.loginUser(data).then( res => {
       set(this, 'successMessage', res.msg)
@@ -64,6 +66,8 @@ export default class LoginController extends Controller {
       if(!res.phone_number && !res.attributes.address) location.href = 'user/profile' // data not complete
       else location.href = '/'
     }).catch( e => {
+      $("#reg-btn").removeClass("d-none")
+      $("#spinner").addClass("d-none")
       let err = e.responseJSON.msg ? e.responseJSON.msg : e
       set(this, 'errorMessage', err)
       console.log("ERROR", err)

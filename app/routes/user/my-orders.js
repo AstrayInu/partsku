@@ -8,7 +8,7 @@ export default class UserMyOrdersRoute extends Route {
 
   async model() {
     let seller_data
-    if(!this.storage.lget("seller_data")) {
+    if(!this.storage.lget("seller_data") && this.storage.lget("user_type") != "user") {
       let sid = this.storage.lget("seller_id")
       seller_data = await this.admin.getSellerData(sid)
       

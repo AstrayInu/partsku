@@ -14,14 +14,17 @@ export default class HeaderDesktopComponent extends Component {
     return this.session.isUserLoggedin
   }
 
+  @computed("showReg")
   get notSeller() {
     if(this.isLoggedIn) {
       if(this.storage.lget("user_type") === "admin") return false
       else {
         this.admin.checkSellerStatus(this.storage.lget("user_id")).then(res => {
-          return false
+          // console.log('res', res)
+          if(res.err) set(this, "showReg", true)
+          else set(this, "showReg", false)
         }).catch(e => {
-          return true
+          console.log("e", e)
         })
       }
     }

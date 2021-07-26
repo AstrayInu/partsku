@@ -13,7 +13,7 @@
         </div>
       </div>
       {{#each @data as |item idx|}}
-        {{#if (eq item.sid @seller.sid)}}
+        {{#if (eq item.sid @seller.sid)}}{{log @data}}
           <div class="row justify-content-between p-3 border border-bottom-1">
             <div class="col-sm-6">
               <div class="row">
@@ -35,13 +35,13 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="input-group">
-                    {{!-- <div class="input-group-prepend">
+                    <div class="input-group-prepend">
                       <button id="" class="bg-white border-input" type="button" onclick={{action "min" item.quantity idx item.pid}}>&minus;</button>
-                    </div> --}}
-                    <input type="text" name="" id="qty_for_index_{{idx}}" value={{item.quantity}} class="form-control text-center border-dark" disabled>
-                    {{!-- <div class="input-group-append">
+                    </div>
+                    <input type="text" name="" id="qty_for_index_{{idx}}" value={{item.quantity}} class="form-control text-center border-dark" onkeyup={{action 'setQuant' idx item.pid}}>
+                    <div class="input-group-append">
                       <button id="" class="bg-white border-input" type="button" onclick={{action "add" item.quantity idx item.pid}}>&plus;</button>
-                    </div> --}}
+                    </div>
                   </div>
                 </div>
                 <div class="col-sm-3 product-list-text red-text-color align-self-center">
@@ -78,33 +78,59 @@
           </div>
         </div>
       </div>
-      {{#each @data as |item idx|}}
-        {{#if (eq item.sid @seller.sid)}}
-          <div class="row justify-content-between px-3 mb-4">
-            <div class="col-sm-7">
-              <div class="row">
-                <div class="col-sm-4">
-                  <img src="{{item.imgUrl}}" class="img-fluid">
-                </div>
-                <div class="col-sm">
-                  {{item.name}}
-                  <p>@{{format-currency item.price}}</p>
-                </div>
+      {{#if @buynow}}
+        <div class="row justify-content-between px-3 mb-4">
+          <div class="col-sm-7">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="{{viewImg}}" class="img-fluid">
               </div>
-            </div>
-            <div class="col-sm-5">
-              <div class="row">
-                <div class="col-sm my-1 text-center">
-                  {{item.quantity}}
-                </div>
-                <div class="col-sm my-1 text-center">
-                  {{cart-price item.price item.quantity}}
-                </div>
+              <div class="col-sm">
+                {{@product.name}}
+                <p>@{{format-currency @product.price}}</p>
               </div>
             </div>
           </div>
-        {{/if}}
-      {{/each}}
+          <div class="col-sm-5">
+            <div class="row">
+              <div class="col-sm my-1 text-center">
+                {{@quantity}}
+              </div>
+              <div class="col-sm my-1 text-center">
+                {{format-currency totalCart}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        {{#each @data as |item idx|}}
+          {{#if (eq item.sid @seller.sid)}}
+            <div class="row justify-content-between px-3 mb-4">
+              <div class="col-sm-7">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <img src="{{item.imgUrl}}" class="img-fluid">
+                  </div>
+                  <div class="col-sm">
+                    {{item.name}}
+                    <p>@{{format-currency item.price}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="col-sm my-1 text-center">
+                    {{item.quantity}}
+                  </div>
+                  <div class="col-sm my-1 text-center">
+                    {{cart-price item.price item.quantity}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      {{/if}}
       <div class="row bottom-content-card pt-3">
         <div class="col-sm-12">
           <div class="row mb-4">
@@ -137,7 +163,7 @@
             <div class="col-sm-4">
               <div class="row bottom-right p-2">
                 <div class="col-sm">
-                    Total: <p class="m-0 red-text-color font-weight-bold">{{format-currency this.totalEach}}</p>
+                    Total: <p class="m-0 red-text-color font-weight-bold">{{format-currency totalCart}}</p>
                 </div>
               </div>
             </div>

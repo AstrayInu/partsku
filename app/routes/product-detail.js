@@ -21,7 +21,7 @@ export default class ProductDetailRoute extends Route {
   }
 
   setupController(controller, {product_data, product_rating, avg}) {
-    console.log("==>", avg)
+    // console.log("==>", product_data)
     controller.set("product", product_data.product)
     controller.set("productAttr", product_data.product.attributes)
     controller.set("seller", product_data.seller)

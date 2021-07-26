@@ -78,7 +78,7 @@ export default class ProfileCardComponent extends Component {
 
   @computed('where')
   get userData() {
-    if(this.where == "user") {
+    if(this.where == "user" || this.where == "user-orders") {
       this.admin.getUserData(this.storage.lget("user_id")).then(response => {
         this.storage.lset("user_pp", response.attributes.imgUrl)
         return response

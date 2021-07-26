@@ -7,6 +7,7 @@
 		overflow: hidden;
 	}
 </style>
+<div class="d-none">{{countdown}}</div>
 <div class="secondary-color seller-products-container h-100vh">
 	<div class="container-fluid h-100">
 		<div class="row justify-content-center pt-3">
@@ -177,7 +178,7 @@
 		</div>
 	</div>
 </div>
-<Modal::Popups @style="upload-proof" @tid={{this.uploadProofTID}} @time={{created_at}} />
+<Modal::Popups @style="upload-proof" @tid={{this.uploadProofTID}} @time={{this.created_at}} />
 <Modal::Popups @style="view-proof" @data={{proofData}} />
 <Modal::Popups @style="rate-product" @data={{pData}} />
 <Modal::Popups @style="see-review" @data={{reviewData}} />

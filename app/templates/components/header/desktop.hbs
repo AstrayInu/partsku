@@ -1,4 +1,4 @@
-<div class="header container-fluid">
+<div class="header container-fluid">{{notSeller}}
   <div class="row top-header-console">
     <div class="col align-self-center">
       <span class="header-logo row justify-content-center">
@@ -71,7 +71,7 @@
     </div>
   </div>
   <span class="row header-seperator"></span>
-  {{#if this.notSeller}}
+  {{#if this.showReg}}
     <div class="row bottom-header-console">
       <div class="col-10"></div>
       <LinkTo @route="seller.register" @class="col bot-consoles">

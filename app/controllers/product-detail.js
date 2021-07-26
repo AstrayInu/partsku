@@ -35,6 +35,11 @@ export default class ProductDetailController extends Controller {
     }
   }
 
+  @computed("quantity")
+  get totalCart() {
+    return Number(this.product.price * this.quantity)
+  }
+
   @action
   waSeller() {
     let text = `Hi, I would like to ask about this product of yours :)%0Ahttps://partsku.id/product-detail/${this.product.pid}`

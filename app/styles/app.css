@@ -1091,7 +1091,7 @@ input:checked + .slider:before {
 /* cart */
 .background-design{
   background-image: url("https://res.cloudinary.com/partsku/image/upload/v1624280076/partsku/right_dotted_square_lwaatd.png"), url("https://res.cloudinary.com/partsku/image/upload/v1624280076/partsku/right_dotted_square_lwaatd.png");
-  /* min-height: 100vh; */
+  min-height: 40vh;
   background-position: right top, left bottom;
   background-repeat: no-repeat;
 }
