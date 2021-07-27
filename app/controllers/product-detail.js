@@ -15,8 +15,32 @@ export default class ProductDetailController extends Controller {
   }
 
   get mainImg() {
-    // console.log(this.product)
+    var img = new Image();
+    img.addEventListener("load", function(){
+        if(this.naturalHeight > this.naturalWidth) {
+          $("#p-detail-main-img").width('auto').height('100%')
+        } else {
+          $("#p-detail-main-img").width('100%').height('auto')
+        }
+    });
+    img.src = this.productAttr.imgUrl[0];
+
     return this.productAttr.imgUrl[0]
+  }
+
+  get subImg() {
+    for(let i=0 ; i<this.productAttr.imgUrl.length ; i++) {
+      var img = new Image();
+      img.addEventListener("load", function(){
+        if(this.naturalHeight > this.naturalWidth) {
+          $(`#p-detail-sub-img-${i}`).width('auto').height('100%')
+          $(`.p-detail-sub-img`).width('104px')
+        } else {
+          $(`#p-detail-sub-img-${i}`).width('100%').height('auto')
+        }
+      });
+      img.src = this.productAttr.imgUrl[i];
+    }
   }
 
   get itemCategory() {

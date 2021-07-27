@@ -48,14 +48,14 @@
           </div>
           <div class="row">
             <div class="p-detail-sub-row">
-              {{#each this.productAttr.imgUrl as |thing|}}
+              {{#each this.productAttr.imgUrl as |thing idx|}}
                 <div class="col-md-3 justify-content-center cursor-pointer" onclick={{action 'setMainImg' thing}}>
-                  <div class="p-detail-sub-img d-flex">
-                    <img class="w-100" src="{{thing}}">
+                  <div class="p-detail-sub-img justify-content-center d-flex">
+                    <img id="p-detail-sub-img-{{idx}}" class="" src="{{thing}}">
                   </div>
                 </div>
               {{/each}}
-            </div>
+            </div>{{subImg}}
           </div>
         </div>
       </div>

@@ -1484,7 +1484,6 @@ input:checked + .slider:before {
 }
 
 .p-detail-sub-img {
-  /* padding: 0 10px; */
   height: 100px;
   align-items: center;
 }
