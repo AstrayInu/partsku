@@ -26,18 +26,14 @@
         </div>
         <div class="col-7 right-shop-info align-self-center">
           <div class="shop-stat-box">
-            <div class="row text-center">
-              <div class="col-3">
-                <p class="shop-info-stat">Rating: <span class="shop-info-stat-val">18k</span></p>
-                <p class="shop-info-stat">Products: <span class="shop-info-stat-val">147</span></p>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="shop-info-stat">Joined: <span class="shop-info-stat-val">{{this.joined}}</span></p>
+                <p class="shop-info-stat">Products: <span class="shop-info-stat-val">{{this.seller.productCount}}</span></p>
               </div>
               <div class="col">
-                <p class="shop-info-stat">Chat reply percentage: <span class="shop-info-stat-val">100%</span></p>
-                <p class="shop-info-stat">Avg chat reply time: <span class="shop-info-stat-val">1 hour</span></p>
-              </div>
-              <div class="col">
-                <p class="shop-info-stat">Joined: <span class="shop-info-stat-val">1 month ago</span></p>
-                <p class="shop-info-stat">Followers: <span class="shop-info-stat-val">2.2k</span></p>
+                <p class="shop-info-stat">Shop Address:</p>
+                <p class="ml-3">{{{this.sellerAttr.address}}}</p>
               </div>
             </div>
           </div>

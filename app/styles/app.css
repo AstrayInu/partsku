@@ -634,7 +634,7 @@
 }
 
 .seller-tnc-container {
-  width: 400px;
+  width: max-content;
   padding-top: 1.5vw;
   color: #73A1C2;
 }
@@ -1443,6 +1443,7 @@ input:checked + .slider:before {
 
 .shop-info-stat {
   font-size: 15px;
+  font-weight: bold;
 }
 
 .shop-info-stat-val {

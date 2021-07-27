@@ -102,7 +102,7 @@
             </div>
           </div>
         </div>
-      {{else}}{{log "LOL"}}
+      {{else}}
         {{#each @data as |item idx|}}
           {{#if (eq item.sid @seller.sid)}}
             <div class="row justify-content-between px-3 mb-4">
@@ -163,7 +163,7 @@
             <div class="col-sm-4">
               <div class="row bottom-right p-2">
                 <div class="col-sm">
-                    Total: <p class="m-0 red-text-color font-weight-bold">{{#if @buynow}}{{format-currency totalCart}}{{else}}{{format-currency totalEach}}{{/if}}</p>
+                  Total: <p class="m-0 red-text-color font-weight-bold">{{#if @buynow}}{{format-currency totalCart}}{{else}}{{format-currency totalEach}}{{/if}}</p>
                 </div>
               </div>
             </div>

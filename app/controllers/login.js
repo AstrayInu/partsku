@@ -60,6 +60,7 @@ export default class LoginController extends Controller {
       this.storage.lset('user_attributes', res.attributes)
       this.storage.lset('user_pp', res.attributes.imgUrl)
       this.storage.lset('s_token', res.token)
+      if(res.phone_number) this.storage.lset('user_phone', res.phone_number)
       if(res.sid) this.storage.lset('seller_id', res.sid)
       if(res.type) this.storage.lset("user_type", res.type)
       

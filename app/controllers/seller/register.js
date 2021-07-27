@@ -55,6 +55,13 @@ export default class SellerRegisterController extends Controller {
   }
 
   @action
+  inputNoKtp(val) {
+    if(!val.match(/[0-9]/g)) {
+      set(this, 'ktpNum', '')
+    }
+  }
+
+  @action
   inputFotoToko(val) {
     // console.log('val', val)
     const file = val.target.files[0];
@@ -89,29 +96,20 @@ export default class SellerRegisterController extends Controller {
     let data = {
       shopName: this.shopName.trim(),
       waNum: this.waNum,
+      ktpNum: this.ktpNum,
       papKtp: this.papKtp,
       papToko: this.papToko,
       shopAddress: $("#shop-address").val(),
       uid: this.storage.lget("user_id")
     }
+    // console.log('data', data)
 
     $('#reg-btn').addClass("d-none")
     $('#spinner').removeClass("d-none")
 
     this.admin.createSeller(data).then( response => {
-      // console.log("BERHASIL", response)
-      // this.storage.lset("seller_id", response.sid)
-      // this.storage.lset("seller_data", response.data)
-      // this.storage.lset("user_type", 'seller')
-      
-      // set(this, 'successMessage', 'Registrasi berhasil.')
       alert("Registration completed! Please wait for the admin to validate the data you've given")
-      // $(".sreg-title").hide()
-      // setTimeout( () => {
-        // $(".sreg-title").show()
-        location.href = '/'
-      // }, 5000)
-      
+      location.href = '/'
     }).catch( e => {
       alert("Error :(\npls contact our devs")
       $('#reg-btn').removeClass("d-none")
@@ -119,5 +117,4 @@ export default class SellerRegisterController extends Controller {
       console.log('Error',e)
     })
   }
-
 }

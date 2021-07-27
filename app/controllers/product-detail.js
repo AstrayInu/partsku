@@ -24,6 +24,12 @@ export default class ProductDetailController extends Controller {
     return `${x[0]} > ${x[1]}`
   }
 
+  get joined() {
+    let d = new Date(this.seller.created_at)
+
+    return d.toLocaleString('default', {year: 'numeric', month: 'long'});
+  }
+
   @computed("avg")
   get starRating() {
     if(this.avg) {

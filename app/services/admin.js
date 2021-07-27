@@ -40,6 +40,21 @@ export default class AdminService extends Service {
     });
   }
 
+  updateSellerData(data, sid) {
+    return new EmberPromise((resolve, reject) => {
+      $.ajax({
+        method: 'PUT',
+        contentType: 'application/json',
+        url: `${this.config.appenv.API_ENDPOINT}/sellers/${sid}`,
+        data: JSON.stringify(data)
+      }).then((response) => {
+        resolve(response)
+      }, (reason) => {
+        reject(reason);
+      });
+    });
+  }
+
   getUserData(id) {
     return new EmberPromise((resolve, reject) => {
       $.ajax({

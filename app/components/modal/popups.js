@@ -15,6 +15,10 @@ export default class ModalPopupsComponent extends Component {
   get userAddress() {
     return this.storage.lget("user_attributes").address
   }
+  
+  get userPhone() {
+    return this.storage.lget("user_phone")
+  }
 
   @computed("data")
   get starRating() {
@@ -115,25 +119,27 @@ export default class ModalPopupsComponent extends Component {
 
   @action
   confirm() {
-    let d = new Date()
-      , time = `${d.getHours()}${d.getMinutes()}${d.getSeconds()}${d.getMilliseconds()}`
-      , rand = Math.floor(Math.random()*69)
-      , uid = this.storage.lget("user_id")
-      , transaction_id = `TPKU${time}${rand}${uid}`
-      , data = {
-          uid,
-          transaction_id,
-          total_price: this.totalCart,
-          cartData: this.buynow ? this.buyData : this.cart
-        }
-    if(this.buynow) data.buynow = true
-    // console.log(data)
-    this.admin.newTransaction(data).then(result => {
-      // console.log(result)
-      alert(result)
-      location.href = '/user/my-orders'
-    }).catch(e => {
-      console.log(e)
-    })
+    if(!(this.userPhone.length == 0 && this.userAddress.length == 0)) {
+      let d = new Date()
+        , time = `${d.getHours()}${d.getMinutes()}${d.getSeconds()}${d.getMilliseconds()}`
+        , rand = Math.floor(Math.random()*69)
+        , uid = this.storage.lget("user_id")
+        , transaction_id = `TPKU${time}${rand}${uid}`
+        , data = {
+            uid,
+            transaction_id,
+            total_price: this.totalCart,
+            cartData: this.buynow ? this.buyData : this.cart
+          }
+      if(this.buynow) data.buynow = true
+      // console.log(data)
+      this.admin.newTransaction(data).then(result => {
+        // console.log(result)
+        alert(result)
+        location.href = '/user/my-orders'
+      }).catch(e => {
+        console.log(e)
+      })
+    }
   }
 }
