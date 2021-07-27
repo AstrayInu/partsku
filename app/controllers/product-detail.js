@@ -19,7 +19,7 @@ export default class ProductDetailController extends Controller {
     img.addEventListener("load", function(){
         if(this.naturalHeight > this.naturalWidth) {
           $("#p-detail-main-img").width('auto').height('100%')
-        } else {
+        } else if(this.naturalHeight < this.naturalWidth) {
           $("#p-detail-main-img").width('100%').height('auto')
         }
     });
@@ -34,9 +34,12 @@ export default class ProductDetailController extends Controller {
       img.addEventListener("load", function(){
         if(this.naturalHeight > this.naturalWidth) {
           $(`#p-detail-sub-img-${i}`).width('auto').height('100%')
-          $(`.p-detail-sub-img`).width('104px')
-        } else {
+          $(`.p-detail-sub-img`).width('103.75px')
+        } else if(this.naturalHeight < this.naturalWidth) {
           $(`#p-detail-sub-img-${i}`).width('100%').height('auto')
+        } else {
+          $(`#p-detail-sub-img-${i}`).width('100%').height('100%')
+          $(`.p-detail-sub-img`).width('105.75px')
         }
       });
       img.src = this.productAttr.imgUrl[i];
