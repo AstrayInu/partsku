@@ -19,25 +19,22 @@
             </div>
             <div class="row justify-content-center mt-3">
               <div class="col-sm-12">
-                <input type="text" name="" id=""
-                  class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{this.shopName}}>
+                <input type="text" name="" id="" class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{this.shopName}} disabled>
               </div>
             </div>
-            <div class="row justify-content-center mt-3">
+            <div class="row justify-content-center mt-4">
               <div class="col-sm-11">
-                <h4 class="font-weight-bold primary-text-color label-font">
-                  EMAIL
+                <h4 class="font-weight-bold primary-text-color label-font m-0">
+                  ID Card Number (KTP)
                 </h4>
               </div>
             </div>
             <div class="row justify-content-center mt-3">
               <div class="col-sm-12">
-                <input type="text" name="" id=""
-                  class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color"
-                  value={{this.email}}>
+                <input type="text" name="" id="" class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{this.ktp}} disabled>
               </div>
             </div>
-            <div class="row justify-content-center mt-3">
+            <div class="row justify-content-center mt-4">
               <div class="col-sm-11">
                 <h4 class="font-weight-bold primary-text-color label-font">
                   ACTIVE WHATSAPP NUMBER
@@ -47,8 +44,7 @@
             <div class="row justify-content-center mt-3">
               <div class="col-sm-12 flex-row">
                 <label class="prepend-label input-font px-3 p-3 border border-radius-0 border-right-0">+62</label>
-                <input type="text" name="" id=""
-                  class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{this.activeWA}}>
+                <input type="text" name="" id="" class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" onkeyup={{action 'setWAnum' value="target.value"}} value={{this.seller.attributes.waNum}}>
               </div>
             </div>
           </div>
@@ -62,8 +58,7 @@
             </div>
             <div class="row justify-content-center mt-3">
               <div class="col-sm-12">
-                <textarea name="" id="" cols="50" rows="6"
-                  class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{shopAddress}}></textarea>
+                <textarea name="" id="shop-address" cols="50" rows="6" class="input-font width-100 p-3 px-3 border border-radius-0 primary-text-color" value={{shopAddress}}></textarea>
               </div>
             </div>
             <div class="row justify-content-center mt-4">

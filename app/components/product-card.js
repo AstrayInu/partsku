@@ -24,7 +24,8 @@ export default class ProductCardComponent extends Component {
 
   @computed('data')
   get sellerAttributes() {
-    let attr = JSON.parse(this.data.attributes)
+    // console.log(this.data)
+    let attr = this.data.attributes
     return attr
   }
 
@@ -33,9 +34,54 @@ export default class ProductCardComponent extends Component {
     return this.sellerAttributes.logo ? this.sellerAttributes.logo : `https://res.cloudinary.com/partsku/image/upload/v1624543471/partsku/default_pp_uc7fxq.png`
   }
 
-  @computed('data')
+  @computed('product')
+  get itemActive() {
+    return this.product.is_active == 1
+  }
+
+  @computed('product')
   get productImg() {
-    return JSON.parse(this.product.attributes).imgUrl[0]
+    return this.product.attributes.imgUrl[0]
+  }
+
+  get finalImg() {
+    var img = new Image();
+    img.addEventListener("load", function(){
+      if(this.naturalHeight > this.naturalWidth) {
+        $(`#pcard-main-img-${this.idx}`).prop('width','fit-content').prop('height','100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $(`#pcard-main-img-${this.idx}`).width('100%').height('fit-content')
+      }
+    });
+    img.src = this.product.attributes.imgUrl[0];
+
+    return this.product.attributes.imgUrl[0]
+  }
+
+  @action
+  activateProduct() {
+    let newStatus = this.product.is_active == 1 ? 0 : 1
+      , msg = newStatus ? `Product is now active` : `Product is now inactive`
+    this.admin.setProductActive(newStatus, this.product.pid).then(res => {
+      // console.log('res', res)
+      alert(msg)
+      location.reload()
+    }).catch(e => {
+      console.log(e)
+      alert("ERROR")
+    })
+  }
+
+  @action
+  setShopImg(val) {
+    var imgs = document.getElementById("show-proof-img")
+    imgs.src = val
+  }
+  
+  @action
+  setKTPImg(val) {
+    var imgs = document.getElementById("show-proof-img")
+    imgs.src = val
   }
 
   @action
@@ -45,14 +91,14 @@ export default class ProductCardComponent extends Component {
 
   @action
   deleteProduct(val) {
-    console.log(val)
+    // console.log(val)
     set(this, 'deletePid', val)
   }
 
   @action
   delete(pid) {
     this.admin.deleteProduct(pid).then(res => {
-      console.log('res', res)
+      // console.log('res', res)
       alert(res)
       location.reload();
     }).catch(e => {
@@ -60,11 +106,6 @@ export default class ProductCardComponent extends Component {
       alert(e.responseJSON.msg)
       location.reload();
     })
-  }
-
-  @action
-  productUrl() {
-    return `/product/${this.product.pid}`
   }
 
   @action

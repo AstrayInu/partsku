@@ -1,7 +1,11 @@
 import Component from '@ember/component';
-import { later } from '@ember/runloop';
-import { set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import $ from 'jquery';
+import { action, set, computed } from '@ember/object';
 
 export default class ProductsItemCardComponent extends Component {
-
+ @action
+ goTo(val) {
+   location.href = `/product-detail/${val}`
+ }
 }

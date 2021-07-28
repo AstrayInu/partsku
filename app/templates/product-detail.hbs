@@ -4,15 +4,15 @@
       <div class="row">
         <div class="col left-shop-info align-self-center">
           <div class="row">
-            <div class="col-3">
+            <div class="col-3 d-flex align-self-center">
               <img class="shop-info-pp" src="{{this.sellerImg}}" width="100">
             </div>
             <div class="col-9 align-self-center">
               <p class="shop-info-name">{{this.sellerAttr.shop_name}}</p>
               <div class="row">
-                <div class="col">
+                {{!-- <div class="col">
                   <button class="btn visit-shop-btn">Visit Shop</button>
-                </div>
+                </div> --}}
                 <div class="col">
                   <button class="btn wa-shop-btn" onclick={{action 'waSeller'}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
@@ -26,18 +26,14 @@
         </div>
         <div class="col-7 right-shop-info align-self-center">
           <div class="shop-stat-box">
-            <div class="row text-center">
-              <div class="col-3">
-                <p class="shop-info-stat">Rating: <span class="shop-info-stat-val">18k</span></p>
-                <p class="shop-info-stat">Products: <span class="shop-info-stat-val">147</span></p>
+            <div class="row">
+              <div class="col-md-4">
+                <p class="shop-info-stat">Joined: <span class="shop-info-stat-val">{{this.joined}}</span></p>
+                <p class="shop-info-stat">Products: <span class="shop-info-stat-val">{{this.seller.productCount}}</span></p>
               </div>
               <div class="col">
-                <p class="shop-info-stat">Chat reply percentage: <span class="shop-info-stat-val">100%</span></p>
-                <p class="shop-info-stat">Avg chat reply time: <span class="shop-info-stat-val">1 hour</span></p>
-              </div>
-              <div class="col">
-                <p class="shop-info-stat">Joined: <span class="shop-info-stat-val">1 month ago</span></p>
-                <p class="shop-info-stat">Followers: <span class="shop-info-stat-val">2.2k</span></p>
+                <p class="shop-info-stat">Shop Address:</p>
+                <p class="">{{{this.sellerAttr.address}}}</p>
               </div>
             </div>
           </div>
@@ -47,44 +43,55 @@
     <div class="row product-detail-top">
       <div class="col-5">
         <div class="p-detail-top-left">
-          <div class="p-detail-main-img justify-content-center">
-            <img id="p-detail-main-img" src="{{this.mainImg}}" width="437">
+          <div class="justify-content-center p-detail-main-img d-flex">
+            <img id="p-detail-main-img" class="border-radius-8px" src="{{this.mainImg}}" width="100%" height="100%">
           </div>
           <div class="row">
             <div class="p-detail-sub-row">
-              {{#each this.productAttr.imgUrl as |thing|}}
-                <div class="col-md-3 justify-content-center">
-                  <div class="p-detail-sub-img">
-                    <img src="{{thing}}">
+              {{#each this.productAttr.imgUrl as |thing idx|}}
+                <div class="col-md-3 p-detail-sub-img-{{idx}} justify-content-center cursor-pointer" onclick={{action 'setMainImg' thing}}>
+                  <div class="p-detail-sub-img justify-content-center d-flex">
+                    <img id="p-detail-sub-img-{{idx}}" class="border-radius-8px" src="{{thing}}">
                   </div>
                 </div>
               {{/each}}
-            </div>
+            </div>{{subImg}}
           </div>
         </div>
       </div>
       <div class="col p-detail-top-right">
         <h1 class="main-product-name">{{this.product.name}}</h1>
         <div class="row text-center">
-          <div class="col align-self-center">
-            <span class="p-detail-rating">5.0</span>
-            <StarRating />
-          </div>
-          <div class="col p-detail-rates">139 ratings</div>
+          <div class="col d-flex">
+            <span class="p-detail-rating">{{this.avg}}</span>
+            <fieldset class="rating-static">
+              <input type="radio" id="star5-static" name="rating" value="5" disabled readonly/><label class = "full" for="star5"></label>
+              <input type="radio" id="star4half-static" name="rating" value="4.5" disabled readonly /><label class="half" for="star4half"></label>
+              <input type="radio" id="star4-static" name="rating" value="4" disabled readonly /><label class = "full" for="star4"></label>
+              <input type="radio" id="star3half-static" name="rating" value="3.5" disabled readonly /><label class="half" for="star3half"></label>
+              <input type="radio" id="star3-static" name="rating" value="3" disabled readonly /><label class = "full" for="star3"></label>
+              <input type="radio" id="star2half-static" name="rating" value="2.5" disabled readonly /><label class="half" for="star2half"></label>
+              <input type="radio" id="star2-static" name="rating" value="2" disabled readonly /><label class = "full" for="star2"></label>
+              <input type="radio" id="star1half-static" name="rating" value="1.5" disabled readonly /><label class="half" for="star1half"></label>
+              <input type="radio" id="star1-static" name="rating" value="1" disabled readonly /><label class = "full" for="star1"></label>
+              <input type="radio" id="starhalf-static" name="rating" value="0.5" disabled readonly /><label class="half" for="starhalf"></label>
+            </fieldset>
+          </div>{{starRating}}
+          <div class="col p-detail-rates d-flex justify-content-center">{{this.ratingCount}} ratings</div>
           <div class="col p-detail-sold">{{this.product.sold}} sold</div>
         </div>
         <h1 class="main-product-price">{{format-currency this.product.price}}</h1>
         <p class="main-product-sku">SKU: {{this.product.sku}}</p>
         <div class="d-flex align-self-center">
           <p class="main-product-quantity">Quantity</p>
-          <button class="btn quantity-btn" onclick={{action "plusQuantity"}}>+</button>
-          <Input @class="quantity-input-box text-center" @value={{this.quantity}} />
           <button class="btn quantity-btn" onclick={{action "minQuantity"}}>-</button>
+          <Input @class="quantity-input-box text-center" @value={{this.quantity}} />
+          <button class="btn quantity-btn" onclick={{action "plusQuantity"}}>+</button>
           <p class="main-product-stock">{{this.product.stock}} items left</p>
         </div>
         <div class="d-flex transaction-btn-div">
           <button class="btn add-to-cart-btn" onclick={{action "addToCart"}}>ADD TO CART</button>
-          <button class="btn buy-now-btn" onclick={{action "buyNow"}}>BUY NOW</button>
+          <button class="btn buy-now-btn" data-toggle="modal" data-target="#checkoutTab" onclick={{action "buyNow"}}>BUY NOW</button>
         </div>
       </div>
     </div>
@@ -98,9 +105,8 @@
             <div class="row d-block spec-list">
               <p>Categories: <span class="spec-value">{{this.itemCategory}}</span></p>
               <p>Brand: <span class="spec-value">{{this.product.brand}}</span></p>
-              {{!-- <p>Warranty: <span class="spec-value">1 Year</span></p> --}}
               <p>Stock: <span class="spec-value">{{this.product.stock}}</span></p>
-              <p>Sent from: <span class="spec-value">Tangerang city</span></p>
+              <p>Sent from: <span class="spec-value">{{{this.sellerAttr.address}}}</span></p>
             </div>
           </div>
         </div>
@@ -119,9 +125,8 @@
           </div>
         </div>
       </div>
-      <div class="col">
-
-      </div>
+      <div class="col"></div>
     </div>
   </div>
 </div>
+<Modal::Popups @style="checkout" @buynow=true @cartData={{this.product}} @cartSeller={{this.seller}} @totalCart={{this.totalCart}} @quantity={{this.quantity}} />

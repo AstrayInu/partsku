@@ -6,6 +6,8 @@ import { computed, action, set } from '@ember/object';
 export default class IndexController extends Controller {
   @service admin
 
+  btnName = 'Explore Other Brands'
+
   get indexBrands1() {
     return this.admin.indexBrand.slice(0,4)
   }
@@ -18,9 +20,11 @@ export default class IndexController extends Controller {
   showBrands() {
     if(!this.shown) {
       $("#brand-list2").removeClass("d-none")
+      set(this, 'btnName', 'Close Expansion')
       set(this, 'shown', true)
     } else {
       $("#brand-list2").addClass("d-none")
+      set(this, 'btnName', 'Explore Other Brands')
       set(this, 'shown', false)
     }
   }

@@ -7,6 +7,11 @@ export default class SellerTransactionListController extends Controller {
   @service admin
   @service storage
 
+  @computed('shows')
+  get shownData() {
+    return this.shows == 'done' ? this.done : this.pending
+  }
+
   @action
   changeView(val) {
     set(this, 'shows', val)
@@ -38,8 +43,9 @@ export default class SellerTransactionListController extends Controller {
   }
 
   @action
-  changeTransStatus(val, tid) {
-    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, sid: this.storage.lget("seller_id")}).then(result => {
+  changeTransStatus(val, tid, quantity, pid) {
+    let sid = this.storage.lget("seller_id")
+    this.admin.setTransactionStatus({shipment_status: val, transaction_id: tid, pid, quantity}).then(result => {
       alert("Transaction Updated!")
       location.reload()
     }).catch(e => {
@@ -83,7 +89,7 @@ export default class SellerTransactionListController extends Controller {
     $("#upload-btn").addClass("d-none")
     $("#spinner").removeClass("d-none")
     this.admin.uploadProof(uploadData).then(result => {
-      console.log(result)
+      // console.log(result)
       alert(result.msg)
       location.reload()
     }).catch(e => {

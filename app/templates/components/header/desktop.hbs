@@ -1,9 +1,9 @@
-<div class="header container-fluid">
+<div class="header container-fluid">{{notSeller}}
   <div class="row top-header-console">
     <div class="col align-self-center">
       <span class="header-logo row justify-content-center">
         <a href="/">
-          <img src="https://res.cloudinary.com/partsku/image/upload/v1622973318/partsku/Logo_nyz2hs.png" alt="">
+          <img src="https://res.cloudinary.com/partsku/image/upload/v1626950621/partsku/Logo_gjpfin.png" alt="">
         </a>
       </span>
     </div>
@@ -20,7 +20,7 @@
     <div class="col align-self-center">
       {{!-- <div class="header-user-console-outer"> --}}
         <ul class="header-user-console">
-          <li>
+          {{!-- <li>
             <LinkTo @route="{{this.wishRoute}}" @class="top-consoles top-consoles-wishlist">
               <span class="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
                 </svg>
               </span>
             </LinkTo>
-          </li>
+          </li> --}}
           <li>
             <LinkTo @route="{{this.cartRoute}}" @class="top-consoles">
               <span class="">
@@ -40,7 +40,7 @@
           </li>
           <li>
             {{#if this.isLoggedIn}}
-              <LinkTo @route="user.profile" @class="top-consoles loggedin-name d-flex">
+              <LinkTo @route="{{userSellerRoute}}" @class="top-consoles loggedin-name d-flex">
                 <p class="header-username">{{this.userName}}</p>
                 <img class="header-pp" src="{{this.smallPp}}" width="24" height="24">
               </LinkTo>
@@ -71,11 +71,9 @@
     </div>
   </div>
   <span class="row header-seperator"></span>
-  {{#if this.notSeller}}
+  {{#if this.showReg}}
     <div class="row bottom-header-console">
-      <div class="col-10">
-
-      </div>
+      <div class="col-10"></div>
       <LinkTo @route="seller.register" @class="col bot-consoles">
         Become a seller
       </LinkTo>

@@ -18,14 +18,18 @@ export default class ProfileCardComponent extends Component {
     let currRoute = this.router.currentRouteName
     if(currRoute === "user.profile") {
       $("#user-profile-tab").removeClass("font-weight-light")
+      $("#user-profile-tab").addClass("font-weight-bold")
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
+      $("#transaction-tab").addClass("font-weight-light")
+      $("#seller-tab").addClass("font-weight-light")
     }
     if(currRoute === 'user.my-orders') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#user-orders-tab").removeClass("font-weight-light")
+      $("#user-orders-tab").addClass("font-weight-bold")
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
@@ -34,6 +38,7 @@ export default class ProfileCardComponent extends Component {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").removeClass("font-weight-light")
+      $("#seller-profile-tab").addClass("font-weight-bold")
       $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").addClass("font-weight-light")
     }
@@ -42,6 +47,7 @@ export default class ProfileCardComponent extends Component {
       $("#user-orders-tab").addClass("font-weight-light")
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#orders-tab").removeClass("font-weight-light")
+      $("#orders-tab").addClass("font-weight-bold")
       $("#parts-tab").addClass("font-weight-light")
     }
     if(currRoute === 'seller.products-list') {
@@ -50,15 +56,18 @@ export default class ProfileCardComponent extends Component {
       $("#seller-profile-tab").addClass("font-weight-light")
       $("#orders-tab").addClass("font-weight-light")
       $("#parts-tab").removeClass("font-weight-light")
+      $("#parts-tab").addClass("font-weight-bold")
     }
     if(currRoute == 'admin.seller-list') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#transaction-tab").addClass("font-weight-light")
       $("#seller-tab").removeClass("font-weight-light")
+      $("#seller-tab").addClass("font-weight-bold")
     }
     if(currRoute == 'admin.transaction-list') {
       $("#user-profile-tab").addClass("font-weight-light")
       $("#transaction-tab").removeClass("font-weight-light")
+      $("#transaction-tab").addClass("font-weight-bold")
       $("#seller-tab").addClass("font-weight-light")
     }
 
@@ -69,7 +78,7 @@ export default class ProfileCardComponent extends Component {
 
   @computed('where')
   get userData() {
-    if(this.where == "user") {
+    if(this.where == "user" || this.where == "user-orders") {
       this.admin.getUserData(this.storage.lget("user_id")).then(response => {
         this.storage.lset("user_pp", response.attributes.imgUrl)
         return response

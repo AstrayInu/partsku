@@ -1,0 +1,288 @@
+{{#if (eq @style "rate-product")}}
+  <div class="modal fade" id="rateProduct" tabindex="-1" role="dialog" aria-labelledby="rateProduct" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Rate the product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body show-proof-img w-100 text-center">
+          <div class="container">
+            <div class="row">
+              <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" onclick={{action "setRate" value='target.value'}} /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4half" name="rating" value="4.5" onclick={{action "setRate" value='target.value'}} /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" onclick={{action "setRate" value='target.value'}} /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3half" name="rating" value="3.5" onclick={{action "setRate" value='target.value'}} /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" onclick={{action "setRate" value='target.value'}} /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2half" name="rating" value="2.5" onclick={{action "setRate" value='target.value'}} /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" onclick={{action "setRate" value='target.value'}} /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1half" name="rating" value="1.5" onclick={{action "setRate" value='target.value'}} /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" onclick={{action "setRate" value='target.value'}} /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                <input type="radio" id="starhalf" name="rating" value="0.5" onclick={{action "setRate" value='target.value'}} /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+              </fieldset>
+            </div>
+            <div class="row">
+              <h5>Write something about the product</h5>
+              <textarea name="" id="review-box" cols="50" rows="10" value='target.value'></textarea>
+            </div>
+            <div class="row mt-3">
+              <button class="primary-color white-text-color p-2 border-radius-0" onclick={{action "submitReview"}}>Submit Review</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{else if (eq @style "see-review")}}
+  <div class="modal fade" id="seeReview" tabindex="-1" role="dialog" aria-labelledby="seeReview" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Your Review</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body show-proof-img w-100 text-center">
+          <div class="container">
+            <div class="row">{{starRating}}
+              <fieldset class="rating-static">
+                <input type="radio" id="star5-static" name="rating" value="5" disabled readonly/><label class = "full" for="star5-static"></label>
+                <input type="radio" id="star4half-static" name="rating" value="4.5" disabled readonly /><label class="half" for="star4half-static"></label>
+                <input type="radio" id="star4-static" name="rating" value="4" disabled readonly /><label class = "full" for="star4-static"></label>
+                <input type="radio" id="star3half-static" name="rating" value="3.5" disabled readonly /><label class="half" for="star3half-static"></label>
+                <input type="radio" id="star3-static" name="rating" value="3" disabled readonly /><label class = "full" for="star3-static"></label>
+                <input type="radio" id="star2half-static" name="rating" value="2.5" disabled readonly /><label class="half" for="star2half-static"></label>
+                <input type="radio" id="star2-static" name="rating" value="2" disabled readonly /><label class = "full" for="star2-static"></label>
+                <input type="radio" id="star1half-static" name="rating" value="1.5" disabled readonly /><label class="half" for="star1half-static"></label>
+                <input type="radio" id="star1-static" name="rating" value="1" disabled readonly /><label class = "full" for="star1-static"></label>
+                <input type="radio" id="starhalf-static" name="rating" value="0.5" disabled readonly /><label class="half" for="starhalf-static"></label>
+              </fieldset>
+            </div>
+            <div class="row">
+              <p>{{@data.review}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{else if (eq @style "upload-proof")}}
+  <div class="modal fade" id="uploadProof" tabindex="-1" role="dialog" aria-labelledby="uploadproof" aria-hidden="true">{{countdown}}
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload Proof of Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick={{action "closeModal"}}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <h5 class="text-center primary-text-color">You need to upload your proof of payment and the admin will validate your payment</h5>
+            </div>
+            <div class="row justify-content-center">
+              <p class="m-0">Please transfer to the following bank account before the time expires</p>
+            </div>
+            <div class="row justify-content-center">
+              <img src="https://res.cloudinary.com/partsku/image/upload/v1625287005/partsku/bca-bank-central-asia-logo_yjkmnc.png" alt="" width="50%">
+            </div>
+            <div class="row justify-content-center">
+              <h4 class="font-weight-bold">1234 5678 90</h4>
+            </div>
+            <div class="row justify-content-center">
+              <h5 class="text-center">Please complete the transaction in:</h5>
+            </div>
+            <div class="row justify-content-center">
+              <p id="countdown"></p>
+            </div>
+            <div class="row justify-content-center">
+              <img id="preview-proof" class="my-5 w-75 d-none" src="" width="100%">
+            </div>
+            <div class="row justify-content-center text-center">
+              <input id="input-proof" class="input-style p-2" type="file" accept="image/*" onchange={{action "inputFoto"}}>
+              {{#if this.uploaded}}
+                <button id="upload-btn" class="btn upload-btn ml-5" onclick={{action "upload"}}>UPLOAD</button>
+                <img id="spinner" class="d-none" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{else if (eq style "view-proof")}}
+  <div class="modal fade" id="viewProof" tabindex="-1" role="dialog" aria-labelledby="viewProof" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body show-proof-img w-100 text-center">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <img id="show-proof-img" src="{{@data}}" alt="" width="100%">
+        </div>
+      </div>
+    </div>
+  </div>
+{{else if (eq style "checkout")}}
+  <div class="modal fade" id="checkoutTab" tabindex="-1" role="dialog" aria-labelledby="checkoutTab" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex align-self-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="50" height="50"
+              fill="#e92424">
+              <path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+                  c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+                  C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+                  s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
+            </svg>
+            <text class="checkout-title my-auto">
+              Checkout
+            </text>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            {{!-- <div class="row justify-content-center">
+              <div class="col-sm-10">
+                <div class="row justify-content-end">
+                  <button class="btn btn-brand-reversed">
+                    + ADD NEW ADDRESS
+                  </button>
+                </div>
+              </div>
+            </div> --}}
+            <div class="row justify-content-center mt-3 mb-4">
+              <div class="col-sm-10 content-card border px-5">
+                <div class="row card-title-text mt-3">
+                  {{this.userName}}
+                </div>
+                <div class="row my-3">
+                  <div class="mx-1 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+                      <path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+                          c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+                          C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+                          s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z" />
+                    </svg>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      {{this.userAddress}}
+                    </div>
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="mx-1 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+                      <path d="M499.66,376.96l-71.68-71.68c-25.6-25.6-69.12-15.359-79.36,17.92c-7.68,23.041-33.28,35.841-56.32,30.72
+                        c-51.2-12.8-120.32-79.36-133.12-133.12c-7.68-23.041,7.68-48.641,30.72-56.32c33.28-10.24,43.52-53.76,17.92-79.36l-71.68-71.68
+                        c-20.48-17.92-51.2-17.92-69.12,0l-48.64,48.64c-48.64,51.2,5.12,186.88,125.44,307.2c120.32,120.32,256,176.641,307.2,125.44
+                        l48.64-48.64C517.581,425.6,517.581,394.88,499.66,376.96z" />
+                    </svg>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row font-weight-bold my-1">
+                    + 62 - {{userPhone}}
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-end">
+                  {{!-- <div class="col-sm-2 mx-1 btn-brand-clear">
+                    DELETE
+                  </div>
+                  <div class="col-sm-2 mx-1 btn-brand">
+                    CHANGE
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+            <div class="">
+              {{#if @buynow}}
+                <CartCard @style="checkout" @buynow=true @product={{@cartData}} @seller={{this.cartSeller}} @totalCart={{@totalCart}} @quantity={{@quantity}} />
+              {{else}}
+                {{#each @cartSeller as |item|}}
+                  <CartCard @style="checkout" @data={{@cartData}} @seller={{item}} />
+                {{/each}}
+              {{/if}}
+            </div>
+            <div class="row justify-content-center mb-3">
+              <div class="col-sm-10 content-card border px-5">
+                <div class="row card-title-text">
+                  <div class="col-4 align-self-center">
+                    Payment Method
+                  </div>
+                  <div class="col-sm-2 d-flex flex-row">
+                    <div class="my-auto">
+                      <input type="radio" name="pay-bca" id="pay-bca" checked>
+                    </div>
+                    <img src="https://res.cloudinary.com/partsku/image/upload/v1625287005/partsku/bca-bank-central-asia-logo_yjkmnc.png" alt="" class="img-fluid img-resize my-auto">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+              <div class="col-sm-10">
+                <div class="row justify-content-end">
+                  <div class="col-sm-9">
+                    <div class="row justify-content-end px-4">
+                      <div class="col-sm">
+                        <div class="row">
+                          <h5 class="font-weight-normal">
+                            Subtotal For Product
+                          </h5>
+                        </div>
+                        <div class="row mt-2">
+                          <h5 class="font-weight-normal">
+                            Shipping Payment
+                          </h5>
+                        </div>
+                        <div class="row mt-4">
+                          <h5 class="font-weight-normal">
+                            Total Cost
+                          </h5>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="row justify-content-end">
+                          <h5 class="font-weight-normal">
+                            {{format-currency this.totalCart}}
+                          </h5>
+                        </div>
+                        <div class="row justify-content-end mt-2">
+                          <h5 class="font-weight-normal">
+                            Rp 0
+                          </h5>
+                        </div>
+                        <div class="row justify-content-end mt-3">
+                          <h2 class="font-weight-normal">
+                            {{format-currency this.totalCart}}
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+              <div class="col-sm-10">
+                <button class="btn-brand p-3 px-4 float-right" onclick={{action "confirm"}}>
+                  Confirm Purchase
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

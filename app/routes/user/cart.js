@@ -14,7 +14,7 @@ export default class UserCartRoute extends Route {
   }
 
   setupController(controller, { cartData }) {
-    console.log("CARTT",cartData)
+    // console.log("CARTT",cartData)
 
     controller.set("cart", cartData)
     controller.set("cartSeller", cartData.seller)

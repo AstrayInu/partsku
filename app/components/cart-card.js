@@ -6,15 +6,43 @@ export default class CartCardComponent extends Component {
   @service admin
   @service storage
 
+  @computed("data")
   get totalEach() {
-    let result = 0
-     this.data.forEach(x => {
-      if(x.sid == this.seller.sid) {
-        result = result + (x.price * x.quantity)
-      }
-    })
+    if(!this.buynow) {
+      let result = 0
+      this.data.forEach(x => {
+        if(x.sid == this.seller.sid) {
+          result = result + (x.price * x.quantity)
+        }
+      })
 
-    return result
+      return result
+    }
+
+    return this.totalCart
+  }
+
+  get viewImg() {
+    if(this.buynow) {
+      return this.product.attributes.imgUrl[0]
+    }
+  }
+
+  @computed('data')
+  get estimateDate() {
+    let now = new Date()
+      , nowTime = now.toTimeString()
+      , today = now.toDateString()
+      , next = new Date(now.setDate(now.getDate() + 1))
+      , twodays = new Date(now.setDate(now.getDate() + 2))
+      , front
+
+    today = today.split(" ")
+    next = next.toDateString().split(" ")
+    twodays = twodays.toDateString().split(" ")
+    front = (nowTime.split(" ")[0].split(":")[0] >= 16) ? `${next[2]} ${next[1]}` : `${today[2]} ${today[1]}`
+
+    return `${front} - ${twodays[2]} ${twodays[1]} ${twodays[3]}`
   }
 
   @action
@@ -28,19 +56,62 @@ export default class CartCardComponent extends Component {
   }
 
   @action
-  min(val, idx, pid) {
-    let q = Number(val) - 1
-    // console.log("min", q, idx)
-    $(`#qty_for_index_${idx}`).val(q)
-    this.minQuant(q, pid)
+  min(idx, pid) {
+    let val = Number($(`#qty_for_index_${idx}`).val())
+    if(val > 1) {
+      let q = Number(val) - 1
+      $(`#qty_for_index_${idx}`).val(q)
+      if(!isNaN(q)) {
+        this.data.forEach(x => {
+          if(x.pid == pid) x.quantity = q
+        })
+      } else {
+        for(let x of this.data) {
+          if(x.pid = pid) {
+            $(`#qty_for_index_${idx}`).val(x.quantity)
+          }
+        }
+      }
+      this.setQuant(this.data)
+    }
   }
-  
+
   @action
-  add(val, idx, pid) {
-    let q = Number(val) + 1
-    // console.log("add", q, idx)
-    // $(`#qty_for_index_${idx}`).val(q)
-    this.addQuant(q, pid)
+  add(idx, pid, stock) {
+    let val = Number($(`#qty_for_index_${idx}`).val())
+    if(val < stock) {
+      let q = Number(val) + 1
+      $(`#qty_for_index_${idx}`).val(q)
+      if(!isNaN(q)) {
+        this.data.forEach(x => {
+          if(x.pid == pid) x.quantity = q
+        })
+      } else {
+        for(let x of this.data) {
+          if(x.pid = pid) {
+            $(`#qty_for_index_${idx}`).val(x.quantity)
+          }
+        }
+      }
+      this.setQuant(this.data)
+    }
+  }
+
+  @action
+  typeQuant(idx, pid) {
+    let q = Number($(`#qty_for_index_${idx}`).val())
+    if(!isNaN(q)) {
+      this.data.forEach(x => {
+        if(x.pid == pid) x.quantity = q
+      })
+    } else {
+      for(let x of this.data) {
+        if(x.pid = pid) {
+          $(`#qty_for_index_${idx}`).val(x.quantity)
+        }
+      }
+    }
+    this.setQuant(this.data)
   }
 
   @action

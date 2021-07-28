@@ -61,10 +61,14 @@ export default class RegisterController extends Controller {
       // })
     // } else {
     //   set(this, 'errorMessage', 'Password minimal 8 karakter & 1 huruf besar & 1 huruf kecil & 1 angka')
+    } else {
+      set(this, 'errorMessage', 'Password must contain at least 1 Capital letter, 1 small case letter and 1 number')
     }
   }
 
   createuser(data) {
+    $("#reg-btn").addClass("d-none")
+    $("#spinner").removeClass("d-none")
     this.admin.createUser(data).then( async response => {
       set(this, 'successMessage', response.msg)
       await setTimeout(() => {
@@ -72,6 +76,8 @@ export default class RegisterController extends Controller {
         location.href = '/login'
       }, 3000)
     }).catch(e => {
+      $("#reg-btn").removeClass("d-none")
+      $("#spinner").addClass("d-none")
       // setTimeout(() => {
       //   location.reload();
       // }, 1500)

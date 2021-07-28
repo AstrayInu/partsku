@@ -25,7 +25,7 @@
           <ProfileCard @class="col-sm-3" @where="parts" />
           <div class="col-sm-7 mx-4">
             <div id="list-infobox" class="row justify-content-between border border-radius-1 p-3 bg-white">
-              <div class="col-sm-2 justify-content-start">
+              <div class="col-sm justify-content-start">
                 <div class="d-flex">
                   <div class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 15 15">
@@ -37,15 +37,18 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <div class="d-flex row justify-content-between">
-                  <div class="ml-4">
+              <div class="col-sm">
+                <div class="row">
+                  <div class="col-3">
+                    Is Active
+                  </div>
+                  <div class="col-sm-4">
                     Price
                   </div>
-                  <div class="pl-5">
+                  <div class="col-sm-2">
                     Edit
                   </div>
-                  <div class="pr-5">
+                  <div class="col-sm-2">
                     Delete
                   </div>
                 </div>
@@ -80,15 +83,17 @@
         <div id="add-p-main-island" class="row justify-content-center d-none">
           <div class="col">
             <div class="text-center">
-              <span class="add-item-title primary-text-color">ADD ITEM</span>
+              <span class="add-item-title primary-text-color">
+                {{#if isEditing}}EDIT{{else}}ADD{{/if}} ITEM
+              </span>
               <button type="button" class="close" aria-label="Close" onclick={{action "closeAddProduct"}}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="row">
               <div class="col">
-                <div class="main-img-input-box">
-                  <img id="img-1" src="https://res.cloudinary.com/partsku/image/upload/v1624973731/partsku/Item_wp83he.png" width="400px" height="400px">
+                <div class="main-img-input-box d-flex">
+                  <img id="img-1" src="https://res.cloudinary.com/partsku/image/upload/v1624973731/partsku/Item_wp83he.png" width="100%">
                   <input class="input-main-p-img" type="file" onchange={{action "upload" "1"}} accept="image/*">
                 </div>
                 <div class="row">
@@ -127,7 +132,9 @@
                 </div>
                 <div class="row mt-4">
                   <div class="col">
-                    <button id="add-item" class="btn submit-btn sreg-btn mb-4" onclick={{action 'addItem'}} disabled={{this.isDisabled}}>ADD ITEM</button>
+                    <button id="add-item" class="btn submit-btn sreg-btn mb-4" onclick={{action 'addItem'}} disabled={{this.isDisabled}}>
+                      {{#if isEditing}}EDIT{{else}}ADD{{/if}} ITEM
+                    </button>
                     {{!-- <button id="add-item" class="btn submit-btn sreg-btn mb-4" onclick={{action 'addItem'}}>ADD ITEM</button> --}}
                     <img id="spinner" class="" src="https://res.cloudinary.com/partsku/image/upload/v1625147893/partsku/Spinner-1s-60px_pifuy6.gif">
                   </div>
@@ -137,7 +144,7 @@
                 <div class="row">
                   <div class="col">
                     <p class="label-font primary-text-color font-weight-bold text-left mb-2">CATEGORIES</p>
-                    <Dropdowns @type="category" @look="add-product-input-box" @data={{this.categories}} @action={{action "inputCategory"}} />
+                    <Dropdowns @type="category" @look="add-product-input-box" @val={{this.category}} @data={{this.categories}} @action={{action "inputCategory"}} />
                   </div>
                 </div>
                 <div class="row mt-4">
@@ -157,8 +164,8 @@
                     <p class="label-font primary-text-color font-weight-bold text-left mb-2">CONDITION</p>
                     <select class="add-product-input-box" onchange={{action 'inputCondition' value='target.value'}}>
                       {{#each itemConditions as |stuff| }}
-                        <option value={{stuff.value}}>{{stuff.msg}}</option>
-                      {{/each}}
+                        <option id="{{stuff.value}}" value={{stuff.value}}>{{stuff.msg}}</option>
+                      {{/each}}{{selectedCondition}}
                     </select>
                   </div>
                 </div>
@@ -171,7 +178,7 @@
                 <div class="row mt-4 mb-3">
                   <div class="col">
                     <p class="label-font primary-text-color font-weight-bold text-left mb-2">BRAND</p>
-                    <Dropdowns @type="brand" @look="add-product-input-box" @data={{this.brands}} @action={{action "inputBrand"}} />
+                    <Dropdowns @type="brand" @look="add-product-input-box" @val={{this.brand}} @data={{this.brands}} @action={{action "inputBrand"}} />
                   </div>
                 </div>
                 <div class="row mt-4 mb-3">

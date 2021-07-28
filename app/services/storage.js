@@ -53,15 +53,15 @@ export default class StorageService extends Service {
   }
 
   sset(name, value)  {
-    sessionStorage.setItem(`_momobil_${name}`, JSON.stringify(value))
+    sessionStorage.setItem(`_partsku_${name}`, JSON.stringify(value))
   }
 
   sget(name) {
-    let _data = JSON.parse(sessionStorage.getItem(`_momobil_${name}`))
+    let _data = JSON.parse(sessionStorage.getItem(`_partsku_${name}`))
     return _data
   }
 
   sremove(name)  {
-    sessionStorage.removeItem(`_momobil_${name}`)
+    sessionStorage.removeItem(`_partsku_${name}`)
   }
 }

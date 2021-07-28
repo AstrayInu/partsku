@@ -32,7 +32,7 @@ export default class ProfileCardComponent extends Component {
 
         if(this.where == "user" || this.where == "user-orders") {
           this.admin.uploadUserPicture(uploadData).then(response => {
-            console.log("ADMIN response", response)
+            // console.log("ADMIN response", response)
             this.storage.lset("user_pp", response.url)
             location.reload();
           }).catch(e => {
@@ -40,7 +40,7 @@ export default class ProfileCardComponent extends Component {
           })
         } else {
           this.admin.uploadSellerPicture(uploadData).then(response => {
-            console.log("ADMIN response", response)
+            // console.log("ADMIN response", response)
             this.storage.lset("seller_pp", response.url)
             alert(response.msg)
             location.reload();

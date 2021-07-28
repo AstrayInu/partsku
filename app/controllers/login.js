@@ -48,22 +48,27 @@ export default class LoginController extends Controller {
       email: this.email,
       password: this.password
     }
+    $("#reg-btn").addClass("d-none")
+    $("#spinner").removeClass("d-none")
 
     this.session.loginUser(data).then( res => {
       set(this, 'successMessage', res.msg)
-      console.log("BERHASIL LOGIN", res)
+      // console.log("BERHASIL LOGIN", res)
       this.storage.lset('user_email', res.email)
       this.storage.lset('user_id', res.id)
       this.storage.lset('user_name', res.name)
       this.storage.lset('user_attributes', res.attributes)
       this.storage.lset('user_pp', res.attributes.imgUrl)
       this.storage.lset('s_token', res.token)
+      if(res.phone_number) this.storage.lset('user_phone', res.phone_number)
       if(res.sid) this.storage.lset('seller_id', res.sid)
       if(res.type) this.storage.lset("user_type", res.type)
       
-      if(!res.phone_number || !res.attributes.address) location.href = 'user/profile' // data not complete
+      if(!res.phone_number && !res.attributes.address) location.href = 'user/profile' // data not complete
       else location.href = '/'
     }).catch( e => {
+      $("#reg-btn").removeClass("d-none")
+      $("#spinner").addClass("d-none")
       let err = e.responseJSON.msg ? e.responseJSON.msg : e
       set(this, 'errorMessage', err)
       console.log("ERROR", err)

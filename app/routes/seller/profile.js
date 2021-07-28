@@ -13,15 +13,15 @@ export default class SellerProfileRoute extends Route {
   }
 
   async model() {
-    if(!this.storage.lget("seller_data")) {
+    // if(!this.storage.lget("seller_data")) {
       let sid = this.storage.lget("seller_id")
         , seller_data = await this.admin.getSellerData(sid)
       
         this.storage.lset("seller_data", seller_data)
       return hash({seller_data})
-    } else {
-      return {seller_data: this.storage.lget("seller_data")}
-    }
+    // } else {
+    //   return {seller_data: this.storage.lget("seller_data")}
+    // }
   }
 
   setupController(controller, { seller_data }) {

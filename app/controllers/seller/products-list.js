@@ -35,23 +35,36 @@ export default class SellerProductsListController extends Controller {
     }
   }
 
+  @computed('condition')
+  get selectedCondition() {
+    if(this.condition) document.getElementById(`${this.condition}`).selected = true
+  }
+
   @action
   addProduct(val) {
-    console.log('val', val)
+    // console.log('val', val)
     if(val.brand) {
-      val.attributes = JSON.parse(val.attributes)
       for(let i=0 ; i<val.attributes.imgUrl.length ; i++) {
         document.getElementById(`img-${i+1}`).src = val.attributes.imgUrl[i]
       }
-      
+      set(this, 'isEditing', true)
       set(this, 'itemName', val.name)
+      if(this.itemName) set(this, 'isValidName', true)
       set(this, 'category', val.category)
+      if(this.category) set(this, 'isValidCategory', true)
       set(this, 'price', val.price)
+      if(this.price) set(this, 'isValidPrice', true)
       set(this, 'sku', val.sku)
+      if(this.sku) set(this, 'isValidSKU', true)
       set(this, 'condition', val.condition)
+      if(this.condition) set(this, 'isValidCondition', true)
       set(this, 'stock', val.stock)
-      set(this, 'brand', val.brand)
+      if(this.stock) set(this, 'isValidStock', true)
+      set(this, 'brand', `${val.brand}.${val.attributes.carType}`)
+      if(this.brand) set(this, 'isValidBrand', true)
       set(this, 'description', val.description)
+      if(this.description) set(this, 'isValidDesc', true)
+      set(this, 'pid', val.pid)
     }
     $("#plist-main-island-container").addClass("col-sm-6")
     $("#plist-main-island").addClass("d-none")
@@ -63,6 +76,7 @@ export default class SellerProductsListController extends Controller {
 
   @action
   closeAddProduct() {
+    set(this, 'isEditing', false)
     $("#plist-main-island-container").removeClass("col-sm-6")
     $("#plist-main-island").removeClass("d-none")
     $("#add-item-container").removeClass("d-none")
@@ -105,7 +119,7 @@ export default class SellerProductsListController extends Controller {
 
   @action
   inputCategory(val) {
-    console.log("CAT", val)
+    // console.log("CAT", val)
     if(val.length > 0) {
       set(this, "isValidCategory", true)
       set(this, 'category', val)
@@ -148,7 +162,7 @@ export default class SellerProductsListController extends Controller {
 
   @action
   inputBrand(val) {
-    console.log("BrAND", val)
+    // console.log("BrAND", val)
     if(val.length > 0) {
       set(this, "isValidBrand", true)
       set(this, 'brand', val)
@@ -157,7 +171,7 @@ export default class SellerProductsListController extends Controller {
 
   @action
   inputDescription() {
-    console.log($('.pell-content').html().length)
+    // console.log($('.pell-content').html().length)
     if($('.pell-content').html().length > 10) set(this, 'isValidDesc', true)
   }
 
@@ -176,17 +190,32 @@ export default class SellerProductsListController extends Controller {
       description: $('.pell-content').html()
     }
     // console.log('data', data)
-    
+    // console.log('pid', this.pid)
     $("#add-item").hide()
     $("#spinner").show()
-    this.admin.createProduct(data).then( res => {
-      console.log(res)
-      alert(res.msg)
-      $("#add-item").show()
-      $("#spinner").hide()
-      location.reload()
-    }).catch( e => {
-      console.log(e)
-    })
+    if(this.isEditing) {
+      this.admin.editProduct(data, this.pid).then(res => {
+        // console.log('res', res)
+        alert("Update Success")
+        location.reload()
+      }).catch(e => {
+        console.log('e', e)
+        alert("ERROR")
+        $("#add-item").show()
+        $("#spinner").hide()
+      })
+    } else {
+      this.admin.createProduct(data).then( res => {
+        // console.log(res)
+        alert(res.msg)
+        $("#add-item").show()
+        $("#spinner").hide()
+        location.reload()
+      }).catch( e => {
+        console.log(e)
+        $("#add-item").show()
+        $("#spinner").hide()
+      })
+    }
   }
 }

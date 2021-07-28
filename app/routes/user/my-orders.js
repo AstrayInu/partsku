@@ -8,7 +8,7 @@ export default class UserMyOrdersRoute extends Route {
 
   async model() {
     let seller_data
-    if(!this.storage.lget("seller_data")) {
+    if(!this.storage.lget("seller_data") && this.storage.lget("user_type") != "user") {
       let sid = this.storage.lget("seller_id")
       seller_data = await this.admin.getSellerData(sid)
       
@@ -20,24 +20,16 @@ export default class UserMyOrdersRoute extends Route {
   }
 
   setupController(controller, { seller_data, orders }) {
-    console.log('orders', orders)
-    // orders.pending.forEach(x => {
-    //   orders.sellerList.forEach(y => {
-    //     if(x.pid == y.pid) {
-    //       x.sid = y.sid
-    //       x.pname = y.name
-    //       x.shop_name = y.shop_name
-    //       x.price = y.price
-    //       x.img = y.imgUrl
-    //     }
-    //   })
-    // })
-    controller.set("orders", orders)
+    // console.log('orders', orders)
     controller.set("pending", orders.pending)
     controller.set("done", orders.done)
-    controller.set("sellerList", orders.sellerList)
-    controller.set("tidList", orders.tidList)
     controller.set("status", orders.status)
-    controller.set("seller_data", seller_data)
+    controller.set("status_done", orders.status_done)
+  }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.set('shows', null);
+    }
   }
 }

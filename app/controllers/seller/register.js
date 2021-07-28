@@ -37,7 +37,7 @@ export default class SellerRegisterController extends Controller {
 
   @action
   inputKTP(val) {
-    console.log('val', val)
+    // console.log('val', val)
     const file = val.target.files[0];
     let reader = new FileReader()
 
@@ -55,8 +55,15 @@ export default class SellerRegisterController extends Controller {
   }
 
   @action
+  inputNoKtp(val) {
+    if(!val.match(/[0-9]/g)) {
+      set(this, 'ktpNum', '')
+    }
+  }
+
+  @action
   inputFotoToko(val) {
-    console.log('val', val)
+    // console.log('val', val)
     const file = val.target.files[0];
     let reader = new FileReader()
 
@@ -86,37 +93,28 @@ export default class SellerRegisterController extends Controller {
 
   @action
   register() {
-    // let data = {
-    //   shopName: this.shopName.trim(),
-    //   waNum: this.waNum,
-    //   papKtp: this.papKtp,
-    //   papToko: this.papToko,
-    //   shopAddress: $("#shop-address").val(),
-    //   uid: this.storage.lget("user_id")
-    // }
+    let data = {
+      shopName: this.shopName.trim(),
+      waNum: this.waNum,
+      ktpNum: this.ktpNum,
+      papKtp: this.papKtp,
+      papToko: this.papToko,
+      shopAddress: $("#shop-address").val(),
+      uid: this.storage.lget("user_id")
+    }
+    // console.log('data', data)
 
     $('#reg-btn').addClass("d-none")
     $('#spinner').removeClass("d-none")
 
-    // this.admin.createSeller(data).then( response => {
-    //   // console.log("BERHASIL", response)
-    //   this.storage.lset("seller_id", response.sid)
-    //   this.storage.lset("seller_data", response.data)
-    //   this.storage.lset("user_type", 'seller')
-      
-    //   set(this, 'successMessage', 'Registrasi berhasil')
-    //   $(".sreg-title").hide()
-    //   setTimeout( () => {
-    //     $(".sreg-title").show()
-    //     location.href = '/seller/profile'
-    //   }, 5000)
-      
-    // }).catch( e => {
-    //   alert("Error :(\npls contact our devs")
-    //   $('#reg-btn').removeClass("d-none")
-    //   $('#spinner').addClass("d-none")
-    //   console.log('Error',e)
-    // })
+    this.admin.createSeller(data).then( response => {
+      alert("Registration completed! Please wait for the admin to validate the data you've given")
+      location.href = '/'
+    }).catch( e => {
+      alert("Error :(\npls contact our devs")
+      $('#reg-btn').removeClass("d-none")
+      $('#spinner').addClass("d-none")
+      console.log('Error',e)
+    })
   }
-
 }

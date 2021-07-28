@@ -1,18 +1,19 @@
-<div class="container-fluid">
-  <div class="row landing-bg">
-    <div class="col">
-      <div class="main-island">
+<div class="landing-bg">
+  <img src="https://res.cloudinary.com/partsku/image/upload/v1623064936/partsku/landing-bg_wgnw2q.png" width="100%">
+  <div class="main-island">
+    <div class="row">
+      <div class="col">
         <p class="buy-cp">BUY TRUSTWORTHY CAR PARTS</p>
-        <p class="full-control">Full control of what you use and pay for</p>
         <div class="search-landing">
           <Input @class="landing-search-box" @placeholder="Search car part by SKU or name here" @value={{this.searchQuery}} @insert-newline={{action "search"}} />
           <button class="landing-search-btn" onclick={{action "search"}}>Search</button>
         </div>
       </div>
     </div>
-    <div class="col">
-    </div>
   </div>
+  {{!-- <div class="col"></div> --}}
+</div>
+<div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-8 recommended-island">
       <p class="landing-head-title">RECOMMENDED FOR YOU</p>
@@ -34,31 +35,36 @@
         {{/each}}
       </div>
       <div class="">
-        <button class="btn explore-landing-btn" onclick={{action "showBrands"}}>Explore Other Brands</button>
+        <button id="explore-btn" class="btn explore-landing-btn" onclick={{action "showBrands"}}>{{btnName}}</button>
       </div>
     </div>
   </div>
-  <div class="row justify-content-center new-item-div">
-    <div class="col-8 new-item-island">
-      <p class="landing-head-title">NEW ITEMS</p>
-      <p class="landing-subtitle">RECENTLY ADDED SPARE PARTS JUST FOR YOU</p>
-      <div class="row new-item-list">
-        <div class="col new-item-left">
-          <div class="row justify-content-end top-new-item">
-            <Products::ItemCard @source="new-item-left" />
-            <Products::ItemCard @source="new-item-left" />
+</div>
+<div class="new-item-div">
+  <div class="container">
+    <div class="row">
+      <div class="col new-item-island">
+        <p class="landing-head-title">NEW ITEMS</p>
+        <p class="landing-subtitle">RECENTLY ADDED SPARE PARTS JUST FOR YOU</p>
+        <div class="row new-item-list">
+          <div class="col-6 new-item-left">
+            <div class="row justify-content-end top-new-item">
+              {{#each this.thing as |item|}}
+                <div class="col-md-6">
+                  <Products::ItemCard @source="new-item-left" @data={{item}}/>
+                </div>
+              {{/each}}
+            </div>
           </div>
-          <div class="row justify-content-end">
-            <Products::ItemCard @source="new-item-left" />
-            <Products::ItemCard @source="new-item-left" />
+          <div class="col-6 new-item-right">
+            <Products::ItemCard @source='new-item-right' @data={{this.thing1}}/>
           </div>
-        </div>
-        <div class="col new-item-right">
-          <Products::ItemCard @source='new-item-right' />
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-10 abt-us-island">
       <p class="landing-head-title">ABOUT US</p>
@@ -94,7 +100,7 @@
           </div>
         </div>
         <div class="col about-us-right">
-          <img src="https://res.cloudinary.com/partsku/image/upload/v1623320841/partsku/About_Us_pic_lpczjk.png">
+          <img src="https://res.cloudinary.com/partsku/image/upload/v1623320841/partsku/About_Us_pic_lpczjk.png" width="100%">
         </div>
       </div>
     </div>

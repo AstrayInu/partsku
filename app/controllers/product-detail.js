@@ -15,13 +15,62 @@ export default class ProductDetailController extends Controller {
   }
 
   get mainImg() {
-    // console.log(this.product)
+    var img = new Image();
+    img.addEventListener("load", function(){
+      if(this.naturalHeight > this.naturalWidth) {
+        $("#p-detail-main-img").width('auto').height('100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $("#p-detail-main-img").width('100%').height('auto')
+      }
+    });
+    img.src = this.productAttr.imgUrl[0];
+
     return this.productAttr.imgUrl[0]
+  }
+
+  get subImg() {
+    for(let i=0 ; i<this.productAttr.imgUrl.length ; i++) {
+      var img = new Image();
+      img.addEventListener("load", function(){
+        if(this.naturalHeight > this.naturalWidth) {
+          $(`#p-detail-sub-img-${i}`).width('auto').height('100%')
+          $(`.p-detail-sub-img-${i}`).width('103.75px').height('100px')
+        } else if(this.naturalHeight < this.naturalWidth) {
+          $(`#p-detail-sub-img-${i}`).width('100%').height('auto')
+        } else {
+          $(`#p-detail-sub-img-${i}`).width('100%').height('100%')
+          $(`.p-detail-sub-img-${i}`).width('103.75px').height('100px')
+        }
+      });
+      img.src = this.productAttr.imgUrl[i];
+    }
   }
 
   get itemCategory() {
     let x = this.product.category.split('.')
     return `${x[0]} > ${x[1]}`
+  }
+
+  get joined() {
+    let d = new Date(this.seller.created_at)
+
+    return d.toLocaleString('default', {year: 'numeric', month: 'long'});
+  }
+
+  @computed("avg")
+  get starRating() {
+    if(this.avg) {
+      let rate = this.avg
+        , ids = ['starhalf-static', 'star1-static', 'star1half-static', 'star2-static', 'star2half-static', 'star3-static', 'star3half-static', 'star4-static', 'star4half-static', 'star5-static']
+        , count = rate / 0.5
+
+      document.getElementById(`${ids[count-1]}`).checked = true
+    }
+  }
+
+  @computed("quantity")
+  get totalCart() {
+    return Number(this.product.price * this.quantity)
   }
 
   @action
@@ -30,6 +79,20 @@ export default class ProductDetailController extends Controller {
 
     window.open(`https://wa.me/62${this.sellerAttr.waNum}?text=${text}`, '_blank')
     // window.open(`https://wa.me/628111683183?text=${text}`, '_blank') // for testing
+  }
+
+  @action
+  setMainImg(val) {
+    var img = new Image();
+    img.addEventListener("load", function(){
+      if(this.naturalHeight > this.naturalWidth) {
+        $("#p-detail-main-img").width('auto').height('100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $("#p-detail-main-img").width('100%').height('auto')
+      }
+    });
+    img.src = val
+    document.getElementById("p-detail-main-img").src = val
   }
 
   @action
@@ -68,7 +131,9 @@ export default class ProductDetailController extends Controller {
 
   @action
   buyNow() {
-
+    if(!this.session.isUserLoggedin) {
+      alert("Please login to continue! or Register if you dont have an account")
+      location.href = '/login'
+    }
   }
-
 }
