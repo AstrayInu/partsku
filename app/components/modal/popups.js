@@ -17,7 +17,7 @@ export default class ModalPopupsComponent extends Component {
 
   get userAddress() {
     if(this.session.isUserLoggedin) {
-      return this.storage.lget("user_attributes").address
+      return this.storage.lget("user_attributes").address || this.storage.lget("user_address")
     }
   }
   
@@ -139,13 +139,14 @@ export default class ModalPopupsComponent extends Component {
             cartData: this.buynow ? this.buyData : this.cart
           }
       if(this.buynow) data.buynow = true
-      // console.log(data)
+      console.log(data, this.buynow)
       this.admin.newTransaction(data).then(result => {
         // console.log(result)
         alert(result)
         location.href = '/user/my-orders'
       }).catch(e => {
         console.log(e)
+        alert("Whoops, an error occured. Please try again later or contact our devs")
       })
     }
   }
