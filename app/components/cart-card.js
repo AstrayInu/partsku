@@ -58,7 +58,7 @@ export default class CartCardComponent extends Component {
   @action
   min(idx, pid) {
     let val = Number($(`#qty_for_index_${idx}`).val())
-    if(val >= 1) {
+    if(val > 1) {
       let q = Number(val) - 1
       $(`#qty_for_index_${idx}`).val(q)
       if(!isNaN(q)) {

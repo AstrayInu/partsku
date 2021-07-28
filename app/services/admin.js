@@ -314,7 +314,6 @@ export default class AdminService extends Service {
   }
 
   updateCart(data) {
-    console.log('data', data)
     return new EmberPromise((resolve, reject) => {
       $.ajax({
         method: 'PUT',

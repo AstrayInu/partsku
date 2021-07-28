@@ -28,7 +28,7 @@ export default class UserCartController extends Controller {
   setQuant(data) {
     set(this, 'cart.data', data)
     this.admin.updateCart(data).then(response => {
-      console.log('response', response)
+      // console.log('response', response)
     }).catch(e => {
       console.log('e', e)
     })

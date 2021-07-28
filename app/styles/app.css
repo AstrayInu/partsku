@@ -1929,3 +1929,8 @@ input:checked + .slider:before {
 
 .rating-static > input:focus ~ label { color: #FF4F04;  }
 .rating-static > input:checked ~ label { color: #FF4F04;  }
+
+.alert {
+  width: 400px;
+  margin-top: 2.5%;
+}
