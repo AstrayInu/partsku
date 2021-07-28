@@ -39,8 +39,22 @@ export default class ProductCardComponent extends Component {
     return this.product.is_active == 1
   }
 
-  @computed('data')
+  @computed('product')
   get productImg() {
+    return this.product.attributes.imgUrl[0]
+  }
+
+  get finalImg() {
+    var img = new Image();
+    img.addEventListener("load", function(){
+      if(this.naturalHeight > this.naturalWidth) {
+        $(`#pcard-main-img-${this.idx}`).prop('width','fit-content').prop('height','100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $(`#pcard-main-img-${this.idx}`).width('100%').height('fit-content')
+      }
+    });
+    img.src = this.product.attributes.imgUrl[0];
+
     return this.product.attributes.imgUrl[0]
   }
 

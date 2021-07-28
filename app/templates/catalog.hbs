@@ -1,9 +1,11 @@
 <div class="catalog-bg">
-  <div class="container">
-    <div class="search-result">
-      <img src="https://res.cloudinary.com/partsku/image/upload/v1623923648/partsku/search-info-icon_ofmdbu.png">
-      <p class="search-info">Search result for "<span class="search-query">{{this.searchResult}}</span>"</p>
-    </div>
+  <div class="container pt-5">
+    {{#if this.searchResult}}
+      <div class="search-result mb-3">
+        <img src="https://res.cloudinary.com/partsku/image/upload/v1623923648/partsku/search-info-icon_ofmdbu.png">
+        <p class="search-info">Search result for "<span class="search-query">{{this.searchResult}}</span>"</p>
+      </div>
+    {{/if}}
     <div class="filter-row">
       <div class="row">
         <div class="col-2 align-self-center text-center">
@@ -37,8 +39,8 @@
     </div>
     {{#if this.data.data}}
       <div class="row">
-        {{#each this.data.data as |thing|}}
-          <ProductCard @class="col-md-3 product-card-component" @style="catalog" @product={{thing}} />
+        {{#each this.data.data as |thing idx|}}
+          <ProductCard @class="col-md-3 product-card-component" @style="catalog" @product={{thing}} @idx={{idx}} />
         {{/each}}
       </div>
     {{else}}

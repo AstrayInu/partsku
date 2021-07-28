@@ -7,17 +7,24 @@ import { computed, action, set } from '@ember/object';
 export default class ModalPopupsComponent extends Component {
   @service admin
   @service storage
+  @service session
 
   get userName() {
-    return this.storage.lget("user_name")
+    if(this.session.isUserLoggedin) {
+      return this.storage.lget("user_name")
+    }
   }
 
   get userAddress() {
-    return this.storage.lget("user_attributes").address
+    if(this.session.isUserLoggedin) {
+      return this.storage.lget("user_attributes").address
+    }
   }
   
   get userPhone() {
-    return this.storage.lget("user_phone")
+    if(this.session.isUserLoggedin) {
+      return this.storage.lget("user_phone")
+    }
   }
 
   @computed("data")

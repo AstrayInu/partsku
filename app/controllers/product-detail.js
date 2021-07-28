@@ -17,11 +17,11 @@ export default class ProductDetailController extends Controller {
   get mainImg() {
     var img = new Image();
     img.addEventListener("load", function(){
-        if(this.naturalHeight > this.naturalWidth) {
-          $("#p-detail-main-img").width('auto').height('100%')
-        } else if(this.naturalHeight < this.naturalWidth) {
-          $("#p-detail-main-img").width('100%').height('auto')
-        }
+      if(this.naturalHeight > this.naturalWidth) {
+        $("#p-detail-main-img").width('auto').height('100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $("#p-detail-main-img").width('100%').height('auto')
+      }
     });
     img.src = this.productAttr.imgUrl[0];
 
@@ -34,12 +34,12 @@ export default class ProductDetailController extends Controller {
       img.addEventListener("load", function(){
         if(this.naturalHeight > this.naturalWidth) {
           $(`#p-detail-sub-img-${i}`).width('auto').height('100%')
-          $(`.p-detail-sub-img`).width('103.75px')
+          $(`.p-detail-sub-img-${i}`).width('103.75px').height('100px')
         } else if(this.naturalHeight < this.naturalWidth) {
           $(`#p-detail-sub-img-${i}`).width('100%').height('auto')
         } else {
           $(`#p-detail-sub-img-${i}`).width('100%').height('100%')
-          $(`.p-detail-sub-img`).width('105.75px')
+          $(`.p-detail-sub-img-${i}`).width('103.75px').height('100px')
         }
       });
       img.src = this.productAttr.imgUrl[i];
@@ -83,6 +83,15 @@ export default class ProductDetailController extends Controller {
 
   @action
   setMainImg(val) {
+    var img = new Image();
+    img.addEventListener("load", function(){
+      if(this.naturalHeight > this.naturalWidth) {
+        $("#p-detail-main-img").width('auto').height('100%')
+      } else if(this.naturalHeight < this.naturalWidth) {
+        $("#p-detail-main-img").width('100%').height('auto')
+      }
+    });
+    img.src = val
     document.getElementById("p-detail-main-img").src = val
   }
 
@@ -122,7 +131,9 @@ export default class ProductDetailController extends Controller {
 
   @action
   buyNow() {
-
+    if(!this.session.isUserLoggedin) {
+      alert("Please login to continue! or Register if you dont have an account")
+      location.href = '/login'
+    }
   }
-
 }
