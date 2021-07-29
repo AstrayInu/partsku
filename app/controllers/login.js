@@ -64,8 +64,11 @@ export default class LoginController extends Controller {
       if(res.sid) this.storage.lset('seller_id', res.sid)
       if(res.type) this.storage.lset("user_type", res.type)
       
-      if(!res.phone_number && !res.attributes.address) location.href = 'user/profile' // data not complete
-      else location.href = '/'
+      if(this.storage.sget("previousProduct")) location.href = `/product-detail/${this.storage.sget("previousProduct")}`
+      else {
+        if(!res.phone_number && !res.attributes.address) location.href = 'user/profile' // data not complete
+        else location.href = '/'
+      }
     }).catch( e => {
       $("#reg-btn").removeClass("d-none")
       $("#spinner").addClass("d-none")

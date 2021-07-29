@@ -4,6 +4,8 @@ import { hash } from 'rsvp';
 
 export default class ProductDetailRoute extends Route {
   @service admin
+  @service storage
+  @service session
 
   async model(params) {
     let pid = params.product_id
@@ -17,6 +19,7 @@ export default class ProductDetailRoute extends Route {
     });
     avg = avg / product_rating.count
     avg = isNaN(avg) ? 0 : avg
+    if(!this.session.isUserLoggedin) this.storage.sset("previousProduct", product_data.product.pid)
     return hash({product_data, product_rating, avg})
   }
 
