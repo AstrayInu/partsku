@@ -38,6 +38,7 @@
 }
 
 .header-user-console {
+  list-style-type: none;
   display: inline-flex;
   margin: 0;
   padding-left: 25%;
@@ -1499,7 +1500,7 @@ input:checked + .slider:before {
 
 .main-product-name {
   font-size: 28px;
-  font-family: montserrat;
+  font-family: 'Montserrat';
   font-weight: bold;
 }
 

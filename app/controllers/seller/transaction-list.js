@@ -39,7 +39,7 @@ export default class SellerTransactionListController extends Controller {
 
   @action
   showDetails(val) {
-    set(this, 'detailAddress', val)
+    set(this, 'detailAddress', val.replace(/\n/g, ', '))
   }
 
   @action

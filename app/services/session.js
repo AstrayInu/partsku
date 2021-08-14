@@ -72,6 +72,8 @@ export default class SessionService extends Service {
         await this.storage.lremove("user_email")
         await this.storage.lremove("user_phone")
         await this.storage.lremove("user_attributes")
+
+        await this.storage.sremove("proof")
         
         alert("Berhasil Logout!")
         location.href = '/'

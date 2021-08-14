@@ -12,13 +12,13 @@
           <span>Sort / filter by</span>
         </div>
         <div class="text-center mr-3">
-          <button class="btn sort-btn">New</button>
+          <button class="btn sort-btn" onclick={{action 'applySort' 'new'}}>New</button>
         </div> 
         <div class="text-center mr-3">
-          <button class="btn sort-btn">Best Seller</button>
+          <button class="btn sort-btn" onclick={{action 'applySort' 'best_sell'}}>Best Seller</button>
         </div>
         <div class="text-center mr-3">
-          <select class="sort-box med-sort">
+          <select class="sort-box med-sort" onchange={{action 'applySort' value='target.value'}}>
             <option value="" selected>Price</option>
             <option value="min_price">Low to High</option>
             <option value="max_price">High to Low</option>

@@ -48,7 +48,10 @@ export default class UserCartController extends Controller {
 
   @action
   checkout() {
-
+    if(!this.storage.lget("user_attributes").address || !this.storage.lget("user_phone")) {
+      alert("Please complete your data before checking out")
+      location.href ='/user/profile'
+    }
   }
 
   @action

@@ -13,7 +13,7 @@ export default class SellerProfileController extends Controller {
 
   @computed('seller')
   get ktp() {
-    return this.seller.attributes.ktp
+    return this.seller.attributes.ktpNum
   }
 
   @computed('seller')

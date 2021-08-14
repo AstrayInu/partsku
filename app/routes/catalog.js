@@ -24,6 +24,7 @@ export default class CatalogRoute extends Route {
       brand: params.brand,
       limit: params.limit ? params.limit : 16,
       offset: params.offset ? params.offset : 0,
+      sort: params.sort ? params.sort : null
     }
     // console.log("params", params)
 
