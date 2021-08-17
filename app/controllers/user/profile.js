@@ -49,9 +49,11 @@ export default class UserProfileController extends Controller {
     // console.log(data)
     this.admin.saveUserData(data, this.storage.lget('user_id')).then( response => {
       // console.log("RESPONSE",response)
+      let uattr = this.storage.lget("user_attributes")
+      uattr.address = this.address
+      this.storage.lset("user_attributes", uattr)
       this.storage.lset("user_name", this.name)
       this.storage.lset("user_email", this.email)
-      this.storage.lset("user_address", this.address)
       this.storage.lset("user_phone", this.phoneNumber)
       alert(response.msg)
       location.reload();
