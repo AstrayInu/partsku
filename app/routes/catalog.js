@@ -14,7 +14,8 @@ export default class CatalogRoute extends Route {
       brand: { refreshModel: true },
       limit: { refreshModel: true },
       offset: { refreshModel: true },
-      sort: { refreshModel: true }
+      sort: { refreshModel: true },
+      category: { refreshModel: true }
     }
   }
 
@@ -24,9 +25,10 @@ export default class CatalogRoute extends Route {
       brand: params.brand,
       limit: params.limit ? params.limit : 16,
       offset: params.offset ? params.offset : 0,
-      sort: params.sort ? params.sort : null
+      sort: params.sort ? params.sort : null,
+      category: params.category ? params.category : null
     }
-    // console.log("params", params)
+    // console.log("params", query)
 
     return hash({
       catalogs: this.admin.getProducts(query).then(results => {

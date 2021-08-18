@@ -197,6 +197,7 @@ export default class AdminService extends Service {
     params += data.limit ? `limit=${data.limit}&` : ''
     params += data.offset ? `offset=${data.offset}&` : ''
     params += data.sid ? `sid=${data.sid}&` : ''
+    params += data.category ? `category=${data.category}&` : ''
     // console.log("params", data)
     return new EmberPromise((resolve, reject) => {
       $.ajax({
