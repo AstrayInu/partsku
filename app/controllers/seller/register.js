@@ -42,7 +42,7 @@ export default class SellerRegisterController extends Controller {
     let reader = new FileReader()
 
     if(file.type != 'image/jpeg' && file.type != 'image/png') {
-      alert('Gambar harus berformat .jpg atau .png')
+      alert('Image must be .jpg or .png')
     } else {
       if(file) reader.readAsDataURL(file) // calls reader.onload if the file exists
 
@@ -68,7 +68,7 @@ export default class SellerRegisterController extends Controller {
     let reader = new FileReader()
 
     if(file.type != 'image/jpeg' && file.type != 'image/png') {
-      alert('Gambar harus berformat .jpg atau .png')
+      alert('Image must be .jpg or .png')
     } else {
       if(file) reader.readAsDataURL(file) // calls reader.onload if the file exists
 

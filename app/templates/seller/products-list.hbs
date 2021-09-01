@@ -143,8 +143,9 @@
               <div class="col scrollable h-720px">
                 <div class="row">
                   <div class="col">
-                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">CATEGORIES</p>
-                    <Dropdowns @type="category" @look="add-product-input-box" @val={{this.category}} @data={{this.categories}} @action={{action "inputCategory"}} />
+                    <p class="label-font primary-text-color font-weight-bold text-left m-0">CATEGORIES</p>
+                    <p class="fs-14px mb-2">*Hold (ctrl) button to select multiple options</p>
+                    <Dropdowns @type="category" @look="add-product-input-box multiple-select" @val={{this.category}} @data={{this.categories}} @action={{action "inputCategory"}} @multiple={{true}} />
                   </div>
                 </div>
                 <div class="row mt-4">
@@ -177,8 +178,9 @@
                 </div>
                 <div class="row mt-4 mb-3">
                   <div class="col">
-                    <p class="label-font primary-text-color font-weight-bold text-left mb-2">BRAND</p>
-                    <Dropdowns @type="brand" @look="add-product-input-box" @val={{this.brand}} @data={{this.brands}} @action={{action "inputBrand"}} />
+                    <p class="label-font primary-text-color font-weight-bold text-left m-0">BRAND</p>
+                    <p class="fs-14px mb-2">*Hold (ctrl) button to select multiple options</p>
+                    <Dropdowns @type="brand" @look="add-product-input-box multiple-select" @val={{this.brand}} @data={{this.brands}} @action={{action "inputBrand"}} @multiple={{true}} />
                   </div>
                 </div>
                 <div class="row mt-4 mb-3">

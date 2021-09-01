@@ -1,5 +1,5 @@
 {{#if (eq @type "brand")}}
-  <select class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
+  <select id="brand" class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
     <option value="">Choose Brand & Model</option>
     <option id="BMW" value="BMW">-----BMW-----</option>
     {{#each @data as |stuff|}}
@@ -63,7 +63,7 @@
     {{/each}}
   </select>
 {{else if (eq @type "category")}}
-  <select class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
+  <select id="category" class="{{@look}}" onchange={{action 'selectVal' value='target.value'}}>
     <option value="">Choose item category</option>
     <option id="Engine and Transmission" value="Engine and Transmission">-----Engine & Transmission-----</option>
     {{#each @data as |stuff|}}

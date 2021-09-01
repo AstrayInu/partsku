@@ -25,10 +25,10 @@
           </select>
         </div>
         <div class="">
-          <Dropdowns @type="brand" @look="sort-box large-sort mr-3" @data={{this.brands}} @action={{action "applyBrand"}} />
+          <Dropdowns @type="brand" @look="sort-box large-sort mr-3" @data={{this.brands}} @action={{action "applyBrand"}} @multiple={{false}} />
         </div>
         <div class="">
-          <Dropdowns @type="category" @look="sort-box large-sort mr-3" @data={{this.categories}} @action={{action "applyCategory"}} />
+          <Dropdowns @type="category" @look="sort-box large-sort mr-3" @data={{this.categories}} @action={{action "applyCategory"}} @multiple={{false}} />
         </div>
         <div class="align-self-center">
           <button type="button" class="close" aria-label="Close" onclick={{action "clearFilters"}}>

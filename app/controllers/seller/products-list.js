@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import $ from 'jquery';
+// import $ from 'jquery';
 import { action, set, computed } from '@ember/object';
 
 export default class SellerProductsListController extends Controller {
@@ -94,7 +94,7 @@ export default class SellerProductsListController extends Controller {
     imgs.src = URL.createObjectURL(file)
 
     if(file.type != 'image/jpeg' && file.type != 'image/png') {
-      alert('Gambar harus berformat .jpg atau .png')
+      alert('Image must be .jpg or .png')
     } else {
       if(file) reader.readAsDataURL(file) // calls reader.onload if the file exists
 
@@ -181,12 +181,12 @@ export default class SellerProductsListController extends Controller {
       sid: this.storage.lget("seller_id"),
       imgData: this.storage.sget("tmpProductPics"),
       name: this.itemName,
-      category: this.category,
+      category: $('#category').val(),
       price: this.price,
       sku: this.sku,
       condition: this.condition,
       stock: this.stock,
-      brand: this.brand,
+      brand: $('#brand').val(),
       description: $('.pell-content').html()
     }
     // console.log('data', data)
