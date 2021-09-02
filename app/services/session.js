@@ -75,7 +75,7 @@ export default class SessionService extends Service {
 
         await this.storage.sremove("proof")
         
-        alert("Berhasil Logout!")
+        alert("Logout Success!")
         location.href = '/'
     //   }
     // }).catch(e => {
